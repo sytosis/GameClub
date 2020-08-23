@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".ui.gallery.GalleryFragment">
+    tools:context=".ui.gallery.BingoFragment">
 
     <TextView
         android:id="@+id/text_gallery"
@@ -19,4 +19,31 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="300dp"
+        android:gravity="center"
+        app:layout_constraintTop_toBottomOf="@+id/text_gallery"
+        app:layout_constraintStart_toStartOf="parent"
+        >
+
+        <Button
+            android:id="@+id/roll_ball_button"
+            android:layout_width="100dp"
+            android:layout_height="50dp"
+            android:text="Roll ball"
+            />
+        <TextView
+            android:id="@+id/ball_number"
+            android:layout_width="50dp"
+            android:layout_height="50dp"
+            />
+        <Button
+            android:id="@+id/new_list_button"
+            android:layout_width="100dp"
+            android:layout_height="50dp"
+            android:text="New List"
+            />
+    </LinearLayout>
+
 </androidx.constraintlayout.widget.ConstraintLayout>
