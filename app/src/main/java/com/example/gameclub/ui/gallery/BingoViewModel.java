@@ -31,6 +31,8 @@ public class BingoViewModel extends ViewModel {
     }
 
     public void setBingoBoard() {
+        bingoBoard = new ArrayList<>();
+        usedNumbers = new ArrayList<>();    
         for (int i = 0; i < 5; i++) {
             List<Integer> line = new ArrayList<>();
             bingoBoard.add(line);
@@ -60,6 +62,7 @@ public class BingoViewModel extends ViewModel {
             bingoBackgroundNumbers[i] = i + 1;
         }
         Collections.shuffle(Arrays.asList(bingoBackgroundNumbers));
+        setBingoBoard();
     }
 
     public boolean checkBall(int number) {

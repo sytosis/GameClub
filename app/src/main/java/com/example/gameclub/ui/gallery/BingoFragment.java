@@ -37,6 +37,7 @@ public class BingoFragment extends Fragment {
             }
         });
         Button rollBall = root.findViewById(R.id.roll_ball_button);
+        Button resetButton = root.findViewById(R.id.new_list_button);
         final TextView ballNumberText = root.findViewById(R.id.ball_number);
         rollBall.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -46,6 +47,14 @@ public class BingoFragment extends Fragment {
                 if (bingoViewModel.checkBall(number)) {
                     textView.setText(bingoViewModel.getBingoBoard().toString());
                 }
+
+            }
+        });
+        resetButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                bingoViewModel.resetBingoBackground();
+                textView.setText(bingoViewModel.getBingoBoard().toString());
 
             }
         });
