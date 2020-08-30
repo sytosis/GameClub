@@ -32,7 +32,7 @@ public class BingoViewModel extends ViewModel {
 
     public void setBingoBoard() {
         bingoBoard = new ArrayList<>();
-        usedNumbers = new ArrayList<>();    
+        usedNumbers = new ArrayList<>();
         for (int i = 0; i < 5; i++) {
             List<Integer> line = new ArrayList<>();
             bingoBoard.add(line);

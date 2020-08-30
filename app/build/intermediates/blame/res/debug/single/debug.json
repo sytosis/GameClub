@@ -88,6 +88,10 @@
         "source": "C:\\Users\\kevin\\GameClub\\app\\src\\main\\res\\menu\\activity_main_drawer.xml"
     },
     {
+        "merged": "C:\\Users\\kevin\\GameClub\\app\\build\\intermediates\\res\\merged\\debug\\layout_login_signup.xml.flat",
+        "source": "C:\\Users\\kevin\\GameClub\\app\\src\\main\\res\\layout\\login_signup.xml"
+    },
+    {
         "merged": "C:\\Users\\kevin\\GameClub\\app\\build\\intermediates\\res\\merged\\debug\\mipmap-xxxhdpi_ic_launcher_round.png.flat",
         "source": "C:\\Users\\kevin\\GameClub\\app\\src\\main\\res\\mipmap-xxxhdpi\\ic_launcher_round.png"
     },

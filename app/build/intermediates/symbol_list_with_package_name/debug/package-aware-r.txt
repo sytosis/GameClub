@@ -1472,6 +1472,8 @@ id accessibility_custom_action_7
 id accessibility_custom_action_8
 id accessibility_custom_action_9
 id action0
+id action_AuthenticationFragment_to_HomeFragment
+id action_HomeFragment_to_AuthenticationFragment
 id action_bar
 id action_bar_activity_content
 id action_bar_container
@@ -1541,6 +1543,8 @@ id direct
 id disableHome
 id drawer_layout
 id dropdown_menu
+id editTextPassword
+id editTextUsername
 id edit_query
 id end
 id end_padder
@@ -1584,6 +1588,7 @@ id line1
 id line3
 id listMode
 id list_item
+id login_button
 id masked
 id media_actions
 id message
@@ -1617,6 +1622,7 @@ id mtrl_picker_text_input_range_end
 id mtrl_picker_text_input_range_start
 id mtrl_picker_title_text
 id multiply
+id nav_authentication
 id nav_controller_view_tag
 id nav_gallery
 id nav_home
@@ -1648,6 +1654,7 @@ id pin
 id progress_circular
 id progress_horizontal
 id radio
+id register_button
 id right
 id right_icon
 id right_side
@@ -1742,6 +1749,7 @@ id uniform
 id unlabeled
 id up
 id useLogo
+id usernameText
 id view_offset_helper
 id visible
 id visible_removing_fragment_view_tag
@@ -1831,6 +1839,7 @@ layout design_text_input_start_icon
 layout fragment_gallery
 layout fragment_home
 layout fragment_slideshow
+layout login_signup
 layout mtrl_alert_dialog
 layout mtrl_alert_dialog_actions
 layout mtrl_alert_dialog_title
