@@ -1499,12 +1499,17 @@ id alertTitle
 id all
 id always
 id async
+id authenticationTextBottom
+id authenticationTextTop
 id auto
+id back_button
 id ball_number
 id barrier
 id beginning
+id bigButtonsLayout
 id blocking
 id bottom
+id bottomText
 id buttonPanel
 id cancel_action
 id cancel_button
@@ -1525,6 +1530,7 @@ id confirm_button
 id container
 id content
 id contentPanel
+id continue_button
 id coordinator
 id custom
 id customPanel
@@ -1543,8 +1549,6 @@ id direct
 id disableHome
 id drawer_layout
 id dropdown_menu
-id editTextPassword
-id editTextUsername
 id edit_query
 id end
 id end_padder
@@ -1633,6 +1637,7 @@ id nav_view
 id navigation_header_container
 id never
 id new_list_button
+id next_button
 id noScroll
 id none
 id normal
@@ -1641,6 +1646,7 @@ id notification_main_column
 id notification_main_column_container
 id off
 id on
+id orText
 id outline
 id packed
 id parallax
@@ -1738,6 +1744,7 @@ id title_template
 id toolbar
 id top
 id topPanel
+id topText
 id touch_outside
 id transition_current_scene
 id transition_layout_save

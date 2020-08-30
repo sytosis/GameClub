@@ -8,12 +8,33 @@
 
 
 
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        app:layout_constraintBottom_toTopOf="@+id/topText"
+        app:layout_constraintEnd_toEndOf="parent"
+        android:gravity="center"
+        android:orientation="vertical">
+        <TextView
+            android:id="@+id/authenticationTextTop"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Welcome to GameClub!"
+             />
+        <TextView
+            android:id="@+id/authenticationTextBottom"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Let's start by setting up your account"
+            />
+    </LinearLayout>
+
     <EditText
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        android:id="@+id/editTextUsername"
+        android:id="@+id/topText"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:ems="10"
@@ -25,8 +46,8 @@
     <EditText
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/editTextUsername"
-        android:id="@+id/editTextPassword"
+        app:layout_constraintTop_toBottomOf="@id/topText"
+        android:id="@+id/bottomText"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:ems="10"
@@ -34,7 +55,8 @@
         tools:layout_editor_absoluteX="103dp"
         tools:layout_editor_absoluteY="385dp" />
     <LinearLayout
-        app:layout_constraintTop_toBottomOf="@+id/editTextPassword"
+        android:id="@+id/bigButtonsLayout"
+        app:layout_constraintTop_toBottomOf="@+id/bottomText"
         android:layout_width="match_parent"
         android:layout_height="50dp"
         android:gravity="center">
@@ -44,12 +66,46 @@
             android:text="Register"
             android:id="@+id/register_button"
             android:layout_marginRight="50dp"/>
+
+        <TextView
+            android:id="@+id/orText"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="or"
+            android:layout_marginRight="50dp"/>
+
         <Button
             android:layout_width="100dp"
             android:layout_height="match_parent"
             android:text="Login"
             android:id="@+id/login_button"/>
     </LinearLayout>
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        app:layout_constraintTop_toBottomOf="@+id/bigButtonsLayout">
+        <Button
+            android:layout_width="100dp"
+            android:layout_height="50dp"
+            android:text="Back"
+            android:layout_alignParentLeft="true"
+            android:layout_marginLeft="50dp"
+            android:id="@+id/back_button"/>
+        <Button
+            android:layout_width="100dp"
+            android:layout_height="50dp"
+            android:layout_marginRight="50dp"
+            android:text="Continue"
+            android:layout_centerHorizontal="true"
+            android:id="@+id/continue_button"/>
+        <Button
+            android:layout_width="100dp"
+            android:layout_height="50dp"
+            android:layout_marginRight="50dp"
+            android:text="Next"
+            android:layout_alignParentRight="true"
+            android:id="@+id/next_button"/>
+    </RelativeLayout>
 
 
 
