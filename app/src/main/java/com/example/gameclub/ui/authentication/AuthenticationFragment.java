@@ -113,8 +113,11 @@ public class AuthenticationFragment extends Fragment {
                         System.out.println("Incorrect combination");
                     }
                 }
-                pageNumber = pageNumber + 1;
-                fragment.refreshPageLayout();
+                if (pageNumber != 9) {
+                    pageNumber = pageNumber + 1;
+                    fragment.refreshPageLayout();
+                }
+
             }
 
         });
@@ -204,7 +207,7 @@ public class AuthenticationFragment extends Fragment {
             continueButton.setVisibility(View.VISIBLE);
         } else if (pageNumber == 9) {
             bottomText.setText("Please log in");
-            topEditText.setHint("Username here");
+            topEditText.setHint("Email here");
             bottomEditText.setHint("Password here");
             nextButton.setVisibility(View.VISIBLE);
             backButton.setVisibility(View.VISIBLE);
