@@ -16,6 +16,10 @@
         "source": "C:\\Users\\kevin\\GameClub\\app\\src\\main\\res\\mipmap-xxxhdpi\\ic_launcher.png"
     },
     {
+        "merged": "C:\\Users\\kevin\\GameClub\\app\\build\\intermediates\\res\\merged\\debug\\drawable_right_short.png.flat",
+        "source": "C:\\Users\\kevin\\GameClub\\app\\src\\main\\res\\drawable\\right_short.png"
+    },
+    {
         "merged": "C:\\Users\\kevin\\GameClub\\app\\build\\intermediates\\res\\merged\\debug\\navigation_mobile_navigation.xml.flat",
         "source": "C:\\Users\\kevin\\GameClub\\app\\src\\main\\res\\navigation\\mobile_navigation.xml"
     },
@@ -32,8 +36,16 @@
         "source": "C:\\Users\\kevin\\GameClub\\app\\src\\main\\res\\mipmap-xhdpi\\ic_launcher_round.png"
     },
     {
+        "merged": "C:\\Users\\kevin\\GameClub\\app\\build\\intermediates\\res\\merged\\debug\\drawable_right_long_2.png.flat",
+        "source": "C:\\Users\\kevin\\GameClub\\app\\src\\main\\res\\drawable\\right_long_2.png"
+    },
+    {
         "merged": "C:\\Users\\kevin\\GameClub\\app\\build\\intermediates\\res\\merged\\debug\\mipmap-mdpi_ic_launcher_round.png.flat",
         "source": "C:\\Users\\kevin\\GameClub\\app\\src\\main\\res\\mipmap-mdpi\\ic_launcher_round.png"
+    },
+    {
+        "merged": "C:\\Users\\kevin\\GameClub\\app\\build\\intermediates\\res\\merged\\debug\\drawable_right_long.png.flat",
+        "source": "C:\\Users\\kevin\\GameClub\\app\\src\\main\\res\\drawable\\right_long.png"
     },
     {
         "merged": "C:\\Users\\kevin\\GameClub\\app\\build\\intermediates\\res\\merged\\debug\\drawable_ic_menu_slideshow.xml.flat",
@@ -56,12 +68,12 @@
         "source": "C:\\Users\\kevin\\GameClub\\app\\src\\main\\res\\mipmap-hdpi\\ic_launcher_round.png"
     },
     {
-        "merged": "C:\\Users\\kevin\\GameClub\\app\\build\\intermediates\\res\\merged\\debug\\layout_content_main.xml.flat",
-        "source": "C:\\Users\\kevin\\GameClub\\app\\src\\main\\res\\layout\\content_main.xml"
-    },
-    {
         "merged": "C:\\Users\\kevin\\GameClub\\app\\build\\intermediates\\res\\merged\\debug\\drawable_ic_launcher_background.xml.flat",
         "source": "C:\\Users\\kevin\\GameClub\\app\\src\\main\\res\\drawable\\ic_launcher_background.xml"
+    },
+    {
+        "merged": "C:\\Users\\kevin\\GameClub\\app\\build\\intermediates\\res\\merged\\debug\\layout_content_main.xml.flat",
+        "source": "C:\\Users\\kevin\\GameClub\\app\\src\\main\\res\\layout\\content_main.xml"
     },
     {
         "merged": "C:\\Users\\kevin\\GameClub\\app\\build\\intermediates\\res\\merged\\debug\\drawable_ic_menu_camera.xml.flat",
@@ -78,6 +90,14 @@
     {
         "merged": "C:\\Users\\kevin\\GameClub\\app\\build\\intermediates\\res\\merged\\debug\\drawable_ic_menu_gallery.xml.flat",
         "source": "C:\\Users\\kevin\\GameClub\\app\\src\\main\\res\\drawable\\ic_menu_gallery.xml"
+    },
+    {
+        "merged": "C:\\Users\\kevin\\GameClub\\app\\build\\intermediates\\res\\merged\\debug\\drawable_left_long.png.flat",
+        "source": "C:\\Users\\kevin\\GameClub\\app\\src\\main\\res\\drawable\\left_long.png"
+    },
+    {
+        "merged": "C:\\Users\\kevin\\GameClub\\app\\build\\intermediates\\res\\merged\\debug\\drawable_left_short.png.flat",
+        "source": "C:\\Users\\kevin\\GameClub\\app\\src\\main\\res\\drawable\\left_short.png"
     },
     {
         "merged": "C:\\Users\\kevin\\GameClub\\app\\build\\intermediates\\res\\merged\\debug\\layout_fragment_home.xml.flat",
