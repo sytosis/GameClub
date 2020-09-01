@@ -10,4 +10,12 @@
     <string name="menu_home">Home</string>
     <string name="menu_gallery">Gallery</string>
     <string name="menu_slideshow">Slideshow</string>
+    <string name="register">Register</string>
+    <string name="login">Login</string>
+    <string name="back">Back</string>
+    <string name="continueString">Continue</string>
+    <string name="next">Next</string>
+    <string name="or">or</string>
+    <string name="let_s_start_by_setting_up_your_account">Let\'s start by setting up your account</string>
+    <string name="welcome_to_gameclub">Welcome to GameClub!</string>
 </resources>

@@ -1,8 +1,12 @@
 <<<<<<< HEAD
+<<<<<<< HEAD
 #Tue Sep 01 17:04:33 AEST 2020
 base.0=C\:\\Users\\johnr\\StudioProjects\\GameClub\\app\\build\\intermediates\\dex\\debug\\mergeExtDexDebug\\classes.dex
 =======
 #Sun Aug 30 21:42:38 AEST 2020
+=======
+#Tue Sep 01 21:43:43 AEST 2020
+>>>>>>> e593cbf1738aa83ed8763cde80da1b1872d54135
 base.0=C\:\\Users\\kevin\\GameClub\\app\\build\\intermediates\\dex\\debug\\mergeExtDexDebug\\classes.dex
 >>>>>>> 62f851d508997487d54b9c8a75f9e5b2ef13fcb7
 path.1=classes.dex

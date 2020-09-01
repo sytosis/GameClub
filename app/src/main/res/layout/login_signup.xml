@@ -16,16 +16,18 @@
         android:gravity="center"
         android:orientation="vertical">
         <TextView
+            android:textSize="30sp"
             android:id="@+id/authenticationTextTop"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Welcome to GameClub!"
+            android:text="@string/welcome_to_gameclub"
              />
         <TextView
+            android:textSize="20sp"
             android:id="@+id/authenticationTextBottom"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Let's start by setting up your account"
+            android:text="@string/let_s_start_by_setting_up_your_account"
             />
     </LinearLayout>
 
@@ -61,23 +63,28 @@
         android:layout_height="50dp"
         android:gravity="center">
         <Button
+            android:background="@drawable/left_long"
             android:layout_width="100dp"
             android:layout_height="match_parent"
-            android:text="Register"
+            android:text="@string/register"
             android:id="@+id/register_button"
-            android:layout_marginRight="50dp"/>
+            android:layout_marginEnd="50dp">
+        </Button>
 
         <TextView
+            android:textColor = "#141414"
+            android:textSize="25sp"
             android:id="@+id/orText"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="or"
-            android:layout_marginRight="50dp"/>
+            android:text="@string/or"
+            android:layout_marginEnd="50dp"/>
 
         <Button
+            android:background="@drawable/right_long"
             android:layout_width="100dp"
             android:layout_height="match_parent"
-            android:text="Login"
+            android:text="@string/login"
             android:id="@+id/login_button"/>
     </LinearLayout>
     <RelativeLayout
@@ -85,25 +92,28 @@
         android:layout_height="wrap_content"
         app:layout_constraintTop_toBottomOf="@+id/bigButtonsLayout">
         <Button
+            android:background="@drawable/left_short"
             android:layout_width="100dp"
             android:layout_height="50dp"
-            android:text="Back"
-            android:layout_alignParentLeft="true"
-            android:layout_marginLeft="50dp"
+            android:text="@string/back"
+            android:layout_alignParentStart="true"
+            android:layout_marginStart="50dp"
             android:id="@+id/back_button"/>
         <Button
+            android:background="@drawable/right_long_2"
             android:layout_width="100dp"
             android:layout_height="50dp"
-            android:layout_marginRight="50dp"
-            android:text="Continue"
+            android:layout_marginEnd="50dp"
+            android:text="@string/continueString"
             android:layout_centerHorizontal="true"
             android:id="@+id/continue_button"/>
         <Button
+            android:background="@drawable/right_short"
             android:layout_width="100dp"
             android:layout_height="50dp"
-            android:layout_marginRight="50dp"
-            android:text="Next"
-            android:layout_alignParentRight="true"
+            android:layout_marginEnd="50dp"
+            android:text="@string/next"
+            android:layout_alignParentEnd="true"
             android:id="@+id/next_button"/>
     </RelativeLayout>
 
