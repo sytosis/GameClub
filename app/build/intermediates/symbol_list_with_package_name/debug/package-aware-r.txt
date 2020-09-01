@@ -1472,6 +1472,11 @@ id accessibility_custom_action_7
 id accessibility_custom_action_8
 id accessibility_custom_action_9
 id action0
+<<<<<<< HEAD
+=======
+id action_AuthenticationFragment_to_HomeFragment
+id action_HomeFragment_to_AuthenticationFragment
+>>>>>>> 62f851d508997487d54b9c8a75f9e5b2ef13fcb7
 id action_bar
 id action_bar_activity_content
 id action_bar_container
@@ -1497,11 +1502,25 @@ id alertTitle
 id all
 id always
 id async
+<<<<<<< HEAD
 id auto
 id barrier
 id beginning
 id blocking
 id bottom
+=======
+id authenticationTextBottom
+id authenticationTextTop
+id auto
+id back_button
+id ball_number
+id barrier
+id beginning
+id bigButtonsLayout
+id blocking
+id bottom
+id bottomText
+>>>>>>> 62f851d508997487d54b9c8a75f9e5b2ef13fcb7
 id buttonPanel
 id cancel_action
 id cancel_button
@@ -1522,6 +1541,10 @@ id confirm_button
 id container
 id content
 id contentPanel
+<<<<<<< HEAD
+=======
+id continue_button
+>>>>>>> 62f851d508997487d54b9c8a75f9e5b2ef13fcb7
 id coordinator
 id custom
 id customPanel
@@ -1583,6 +1606,10 @@ id line1
 id line3
 id listMode
 id list_item
+<<<<<<< HEAD
+=======
+id login_button
+>>>>>>> 62f851d508997487d54b9c8a75f9e5b2ef13fcb7
 id masked
 id media_actions
 id message
@@ -1616,6 +1643,10 @@ id mtrl_picker_text_input_range_end
 id mtrl_picker_text_input_range_start
 id mtrl_picker_title_text
 id multiply
+<<<<<<< HEAD
+=======
+id nav_authentication
+>>>>>>> 62f851d508997487d54b9c8a75f9e5b2ef13fcb7
 id nav_controller_view_tag
 id nav_gallery
 id nav_home
@@ -1625,6 +1656,11 @@ id nav_slideshow
 id nav_view
 id navigation_header_container
 id never
+<<<<<<< HEAD
+=======
+id new_list_button
+id next_button
+>>>>>>> 62f851d508997487d54b9c8a75f9e5b2ef13fcb7
 id noScroll
 id none
 id normal
@@ -1633,6 +1669,10 @@ id notification_main_column
 id notification_main_column_container
 id off
 id on
+<<<<<<< HEAD
+=======
+id orText
+>>>>>>> 62f851d508997487d54b9c8a75f9e5b2ef13fcb7
 id outline
 id packed
 id parallax
@@ -1646,9 +1686,17 @@ id pin
 id progress_circular
 id progress_horizontal
 id radio
+<<<<<<< HEAD
 id right
 id right_icon
 id right_side
+=======
+id register_button
+id right
+id right_icon
+id right_side
+id roll_ball_button
+>>>>>>> 62f851d508997487d54b9c8a75f9e5b2ef13fcb7
 id rounded
 id save_non_transition_alpha
 id save_overlay_view
@@ -1728,6 +1776,10 @@ id title_template
 id toolbar
 id top
 id topPanel
+<<<<<<< HEAD
+=======
+id topText
+>>>>>>> 62f851d508997487d54b9c8a75f9e5b2ef13fcb7
 id touch_outside
 id transition_current_scene
 id transition_layout_save
@@ -1739,6 +1791,10 @@ id uniform
 id unlabeled
 id up
 id useLogo
+<<<<<<< HEAD
+=======
+id usernameText
+>>>>>>> 62f851d508997487d54b9c8a75f9e5b2ef13fcb7
 id view_offset_helper
 id visible
 id visible_removing_fragment_view_tag
@@ -1828,6 +1884,10 @@ layout design_text_input_start_icon
 layout fragment_gallery
 layout fragment_home
 layout fragment_slideshow
+<<<<<<< HEAD
+=======
+layout login_signup
+>>>>>>> 62f851d508997487d54b9c8a75f9e5b2ef13fcb7
 layout mtrl_alert_dialog
 layout mtrl_alert_dialog_actions
 layout mtrl_alert_dialog_title
