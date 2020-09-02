@@ -18,4 +18,7 @@
     <string name="or">or</string>
     <string name="let_s_start_by_setting_up_your_account">Let\'s start by setting up your account</string>
     <string name="welcome_to_gameclub">Welcome to GameClub!</string>
+    <string name="game">Game</string>
+    <string name="Friend" />
+    <string name="friend">Friend</string>
 </resources>

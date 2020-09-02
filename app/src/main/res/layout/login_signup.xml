@@ -63,13 +63,13 @@
         android:layout_height="50dp"
         android:gravity="center">
         <Button
-            android:background="@drawable/left_long"
-            android:layout_width="100dp"
-            android:layout_height="match_parent"
-            android:text="@string/register"
-            android:id="@+id/register_button"
-            android:layout_marginEnd="50dp">
-        </Button>
+        android:background="@drawable/left_long"
+        android:layout_width="100dp"
+        android:layout_height="match_parent"
+        android:text="@string/register"
+        android:id="@+id/register_button"
+        android:layout_marginEnd="50dp">
+    </Button>
 
         <TextView
             android:textColor = "#141414"
@@ -100,13 +100,13 @@
             android:layout_marginStart="50dp"
             android:id="@+id/back_button"/>
         <Button
-            android:background="@drawable/right_long_2"
-            android:layout_width="100dp"
-            android:layout_height="50dp"
-            android:layout_marginEnd="50dp"
-            android:text="@string/continueString"
-            android:layout_centerHorizontal="true"
-            android:id="@+id/continue_button"/>
+        android:background="@drawable/right_long_2"
+        android:layout_width="100dp"
+        android:layout_height="50dp"
+        android:layout_marginEnd="50dp"
+        android:text="@string/continueString"
+        android:layout_centerHorizontal="true"
+        android:id="@+id/continue_button"/>
         <Button
             android:background="@drawable/right_short"
             android:layout_width="100dp"

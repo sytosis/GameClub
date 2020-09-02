@@ -13,6 +13,9 @@
         <action
             android:id="@+id/action_HomeFragment_to_AuthenticationFragment"
             app:destination="@id/nav_authentication"/>
+        <action
+            android:id="@+id/action_nav_home_to_nav_gallery"
+            app:destination="@id/nav_gallery" />
     </fragment>
 
     <fragment
