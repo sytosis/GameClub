@@ -22,11 +22,11 @@ public class Bingo extends ViewModel {
 
     public void setBoard() {
         int number;
-        for (int i = 0; i < 25; ++i) {
 
-            while(!bingoBoard.contains(number = randomGenerator.nextInt(100) + 1)) {
+        while (bingoBoard.size() < 25) {
+            number = randomGenerator.nextInt(100) + 1;
+            if (!bingoBoard.contains(number)) {
                 bingoBoard.add(number);
-                break;
             }
         }
     }
@@ -39,21 +39,20 @@ public class Bingo extends ViewModel {
         return 0;
     }
 
-    public void takeTurn() {
-        int ball = getBall();
-
-//        if (bingoBoard.contains(ball)) {
-//
-//        }
-    }
-
     public void reset() {
         bingoBoard.clear();
         usedNumbers.clear();
 
     }
 
+    public void playerTurn(int ball) {
+
+    }
+
     public boolean checkWin() {
+
+
+
         return false;
     }
 }

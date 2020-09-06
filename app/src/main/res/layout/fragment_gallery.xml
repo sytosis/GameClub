@@ -87,6 +87,8 @@
         android:layout_marginBottom="1dp"
         android:gravity="center"
         app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="1.0"
         app:layout_constraintStart_toStartOf="parent">
 
         <Button
@@ -94,11 +96,6 @@
             android:layout_width="100dp"
             android:layout_height="50dp"
             android:text="Roll ball" />
-
-        <TextView
-            android:id="@+id/ball_number"
-            android:layout_width="50dp"
-            android:layout_height="50dp" />
 
         <Button
             android:id="@+id/new_list_button"
@@ -236,6 +233,17 @@
         app:layout_constraintTop_toTopOf="@+id/Ball13" />
 
     <ImageView
+        android:id="@+id/RollBall"
+        android:layout_width="100dp"
+        android:layout_height="100dp"
+        android:src="@drawable/blue_ball"
+        app:layout_constraintBottom_toBottomOf="@+id/Ball13"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.78"
+        app:layout_constraintStart_toEndOf="@+id/Ball13"
+        app:layout_constraintTop_toTopOf="@+id/Ball13" />
+
+    <ImageView
         android:id="@+id/Ball10"
         android:layout_width="80dp"
         android:layout_height="80dp"
@@ -252,5 +260,318 @@
         android:src="@drawable/blue_ball"
         app:layout_constraintBottom_toTopOf="@+id/Ball10"
         app:layout_constraintStart_toStartOf="@+id/Ball10" />
+
+    <TextView
+        android:id="@+id/Text1"
+        android:layout_width="40dp"
+        android:layout_height="40dp"
+        android:text="1"
+        android:gravity="center"
+        android:textSize="30dp"
+        app:layout_constraintBottom_toBottomOf="@+id/Ball1"
+        app:layout_constraintEnd_toEndOf="@+id/Ball1"
+        app:layout_constraintStart_toStartOf="@+id/Ball1"
+        app:layout_constraintTop_toTopOf="@+id/Ball1" />
+
+    <TextView
+        android:id="@+id/Text2"
+        android:layout_width="40dp"
+        android:layout_height="40dp"
+        android:text="1"
+        android:gravity="center"
+        android:textSize="30dp"
+        app:layout_constraintBottom_toBottomOf="@+id/Ball2"
+        app:layout_constraintEnd_toEndOf="@+id/Ball2"
+        app:layout_constraintStart_toStartOf="@+id/Ball2"
+        app:layout_constraintTop_toTopOf="@+id/Ball2" />
+
+    <TextView
+        android:id="@+id/Text3"
+        android:layout_width="40dp"
+        android:layout_height="40dp"
+        android:text="1"
+        android:gravity="center"
+        android:textSize="30dp"
+        app:layout_constraintBottom_toBottomOf="@+id/Ball3"
+        app:layout_constraintEnd_toEndOf="@+id/Ball3"
+        app:layout_constraintStart_toStartOf="@+id/Ball3"
+        app:layout_constraintTop_toTopOf="@+id/Ball3" />
+
+    <TextView
+        android:id="@+id/Text4"
+        android:layout_width="40dp"
+        android:layout_height="40dp"
+        android:text="1"
+        android:gravity="center"
+        android:textSize="30dp"
+        app:layout_constraintBottom_toBottomOf="@+id/Ball4"
+        app:layout_constraintEnd_toEndOf="@+id/Ball4"
+        app:layout_constraintStart_toStartOf="@+id/Ball4"
+        app:layout_constraintTop_toTopOf="@+id/Ball4" />
+
+    <TextView
+        android:id="@+id/Text5"
+        android:layout_width="40dp"
+        android:layout_height="40dp"
+        android:text="1"
+        android:gravity="center"
+        android:textSize="30dp"
+        app:layout_constraintBottom_toBottomOf="@+id/Ball5"
+        app:layout_constraintEnd_toEndOf="@+id/Ball5"
+        app:layout_constraintStart_toStartOf="@+id/Ball5"
+        app:layout_constraintTop_toTopOf="@+id/Ball5" />
+
+    <TextView
+        android:id="@+id/Text6"
+        android:layout_width="40dp"
+        android:layout_height="40dp"
+        android:text="1"
+        android:gravity="center"
+        android:textSize="30dp"
+        app:layout_constraintBottom_toBottomOf="@+id/Ball6"
+        app:layout_constraintEnd_toEndOf="@+id/Ball6"
+        app:layout_constraintStart_toStartOf="@+id/Ball6"
+        app:layout_constraintTop_toTopOf="@+id/Ball6" />
+
+    <TextView
+        android:id="@+id/Text7"
+        android:layout_width="40dp"
+        android:layout_height="40dp"
+        android:text="1"
+        android:gravity="center"
+        android:textSize="30dp"
+        app:layout_constraintBottom_toBottomOf="@+id/Ball7"
+        app:layout_constraintEnd_toEndOf="@+id/Ball7"
+        app:layout_constraintStart_toStartOf="@+id/Ball7"
+        app:layout_constraintTop_toTopOf="@+id/Ball7" />
+
+    <TextView
+        android:id="@+id/Text8"
+        android:layout_width="40dp"
+        android:layout_height="40dp"
+        android:text="1"
+        android:gravity="center"
+        android:textSize="30dp"
+        app:layout_constraintBottom_toBottomOf="@+id/Ball8"
+        app:layout_constraintEnd_toEndOf="@+id/Ball8"
+        app:layout_constraintStart_toStartOf="@+id/Ball8"
+        app:layout_constraintTop_toTopOf="@+id/Ball8" />
+
+    <TextView
+        android:id="@+id/Text9"
+        android:layout_width="40dp"
+        android:layout_height="40dp"
+        android:text="1"
+        android:gravity="center"
+        android:textSize="30dp"
+        app:layout_constraintBottom_toBottomOf="@+id/Ball9"
+        app:layout_constraintEnd_toEndOf="@+id/Ball9"
+        app:layout_constraintStart_toStartOf="@+id/Ball9"
+        app:layout_constraintTop_toTopOf="@+id/Ball9" />
+
+    <TextView
+        android:id="@+id/Text10"
+        android:layout_width="40dp"
+        android:layout_height="40dp"
+        android:text="1"
+        android:gravity="center"
+        android:textSize="30dp"
+        app:layout_constraintBottom_toBottomOf="@+id/Ball10"
+        app:layout_constraintEnd_toEndOf="@+id/Ball10"
+        app:layout_constraintStart_toStartOf="@+id/Ball10"
+        app:layout_constraintTop_toTopOf="@+id/Ball10" />
+
+    <TextView
+        android:id="@+id/Text11"
+        android:layout_width="40dp"
+        android:layout_height="40dp"
+        android:text="1"
+        android:gravity="center"
+        android:textSize="30dp"
+        app:layout_constraintBottom_toBottomOf="@+id/Ball11"
+        app:layout_constraintEnd_toEndOf="@+id/Ball11"
+        app:layout_constraintStart_toStartOf="@+id/Ball11"
+        app:layout_constraintTop_toTopOf="@+id/Ball11" />
+
+    <TextView
+        android:id="@+id/Text12"
+        android:layout_width="40dp"
+        android:layout_height="40dp"
+        android:text="1"
+        android:gravity="center"
+        android:textSize="30dp"
+        app:layout_constraintBottom_toBottomOf="@+id/Ball12"
+        app:layout_constraintEnd_toEndOf="@+id/Ball12"
+        app:layout_constraintStart_toStartOf="@+id/Ball12"
+        app:layout_constraintTop_toTopOf="@+id/Ball12" />
+
+    <TextView
+        android:id="@+id/Text13"
+        android:layout_width="40dp"
+        android:layout_height="40dp"
+        android:text="1"
+        android:gravity="center"
+        android:textSize="30dp"
+        app:layout_constraintBottom_toBottomOf="@+id/Ball13"
+        app:layout_constraintEnd_toEndOf="@+id/Ball13"
+        app:layout_constraintStart_toStartOf="@+id/Ball13"
+        app:layout_constraintTop_toTopOf="@+id/Ball13" />
+
+    <TextView
+        android:id="@+id/Text14"
+        android:layout_width="40dp"
+        android:layout_height="40dp"
+        android:text="1"
+        android:gravity="center"
+        android:textSize="30dp"
+        app:layout_constraintBottom_toBottomOf="@+id/Ball14"
+        app:layout_constraintEnd_toEndOf="@+id/Ball14"
+        app:layout_constraintStart_toStartOf="@+id/Ball14"
+        app:layout_constraintTop_toTopOf="@+id/Ball14" />
+
+    <TextView
+        android:id="@+id/Text15"
+        android:layout_width="40dp"
+        android:layout_height="40dp"
+        android:text="1"
+        android:gravity="center"
+        android:textSize="30dp"
+        app:layout_constraintBottom_toBottomOf="@+id/Ball15"
+        app:layout_constraintEnd_toEndOf="@+id/Ball15"
+        app:layout_constraintStart_toStartOf="@+id/Ball15"
+        app:layout_constraintTop_toTopOf="@+id/Ball15" />
+
+    <TextView
+        android:id="@+id/RollText"
+        android:layout_width="45dp"
+        android:layout_height="45dp"
+        android:gravity="center"
+        android:textSize="40sp"
+        app:layout_constraintBottom_toBottomOf="@+id/RollBall"
+        app:layout_constraintEnd_toEndOf="@+id/RollBall"
+        app:layout_constraintStart_toStartOf="@+id/RollBall"
+        app:layout_constraintTop_toTopOf="@+id/RollBall"
+        app:layout_constraintVertical_bias="0.45" />
+
+    <TextView
+        android:id="@+id/Text16"
+        android:layout_width="40dp"
+        android:layout_height="40dp"
+        android:text="1"
+        android:gravity="center"
+        android:textSize="30dp"
+        app:layout_constraintBottom_toBottomOf="@+id/Ball16"
+        app:layout_constraintEnd_toEndOf="@+id/Ball16"
+        app:layout_constraintStart_toStartOf="@+id/Ball16"
+        app:layout_constraintTop_toTopOf="@+id/Ball16" />
+
+    <TextView
+        android:id="@+id/Text17"
+        android:layout_width="40dp"
+        android:layout_height="40dp"
+        android:text="1"
+        android:gravity="center"
+        android:textSize="30dp"
+        app:layout_constraintBottom_toBottomOf="@+id/Ball17"
+        app:layout_constraintEnd_toEndOf="@+id/Ball17"
+        app:layout_constraintStart_toStartOf="@+id/Ball17"
+        app:layout_constraintTop_toTopOf="@+id/Ball17" />
+
+    <TextView
+        android:id="@+id/Text18"
+        android:layout_width="40dp"
+        android:layout_height="40dp"
+        android:text="1"
+        android:gravity="center"
+        android:textSize="30dp"
+        app:layout_constraintBottom_toBottomOf="@+id/Ball18"
+        app:layout_constraintEnd_toEndOf="@+id/Ball18"
+        app:layout_constraintStart_toStartOf="@+id/Ball18"
+        app:layout_constraintTop_toTopOf="@+id/Ball18" />
+
+    <TextView
+        android:id="@+id/Text19"
+        android:layout_width="40dp"
+        android:layout_height="40dp"
+        android:text="1"
+        android:gravity="center"
+        android:textSize="30dp"
+        app:layout_constraintBottom_toBottomOf="@+id/Ball19"
+        app:layout_constraintEnd_toEndOf="@+id/Ball19"
+        app:layout_constraintStart_toStartOf="@+id/Ball19"
+        app:layout_constraintTop_toTopOf="@+id/Ball19" />
+
+    <TextView
+        android:id="@+id/Text20"
+        android:layout_width="40dp"
+        android:layout_height="40dp"
+        android:text="1"
+        android:gravity="center"
+        android:textSize="30dp"
+        app:layout_constraintBottom_toBottomOf="@+id/Ball20"
+        app:layout_constraintEnd_toEndOf="@+id/Ball20"
+        app:layout_constraintStart_toStartOf="@+id/Ball20"
+        app:layout_constraintTop_toTopOf="@+id/Ball20" />
+
+    <TextView
+        android:id="@+id/Text21"
+        android:layout_width="40dp"
+        android:layout_height="40dp"
+        android:text="1"
+        android:gravity="center"
+        android:textSize="30dp"
+        app:layout_constraintBottom_toBottomOf="@+id/Ball21"
+        app:layout_constraintEnd_toEndOf="@+id/Ball21"
+        app:layout_constraintStart_toStartOf="@+id/Ball21"
+        app:layout_constraintTop_toTopOf="@+id/Ball21" />
+
+    <TextView
+        android:id="@+id/Text22"
+        android:layout_width="40dp"
+        android:layout_height="40dp"
+        android:text="1"
+        android:gravity="center"
+        android:textSize="30dp"
+        app:layout_constraintBottom_toBottomOf="@+id/Ball22"
+        app:layout_constraintEnd_toEndOf="@+id/Ball22"
+        app:layout_constraintStart_toStartOf="@+id/Ball22"
+        app:layout_constraintTop_toTopOf="@+id/Ball22" />
+
+    <TextView
+        android:id="@+id/Text23"
+        android:layout_width="40dp"
+        android:layout_height="40dp"
+        android:gravity="center"
+        android:text="1"
+        android:textSize="30dp"
+        app:layout_constraintBottom_toBottomOf="@+id/Ball23"
+        app:layout_constraintEnd_toEndOf="@+id/Ball23"
+        app:layout_constraintStart_toStartOf="@+id/Ball23"
+        app:layout_constraintTop_toTopOf="@+id/Ball23" />
+
+    <TextView
+        android:id="@+id/Text24"
+        android:layout_width="40dp"
+        android:layout_height="40dp"
+        android:text="1"
+        android:gravity="center"
+        android:textSize="30dp"
+        app:layout_constraintBottom_toBottomOf="@+id/Ball24"
+        app:layout_constraintEnd_toEndOf="@+id/Ball24"
+        app:layout_constraintStart_toStartOf="@+id/Ball24"
+        app:layout_constraintTop_toTopOf="@+id/Ball24" />
+
+    <TextView
+        android:id="@+id/Text25"
+        android:layout_width="40dp"
+        android:layout_height="40dp"
+        android:text="1"
+        android:gravity="center"
+        android:textSize="30dp"
+        app:layout_constraintBottom_toBottomOf="@+id/Ball25"
+        app:layout_constraintEnd_toEndOf="@+id/Ball25"
+        app:layout_constraintStart_toStartOf="@+id/Ball25"
+        app:layout_constraintTop_toTopOf="@+id/Ball25" />
+
 
 </androidx.constraintlayout.widget.ConstraintLayout>
