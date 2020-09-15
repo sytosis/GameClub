@@ -17,6 +17,27 @@
                             <option name="y" value="15" />
                           </Point>
                         </option>
+                        <option name="myPositions">
+                          <map>
+                            <entry key="action_AuthenticationFragment_to_HomeFragment">
+                              <value>
+                                <LayoutPositions />
+                              </value>
+                            </entry>
+                          </map>
+                        </option>
+                      </LayoutPositions>
+                    </value>
+                  </entry>
+                  <entry key="nav_chess">
+                    <value>
+                      <LayoutPositions>
+                        <option name="myPosition">
+                          <Point>
+                            <option name="x" value="-227" />
+                            <option name="y" value="360" />
+                          </Point>
+                        </option>
                       </LayoutPositions>
                     </value>
                   </entry>
@@ -43,7 +64,12 @@
                         </option>
                         <option name="myPositions">
                           <map>
-                            <entry key="action_FirstFragment_to_AlarmListFragment">
+                            <entry key="action_HomeFragment_to_AuthenticationFragment">
+                              <value>
+                                <LayoutPositions />
+                              </value>
+                            </entry>
+                            <entry key="action_nav_home_to_nav_gallery">
                               <value>
                                 <LayoutPositions />
                               </value>

@@ -24,7 +24,7 @@ public class BingoFragment extends Fragment {
                              ViewGroup container, Bundle savedInstanceState) {
         bingoViewModel =
                 ViewModelProviders.of(this).get(BingoViewModel.class);
-        View root = inflater.inflate(R.layout.fragment_gallery, container, false);
+        View root = inflater.inflate(R.layout.fragment_bingo, container, false);
         final TextView textView = root.findViewById(R.id.text_gallery);
         bingoViewModel.getText().observe(getViewLifecycleOwner(), new Observer<String>() {
             @Override
@@ -51,7 +51,6 @@ public class BingoFragment extends Fragment {
             public void onClick(View view) {
                 bingoViewModel.resetBingoBackground();
                 textView.setText(bingoViewModel.getBingoBoard().toString());
-
             }
         });
         return root;

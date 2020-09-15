@@ -42,5 +42,11 @@
             android:layout_height="match_parent"
             android:background="@drawable/right_long"
             android:text="@string/friend" />
+        <Button
+            android:id="@+id/chess_button"
+            android:layout_width="100dp"
+            android:layout_height="match_parent"
+            android:background="@drawable/right_long"
+            android:text="chess" />
     </LinearLayout>
 </androidx.constraintlayout.widget.ConstraintLayout>

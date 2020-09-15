@@ -22,6 +22,7 @@ public class HomeFragment extends Fragment {
     private HomeViewModel homeViewModel;
     Button gameButton;
     Button friendButton;
+    Button chessButton;
 
     public View onCreateView(@NonNull LayoutInflater inflater,
                              ViewGroup container, Bundle savedInstanceState) {
@@ -31,15 +32,19 @@ public class HomeFragment extends Fragment {
         final TextView textView = root.findViewById(R.id.text_home);
         gameButton = root.findViewById(R.id.game_button);
         friendButton = root.findViewById(R.id.friend_button);
+        chessButton = root.findViewById(R.id.chess_button);
         final MainActivity main = (MainActivity) requireActivity();
-        main.disableNav(true);
-        final HomeFragment framgent = this;
         gameButton.setOnClickListener(new View.OnClickListener() {
               @Override
               public void onClick(View view) {
-                  main.disableNav(false);
                   NavHostFragment.findNavController(HomeFragment.this).navigate((R.id.action_nav_home_to_nav_gallery));
               }
+        });
+        chessButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                NavHostFragment.findNavController(HomeFragment.this).navigate((R.id.action_nav_home_to_nav_chess));
+            }
         });
         homeViewModel.getText().observe(getViewLifecycleOwner(), new Observer<String>() {
             @Override
