@@ -21,7 +21,6 @@ import androidx.navigation.fragment.NavHostFragment;
 
 import com.example.gameclub.MainActivity;
 import com.example.gameclub.R;
-import com.example.gameclub.ui.gallery.BingoViewModel;
 import com.example.gameclub.ui.home.HomeFragment;
 
 import java.util.Objects;
