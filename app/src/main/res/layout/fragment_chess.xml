@@ -6,19 +6,8 @@
     android:layout_height="match_parent"
     tools:context=".ui.gallery.ChessFragment">
 
-    <TextView
-        android:id="@+id/text_gallery"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="8dp"
-        android:layout_marginTop="8dp"
-        android:layout_marginEnd="8dp"
-        android:textAlignment="center"
-        android:textSize="20sp"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+
+
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
@@ -28,6 +17,18 @@
         app:layout_constraintStart_toStartOf="parent"
         android:background="#C67B6B"
         >
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="50dp"
+            >
+            <Button
+                android:layout_width="110dp"
+                android:layout_height="50dp"
+                android:text="messaging"
+                android:id="@+id/open_messaging_button"
+                android:gravity="right"/>
+        </RelativeLayout>
+
         <LinearLayout
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
@@ -431,6 +432,94 @@
             android:layout_width="100dp"
             android:layout_height="50dp"
             />
+
+
+    </LinearLayout>
+    <LinearLayout
+        android:id="@+id/whole_chat_box"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_gravity = "center_vertical"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        android:orientation="vertical"
+        android:background="@color/cardview_dark_background">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="end"
+            android:background="@color/yelloworange"
+            >
+            <Button
+                android:layout_width="100dp"
+                android:layout_height="50dp"
+                android:text="CLOSE"
+                android:id="@+id/close_chat_button"
+                />
+        </LinearLayout>
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="vertical"
+            android:background="@color/white">
+            <ScrollView
+                android:id="@+id/scrollview_chat"
+                app:layout_constraintBottom_toTopOf="@+id/layout_chat"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="@color/white">
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:id="@+id/chess_chat_box"
+                    android:orientation="vertical"
+                    >
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:text="Be nice to other players!"
+                        android:textSize="20dp"
+                        >
+                    </TextView>
+                </LinearLayout>
+
+            </ScrollView>
+
+            <LinearLayout
+                android:id="@+id/layout_chat"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintBottom_toBottomOf="parent">
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="10dp"
+                    android:background="@color/yelloworange"
+                    />
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:orientation="horizontal">
+                    <EditText
+                        android:layout_width="match_parent"
+                        android:layout_height="50dp"
+                        android:layout_weight="90"
+                        android:id="@+id/chess_chat_id"/>
+                    <Button
+                        android:layout_width="50dp"
+                        android:layout_height="50dp"
+                        android:id="@+id/send_chat_button"
+                        />
+
+                </LinearLayout>
+
+            </LinearLayout>
+
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
 
 
     </LinearLayout>

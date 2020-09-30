@@ -7,6 +7,9 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
+import android.widget.EditText;
+import android.widget.LinearLayout;
+import android.widget.ScrollView;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
@@ -21,13 +24,21 @@ import com.example.gameclub.R;
 import java.lang.reflect.Array;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Scanner;
 
 
 public class ChessFragment extends Fragment {
     Button resetBoardButton;
     private ChessViewModel chessViewModel;
     Button boardButton;
+    Button chatCloseButton;
+    Button chatOpenButton;
+    Button sendChat;
+    LinearLayout wholeChatBox;
+    EditText text;
+    LinearLayout chatChessBox;
     View rootSave;
+    ScrollView scrollViewChat;
     int knightMoves[][] = {{2,1},{2,-1},{-2,1},{-2,-1},{1,2},{1,-2},{-1,2},{-1,-2}};
     public View onCreateView(@NonNull LayoutInflater inflater,
                              ViewGroup container, Bundle savedInstanceState) {
@@ -36,7 +47,38 @@ public class ChessFragment extends Fragment {
                 ViewModelProviders.of(this).get(ChessViewModel.class);
         final View root = inflater.inflate(R.layout.fragment_chess, container, false);
         rootSave = root;
+        wholeChatBox = root.findViewById(R.id.whole_chat_box);
         resetBoardButton = root.findViewById(R.id.reset_board_button);
+        chatCloseButton = root.findViewById(R.id.close_chat_button);
+        chatOpenButton = root.findViewById(R.id.open_messaging_button);
+        sendChat = root.findViewById(R.id.send_chat_button);
+        chatChessBox = root.findViewById(R.id.chess_chat_box);
+        scrollViewChat = root.findViewById(R.id.scrollview_chat);
+        text = root.findViewById(R.id.chess_chat_id);
+        sendChat.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                String sendChat = ((MainActivity)getActivity()).getUser() + ": " + text.getText();
+                text.getText().clear();
+                TextView tv = new TextView(getContext());
+                tv.setText(sendChat);
+                tv.setLayoutParams(new ViewGroup.LayoutParams(ViewGroup.LayoutParams.WRAP_CONTENT, ViewGroup.LayoutParams.WRAP_CONTENT));
+                chatChessBox.addView(tv);
+                scrollViewChat.fullScroll(View.FOCUS_DOWN);
+            }
+        });
+        chatOpenButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                wholeChatBox.setVisibility(View.VISIBLE);
+            }
+        });
+        chatCloseButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                wholeChatBox.setVisibility(View.INVISIBLE);
+            }
+        });
         resetBoardButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -635,7 +677,7 @@ public class ChessFragment extends Fragment {
 
                         //draw
                         if (currentBoard[x][y] != null) {
-                            boardButton.setText(currentBoard[x][y]);
+                            redrawBoard();
                         }
                     }
                 }
