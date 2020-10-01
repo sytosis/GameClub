@@ -15,7 +15,7 @@
         android:orientation="vertical"
         app:layout_constraintTop_toBottomOf="@+id/text_gallery"
         app:layout_constraintStart_toStartOf="parent"
-        android:background="#C67B6B"
+        android:background="#a69a6c"
         >
         <RelativeLayout
             android:layout_width="match_parent"
@@ -443,7 +443,8 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         android:orientation="vertical"
-        android:background="@color/cardview_dark_background">
+        android:background="@color/cardview_dark_background"
+        android:visibility="invisible">
 
         <LinearLayout
             android:layout_width="match_parent"

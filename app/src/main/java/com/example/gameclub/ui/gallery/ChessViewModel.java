@@ -76,7 +76,6 @@ public class ChessViewModel extends ViewModel {
         if (chessBoard[x][y] != null) {
             selectedPiece[0] = x;
             selectedPiece[1] = y;
-            System.out.println(true);
             return true;
         } else {
             return false;

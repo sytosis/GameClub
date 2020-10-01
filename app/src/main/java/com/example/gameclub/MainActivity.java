@@ -25,8 +25,11 @@ public class MainActivity extends AppCompatActivity {
 
     private AppBarConfiguration mAppBarConfiguration;
     DrawerLayout drawer;
-    String user;
-
+    String email;
+    String firstName;
+    String lastName;
+    String country;
+    String interests;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -62,14 +65,40 @@ public class MainActivity extends AppCompatActivity {
         }
     }
 
-    public void setUser(String user) {
-        this.user = user;
+    public void setEmail(String email) {
+        this.email = email;
         TextView usernameText = findViewById(R.id.usernameText);
-        usernameText.setText(user);
+        usernameText.setText(email);
     }
 
-    public String getUser() {
-        return user;
+    public void setFirstName(String firstName) {
+        this.firstName = firstName;
+    }
+
+    public void setLastName(String lastName) {
+        this.lastName = lastName;
+    }
+
+    public void setCountry(String country) {
+        this.country = country;
+    }
+
+    public void setInterests(String interests) {
+        this.interests = interests;
+    }
+
+    public String getEmail() {
+        return email;
+    }
+    public String getFirstName() { return firstName; }
+    public String getLastName() {
+        return lastName;
+    }
+    public String getCountry() {
+        return country;
+    }
+    public String getInterests() {
+        return interests;
     }
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
