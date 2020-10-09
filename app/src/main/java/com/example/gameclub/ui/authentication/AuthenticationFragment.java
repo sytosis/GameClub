@@ -21,7 +21,6 @@ import androidx.navigation.fragment.NavHostFragment;
 
 import com.example.gameclub.MainActivity;
 import com.example.gameclub.R;
-import com.example.gameclub.ui.gallery.BingoViewModel;
 import com.example.gameclub.ui.home.HomeFragment;
 
 import java.util.Objects;
@@ -54,6 +53,7 @@ public class AuthenticationFragment extends Fragment {
                 ViewModelProviders.of(this).get(AuthenticationViewModel.class);
         sharedPreferences = requireActivity().getSharedPreferences("accounts", MODE_PRIVATE);
         authenticationViewModel.setSharedPreferences(sharedPreferences);
+        authenticationViewModel.setMainActivity((MainActivity) getActivity());
         View root = inflater.inflate(R.layout.login_signup, container, false);
         registerButton = root.findViewById(R.id.register_button);
         loginButton = root.findViewById(R.id.login_button);
@@ -90,22 +90,70 @@ public class AuthenticationFragment extends Fragment {
                 //implement checks later
                 if (pageNumber == 2) {
                     registerFirstName = topEditText.getText().toString();
+                    if (registerFirstName.equals("")) {
+                        pageNumber = pageNumber - 1;
+                        System.out.println("INVALID");
+                    }
+
+                    if (registerFirstName.contains(";")) {
+                        pageNumber = pageNumber - 1;
+                        System.out.println("NO ; ALLOWED");
+                    }
                 } else if (pageNumber == 3) {
                     registerLastName = topEditText.getText().toString();
+                    if (registerLastName.equals("")) {
+                        pageNumber = pageNumber - 1;
+                        System.out.println("INVALID");
+                    }
+                    if (registerLastName.contains(";")) {
+                        pageNumber = pageNumber - 1;
+                        System.out.println("NO ; ALLOWED");
+                    }
                 } else if (pageNumber == 4) {
                     registerCountry = topEditText.getText().toString();
+                    if (registerCountry.equals("")) {
+                        pageNumber = pageNumber - 1;
+                        System.out.println("INVALID");
+                    }
+                    if (registerCountry.contains(";")) {
+                        pageNumber = pageNumber - 1;
+                        System.out.println("NO ; ALLOWED");
+                    }
                 } else if (pageNumber == 5) {
                     registerInterests = topEditText.getText().toString();
+                    if (registerInterests.equals("")) {
+                        pageNumber = pageNumber - 1;
+                        System.out.println("INVALID");
+                    }
+                    if (registerInterests.contains(";")) {
+                        pageNumber = pageNumber - 1;
+                        System.out.println("NO ; ALLOWED");
+                    }
                 } else if (pageNumber == 6) {
                     registerEmail = topEditText.getText().toString();
                     System.out.println(registerEmail);
+                    System.out.println(authenticationViewModel.checkEmailUsed(registerEmail));
+                    if (authenticationViewModel.checkEmailUsed(registerEmail)) {
+                        pageNumber = pageNumber - 1;
+                        System.out.println("EMAIL USED");
+                    }
+                    if (registerEmail.contains(";")) {
+                        pageNumber = pageNumber - 1;
+                        System.out.println("NO ; ALLOWED");
+                    }
                 } else if (pageNumber == 7) {
                     registerPassword = topEditText.getText().toString();
+                    if (registerPassword.equals("")) {
+                        pageNumber = pageNumber - 1;
+                        System.out.println("INVALID");
+                    }
+                    if (registerPassword.contains(";")) {
+                        pageNumber = pageNumber - 1;
+                        System.out.println("NO ; ALLOWED");
+                    }
                 } else if (pageNumber == 9) {
                     if (authenticationViewModel.login(topEditText.getText().toString(),bottomEditText.getText().toString()) != null) {
                         //display registered and go to home page
-                        ma.disableNav(false);
-                        ma.setUser(topEditText.getText().toString());
                         NavHostFragment.findNavController(AuthenticationFragment.this).navigate(R.id.action_AuthenticationFragment_to_HomeFragment);
                         System.out.println("Logged in");
                     } else {
@@ -142,8 +190,6 @@ public class AuthenticationFragment extends Fragment {
             public void onClick(View view) {
                 if (authenticationViewModel.register(registerEmail,registerPassword,registerFirstName,registerLastName,registerCountry,registerInterests) != null) {
                     //display registered and go to home page
-                    ma.disableNav(false);
-                    ma.setUser(registerEmail);
                     NavHostFragment.findNavController(AuthenticationFragment.this).navigate(R.id.action_AuthenticationFragment_to_HomeFragment);
                     System.out.println("registered");
                 } else {
@@ -173,7 +219,6 @@ public class AuthenticationFragment extends Fragment {
             backButton.setVisibility(View.GONE);
             continueButton.setVisibility(View.GONE);
         } else if (pageNumber == 2) {
-
             bottomText.setText("What's your first name?");
             topEditText.setHint("Type your first name here");
             orText.setVisibility(View.GONE);
