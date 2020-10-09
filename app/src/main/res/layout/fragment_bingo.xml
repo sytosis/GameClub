@@ -2,6 +2,7 @@
 <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
+
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context=".ui.gallery.BingoFragment">
@@ -19,31 +20,64 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
+
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="300dp"
         android:gravity="center"
-        app:layout_constraintTop_toBottomOf="@+id/text_gallery"
         app:layout_constraintStart_toStartOf="parent"
-        >
+        app:layout_constraintTop_toBottomOf="@+id/text_gallery">
 
         <Button
             android:id="@+id/roll_ball_button"
             android:layout_width="100dp"
             android:layout_height="50dp"
-            android:text="Roll ball"
-            />
+            android:text="Roll ball" />
+
         <TextView
             android:id="@+id/ball_number"
             android:layout_width="50dp"
-            android:layout_height="50dp"
-            />
+            android:layout_height="50dp" />
+
         <Button
             android:id="@+id/new_list_button"
             android:layout_width="100dp"
             android:layout_height="50dp"
-            android:text="New List"
-            />
+            android:text="New List" />
     </LinearLayout>
+
+    <Button
+        android:id="@+id/serv"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="44dp"
+        android:onClick="serverConn"
+        android:text="Server"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.498"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <Button
+        android:id="@+id/cli"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="124dp"
+        android:onClick="clientConn"
+        android:text="Client"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.498"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/serv" />
+
+    <TextView
+        android:id="@+id/serverText"
+        android:layout_width="140dp"
+        android:layout_height="86dp"
+        android:text="..."
+        app:layout_constraintBottom_toTopOf="@+id/cli"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/serv" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

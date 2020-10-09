@@ -77,6 +77,7 @@ public class BingoViewModel extends ViewModel {
         return false;
     }
 
+
     public List<List<Integer>> getBingoBoard() {
         return bingoBoard;
     }

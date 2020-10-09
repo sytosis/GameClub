@@ -14,17 +14,22 @@ import androidx.lifecycle.Observer;
 import androidx.lifecycle.ViewModelProviders;
 
 import com.example.gameclub.R;
-
+import com.example.gameclub.Network.ServerNetwork;
+import com.example.gameclub.Network.ClientNetwork;
 
 public class BingoFragment extends Fragment {
 
     private BingoViewModel bingoViewModel;
-
+    private Thread thread;
+    private ClientNetwork client;
+    private ServerNetwork server;
+    private TextView networkBox;
+    private View root;
     public View onCreateView(@NonNull LayoutInflater inflater,
                              ViewGroup container, Bundle savedInstanceState) {
         bingoViewModel =
                 ViewModelProviders.of(this).get(BingoViewModel.class);
-        View root = inflater.inflate(R.layout.fragment_bingo, container, false);
+        root = inflater.inflate(R.layout.fragment_bingo, container, false);
         final TextView textView = root.findViewById(R.id.text_gallery);
         bingoViewModel.getText().observe(getViewLifecycleOwner(), new Observer<String>() {
             @Override
@@ -54,5 +59,33 @@ public class BingoFragment extends Fragment {
             }
         });
         return root;
+    }
+    public void clientConn(View view) {
+        System.out.println("here");
+        client = new ClientNetwork();
+        thread = new Thread(client);
+        thread.start();
+        //showMessage("Connected to Server...");
+        root.findViewById(R.id.cli).setVisibility(View.GONE);
+        return;
+
+    }
+
+    public void serverConn(View view) {
+        System.out.println("here");
+        server = new ServerNetwork((TextView) view);
+        thread = new Thread(server);
+        thread.start();
+        showMessage("Connected to Server...");
+        root.findViewById(R.id.serv).setVisibility(View.GONE);
+        return;
+
+    }
+
+
+    public void showMessage(final String message) {
+
+        networkBox.setText(message);
+
     }
 }
