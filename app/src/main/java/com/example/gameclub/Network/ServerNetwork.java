@@ -49,6 +49,7 @@ public class ServerNetwork implements Runnable {
         }
     }
 
+
     public void sendMessage(Game game) throws IOException {
         PrintWriter pout = new PrintWriter(client.getOutputStream(), true);
         /*write the data to the socket*/

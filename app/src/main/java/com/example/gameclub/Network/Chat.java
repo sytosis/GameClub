@@ -1,6 +1,7 @@
 package com.example.gameclub.Network;
 
 public class Chat {
+
     private String sender;
 
     private String receiver;
@@ -38,4 +39,5 @@ public class Chat {
     public void setMessage(String message) {
         this.message = message;
     }
+
 }
