@@ -12,6 +12,8 @@ import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;
 import androidx.lifecycle.ViewModelProviders;
 
+import com.example.gameclub.Network.ClientNetwork;
+import com.example.gameclub.Network.ServerNetwork;
 import com.example.gameclub.R;
 
 import java.util.ArrayList;
@@ -23,6 +25,10 @@ public class BingoFragment extends Fragment {
     View root;
     List<ImageView> bingoBoardImages = new ArrayList<>();
     List<TextView> bingoBoardText = new ArrayList<>();
+    private Thread thread;
+    private ClientNetwork client;
+    private ServerNetwork server;
+    private TextView networkBox;
 
     public void fillBingoBoardTextList() {
         bingoBoardText.add((TextView) root.findViewById(R.id.Text1));
@@ -150,5 +156,33 @@ public class BingoFragment extends Fragment {
         Button resetButton = root.findViewById(R.id.new_list_button);
 
         return root;
+    }
+    public void clientConn(View view) {
+        System.out.println("here");
+        client = new ClientNetwork();
+        thread = new Thread(client);
+        thread.start();
+        //showMessage("Connected to Server...");
+        //root.findViewById(R.id.cli).setVisibility(View.GONE);
+        return;
+
+    }
+
+    public void serverConn(View view) {
+        System.out.println("here");
+        server = new ServerNetwork((TextView) view);
+        thread = new Thread(server);
+        thread.start();
+        showMessage("Connected to Server...");
+        // root.findViewById(R.id.serv).setVisibility(View.GONE);
+        return;
+
+    }
+
+
+    public void showMessage(final String message) {
+
+        networkBox.setText(message);
+
     }
 }
