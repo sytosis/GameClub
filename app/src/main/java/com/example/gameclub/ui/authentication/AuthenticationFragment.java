@@ -1,6 +1,8 @@
 package com.example.gameclub.ui.authentication;
 
 import android.content.SharedPreferences;
+import android.graphics.Color;
+import android.graphics.Typeface;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -209,11 +211,23 @@ public class AuthenticationFragment extends Fragment {
         if (pageNumber == 1) {
             topText.setVisibility(View.VISIBLE);
             bottomText.setVisibility(View.VISIBLE);
-            topText.setText("Welcome to GameClub!");
+            topText.setTypeface(Typeface.DEFAULT_BOLD);
+            bottomText.setTypeface(Typeface.DEFAULT_BOLD);
+            bottomText.setTextColor(Color.WHITE);
+            topText.setTextColor(Color.WHITE);
+            topText.setText(" GameClue");
             bottomText.setText("Let's start by setting up your account");
             registerButton.setVisibility(View.VISIBLE);
+            registerButton.setText("I'm new");
+            loginButton.setText("I have an account");
             loginButton.setVisibility(View.VISIBLE);
             orText.setVisibility(View.VISIBLE);
+            orText.setTypeface(Typeface.DEFAULT_BOLD);
+            loginButton.setTypeface(Typeface.DEFAULT_BOLD);
+            registerButton.setTypeface(Typeface.DEFAULT_BOLD);
+            loginButton.setTextColor(Color.WHITE);
+            registerButton.setTextColor(Color.WHITE);
+            orText.setTextColor(Color.WHITE);
             topEditText.setVisibility(View.GONE);
             bottomEditText.setVisibility(View.GONE);
             nextButton.setVisibility(View.GONE);
