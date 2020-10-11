@@ -24,9 +24,11 @@ import androidx.core.graphics.drawable.DrawableCompat;
 import androidx.fragment.app.Fragment;
 import androidx.lifecycle.Observer;
 import androidx.lifecycle.ViewModelProviders;
+import androidx.navigation.fragment.NavHostFragment;
 
 import com.example.gameclub.MainActivity;
 import com.example.gameclub.R;
+import com.example.gameclub.ui.home.HomeFragment;
 
 
 public class ChessFragment extends Fragment {
@@ -36,6 +38,7 @@ public class ChessFragment extends Fragment {
     Button chatCloseButton;
     Button chatOpenButton;
     Button sendChat;
+    Button homeButton;
     LinearLayout wholeChatBox;
     EditText text;
     LinearLayout chatChessBox;
@@ -52,11 +55,18 @@ public class ChessFragment extends Fragment {
         wholeChatBox = root.findViewById(R.id.whole_chat_box);
         resetBoardButton = root.findViewById(R.id.reset_board_button);
         chatCloseButton = root.findViewById(R.id.close_chat_button);
-        chatOpenButton = root.findViewById(R.id.open_messaging_button);
+        chatOpenButton = root.findViewById(R.id.message_button);
+        homeButton = root.findViewById(R.id.home_button);
         sendChat = root.findViewById(R.id.send_chat_button);
         chatChessBox = root.findViewById(R.id.chess_chat_box);
         scrollViewChat = root.findViewById(R.id.scrollview_chat);
         text = root.findViewById(R.id.chess_chat_id);
+        homeButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                NavHostFragment.findNavController(ChessFragment.this).navigate((R.id.action_nav_chess_to_nav_home));
+            }
+        });
         sendChat.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
