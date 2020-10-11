@@ -57,6 +57,12 @@ public class ChessViewModel extends ViewModel {
         chessBoard[6][6] = "bp";
         chessBoard[7][6] = "bp";
 
+        for (int i = 2; i < 6; i++) {
+            for (int z = 0; z < 8; z++) {
+                chessBoard[z][i] = null;
+            }
+        }
+
         selectedPiece[0] = -1;
         selectedPiece[1] = -1;
     }
@@ -70,7 +76,6 @@ public class ChessViewModel extends ViewModel {
         if (chessBoard[x][y] != null) {
             selectedPiece[0] = x;
             selectedPiece[1] = y;
-            System.out.println(true);
             return true;
         } else {
             return false;
