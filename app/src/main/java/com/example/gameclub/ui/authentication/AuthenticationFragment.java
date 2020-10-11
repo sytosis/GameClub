@@ -52,6 +52,7 @@ public class AuthenticationFragment extends Fragment {
         authenticationViewModel =
                 ViewModelProviders.of(this).get(AuthenticationViewModel.class);
         sharedPreferences = requireActivity().getSharedPreferences("accounts", MODE_PRIVATE);
+        //getContext().getSharedPreferences("accounts",0).edit().clear().commit();
         authenticationViewModel.setSharedPreferences(sharedPreferences);
         authenticationViewModel.setMainActivity((MainActivity) getActivity());
         View root = inflater.inflate(R.layout.login_signup, container, false);
