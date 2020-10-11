@@ -6,8 +6,6 @@ import android.view.View;
 import android.view.Menu;
 import android.widget.TextView;
 
-import com.example.gameclub.Network.ClientNetwork;
-import com.example.gameclub.Network.ServerNetwork;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import com.google.android.material.snackbar.Snackbar;
 import com.google.android.material.navigation.NavigationView;
@@ -27,22 +25,17 @@ public class MainActivity extends AppCompatActivity {
 
     private AppBarConfiguration mAppBarConfiguration;
     DrawerLayout drawer;
-    String user;
-    private Thread thread;
-    private ClientNetwork client;
-    private ServerNetwork server;
-    private TextView networkBox;
     String email;
     String firstName;
     String lastName;
     String country;
     String interests;
-
+    Toolbar toolbar;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-        Toolbar toolbar = findViewById(R.id.toolbar);
+        toolbar = findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
         FloatingActionButton fab = findViewById(R.id.fab);
         fab.setOnClickListener(new View.OnClickListener() {
@@ -67,8 +60,10 @@ public class MainActivity extends AppCompatActivity {
 
     public void disableNav(boolean bool) {
         if (bool) {
+            toolbar.setVisibility(View.INVISIBLE);
             drawer.setDrawerLockMode(DrawerLayout.LOCK_MODE_LOCKED_CLOSED);
         } else {
+            toolbar.setVisibility(View.VISIBLE);
             drawer.setDrawerLockMode(DrawerLayout.LOCK_MODE_UNLOCKED);
         }
     }
@@ -121,32 +116,5 @@ public class MainActivity extends AppCompatActivity {
         return NavigationUI.navigateUp(navController, mAppBarConfiguration)
                 || super.onSupportNavigateUp();
     }
-
-    public void clientConn(View view) {
-        //System.out.println("here");
-        //client = new ClientNetwork();
-        //thread = new Thread(client);
-        //thread.start();
-        //showMessage("Connected to Server...");
-        //findViewById(R.id.cli).setVisibility(View.GONE);
-        return;
-
-    }
-
-    public void serverConn(View view) {
-        System.out.println("here2");
-        //TextView view2 = (TextView) findViewById(R.id.serverText);
-        //server = new ServerNetwork(view2);
-        //thread = new Thread(server);
-        //thread.start();
-        //showMessage("Connected to Server...");
-        //findViewById(R.id.serv).setVisibility(View.GONE);
-        return;
-
-    }
-    public void showMessage(final String message) {
-
-        networkBox.setText(message);
-
-    }
 }
+
