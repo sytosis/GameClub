@@ -12,20 +12,12 @@ import android.widget.EditText;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
-import androidx.annotation.Nullable;
-import androidx.drawerlayout.widget.DrawerLayout;
 import androidx.fragment.app.Fragment;
-import androidx.lifecycle.Observer;
 import androidx.lifecycle.ViewModelProviders;
-import androidx.navigation.NavController;
-import androidx.navigation.Navigation;
 import androidx.navigation.fragment.NavHostFragment;
 
 import com.example.gameclub.MainActivity;
 import com.example.gameclub.R;
-import com.example.gameclub.ui.home.HomeFragment;
-
-import java.util.Objects;
 
 import static android.content.Context.MODE_PRIVATE;
 
@@ -49,6 +41,7 @@ public class AuthenticationFragment extends Fragment {
     String registerLastName;
     String registerCountry;
     String registerInterests;
+    View view;
     public View onCreateView(@NonNull LayoutInflater inflater,
                              ViewGroup container, Bundle savedInstanceState) {
         authenticationViewModel =
@@ -67,6 +60,7 @@ public class AuthenticationFragment extends Fragment {
         bottomEditText = root.findViewById(R.id.bottomText);
         topText = root.findViewById(R.id.authenticationTextTop);
         bottomText = root.findViewById(R.id.authenticationTextBottom);
+        view = root.findViewById(R.id.layout);
         orText = root.findViewById(R.id.orText);
         final MainActivity ma = (MainActivity) requireActivity();
         ma.disableNav(true);
@@ -212,10 +206,12 @@ public class AuthenticationFragment extends Fragment {
             topText.setVisibility(View.VISIBLE);
             bottomText.setVisibility(View.VISIBLE);
             topText.setTypeface(Typeface.DEFAULT_BOLD);
+            topText.setTextSize(70);
             bottomText.setTypeface(Typeface.DEFAULT_BOLD);
             bottomText.setTextColor(Color.WHITE);
             topText.setTextColor(Color.WHITE);
-            topText.setText(" GameClue");
+            view.setBackgroundResource(R.drawable.backgroundimghome);
+            topText.setText(" GameClub");
             bottomText.setText("Let's start by setting up your account");
             registerButton.setVisibility(View.VISIBLE);
             registerButton.setText("I'm new");
@@ -234,8 +230,11 @@ public class AuthenticationFragment extends Fragment {
             backButton.setVisibility(View.GONE);
             continueButton.setVisibility(View.GONE);
         } else if (pageNumber == 2) {
+            view.setBackgroundResource(R.drawable.wood_background);
             bottomText.setText("What's your first name?");
             topEditText.setHint("Type your first name here");
+            bottomText.setTextColor(Color.BLACK);
+            bottomText.setTextSize(50);
             orText.setVisibility(View.GONE);
             topText.setVisibility(View.GONE);
             registerButton.setVisibility(View.GONE);
