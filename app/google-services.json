@@ -1,0 +1,40 @@
+{
+  "project_info": {
+    "project_number": "598827617086",
+    "firebase_url": "https://gameclub-38f7b.firebaseio.com",
+    "project_id": "gameclub-38f7b",
+    "storage_bucket": "gameclub-38f7b.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:598827617086:android:8a24d531cff09d6900ba6f",
+        "android_client_info": {
+          "package_name": "com.example.gameclub"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "598827617086-lov00jlvmqlb89n0vo79b5vu4sd6kl2e.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyAJi2qf6lhgma6NqLbFElJHIcwdZzWkN9U"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "598827617086-lov00jlvmqlb89n0vo79b5vu4sd6kl2e.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

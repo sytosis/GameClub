@@ -113,7 +113,6 @@ public class BingoFragment extends Fragment {
     public void bingoTurn() {
         displayBall(bingoGame.getBall());
 
-
     }
 
     public void setBoardText() {
