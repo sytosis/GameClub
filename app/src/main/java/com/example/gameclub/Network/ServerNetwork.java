@@ -21,10 +21,12 @@ import com.example.gameclub.R;
 public class ServerNetwork implements Runnable {
     TextView text;
     Socket client;
+    Game bingoGame = new BingoGame();
     public ServerNetwork(TextView view) {
         text = view;
 
     }
+
     public void run() {
 
         try {
@@ -49,12 +51,15 @@ public class ServerNetwork implements Runnable {
 
 
     public void sendMessage(Game game) throws IOException {
-
         PrintWriter pout = new PrintWriter(client.getOutputStream(), true);
         /*write the data to the socket*/
         pout.println();
         text.setText("Server Connected");
         /*close the socket and resume */
         /*listening for connections*/
+    }
+
+    public void closeClient() throws IOException {
+        client.close();
     }
 }

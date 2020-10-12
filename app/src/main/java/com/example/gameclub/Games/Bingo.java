@@ -47,7 +47,6 @@ public class Bingo extends ViewModel {
     public boolean checkWin() {
 
 
-
         return false;
     }
 }

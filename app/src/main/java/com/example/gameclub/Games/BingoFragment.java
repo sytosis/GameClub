@@ -113,7 +113,6 @@ public class BingoFragment extends Fragment {
     public void bingoTurn() {
         displayBall(bingoGame.getBall());
 
-
     }
 
     public void setBoardText() {
@@ -162,8 +161,7 @@ public class BingoFragment extends Fragment {
         client = new ClientNetwork();
         thread = new Thread(client);
         thread.start();
-        //showMessage("Connected to Server...");
-        //root.findViewById(R.id.cli).setVisibility(View.GONE);
+
         return;
 
     }
@@ -173,16 +171,11 @@ public class BingoFragment extends Fragment {
         server = new ServerNetwork((TextView) view);
         thread = new Thread(server);
         thread.start();
-        showMessage("Connected to Server...");
-        // root.findViewById(R.id.serv).setVisibility(View.GONE);
+
         return;
 
     }
 
 
-    public void showMessage(final String message) {
 
-        networkBox.setText(message);
-
-    }
 }
