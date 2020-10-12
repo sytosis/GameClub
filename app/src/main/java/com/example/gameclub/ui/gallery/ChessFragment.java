@@ -44,6 +44,7 @@ public class ChessFragment extends Fragment {
     LinearLayout chatChessBox;
     View rootSave;
     ScrollView scrollViewChat;
+    Boolean onWhite = true;
     int knightMoves[][] = {{2,1},{2,-1},{-2,1},{-2,-1},{1,2},{1,-2},{-1,2},{-1,-2}};
     public View onCreateView(@NonNull LayoutInflater inflater,
                              ViewGroup container, Bundle savedInstanceState) {
@@ -111,6 +112,7 @@ public class ChessFragment extends Fragment {
                                 if (AppCompatResources.getDrawable(getContext(),R.drawable.red).getConstantState().equals(((LayerDrawable)view.getBackground()).getDrawable(0).getConstantState())) {
                                     chessViewModel.moveSelectedPiece(newX,newY);
                                     redrawBoard();
+                                    onWhite = !onWhite;
                                 } else {
                                     redrawBoard();
                                     String id = view.getResources().getResourceEntryName(view.getId());
@@ -120,7 +122,7 @@ public class ChessFragment extends Fragment {
                                     String boardId = "board" + x + y;
                                     int boardFinder = getResources().getIdentifier(boardId, "id", getActivity().getPackageName());
                                     Button selectedBoard = root.findViewById(boardFinder);
-                                    if (chessViewModel.selectChessPiece(x, y)) {
+                                    if (chessViewModel.selectChessPiece(x, y) && (onWhite && chessViewModel.getChessBoard()[x][y].contains("w") || !onWhite && chessViewModel.getChessBoard()[x][y].contains("b"))) {
                                         Drawable[] layers = new Drawable[2];
                                         try {
                                             LayerDrawable tempBackground = (LayerDrawable) selectedBoard.getBackground();
@@ -134,6 +136,7 @@ public class ChessFragment extends Fragment {
 
                                         String piece = chessViewModel.getChessBoard()[x][y];
                                         if (piece.contains("n")) {
+
                                             for (int i = 0; i < 8; i++) {
                                                 int newX = x + knightMoves[i][0];
                                                 int newY = y + knightMoves[i][1];
