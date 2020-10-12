@@ -4,119 +4,148 @@
     android:layout_height="match_parent"
     xmlns:tools="http://schemas.android.com/tools"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    tools:context=".ui.authentication.AuthenticationFragment">
+    tools:context=".ui.authentication.AuthenticationFragment"
+    android:background="@drawable/wood_background"
+    android:id="@+id/layout">
 
 
 
     <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
+        android:layout_width="955dp"
+        android:layout_height="238dp"
+        android:layout_marginBottom="60dp"
+        android:gravity="center"
+        android:orientation="vertical"
         app:layout_constraintBottom_toTopOf="@+id/topText"
         app:layout_constraintEnd_toEndOf="parent"
-        android:gravity="center"
-        android:orientation="vertical">
+        app:layout_constraintHorizontal_bias="0.507"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="1.0">
+
         <TextView
-            android:textSize="30sp"
             android:id="@+id/authenticationTextTop"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
+            android:layout_width="855dp"
+            android:layout_height="138dp"
             android:text="@string/welcome_to_gameclub"
-             />
+            android:textAlignment="center"
+            android:textSize="36sp" />
+
         <TextView
-            android:textSize="20sp"
             android:id="@+id/authenticationTextBottom"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
+            android:layout_width="848dp"
+            android:layout_height="90dp"
             android:text="@string/let_s_start_by_setting_up_your_account"
-            />
+            android:textAlignment="center"
+            android:textSize="30sp" />
     </LinearLayout>
 
     <EditText
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
         android:id="@+id/topText"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        android:layout_width="710dp"
+        android:layout_height="76dp"
         android:ems="10"
         android:inputType="textPersonName"
         android:text="Name"
-        tools:layout_editor_absoluteX="103dp"
-        tools:layout_editor_absoluteY="299dp" />
+        android:textAlignment="center"
+        android:textSize="36sp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.493"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
 
     <EditText
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/topText"
         android:id="@+id/bottomText"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        android:layout_width="706dp"
+        android:layout_height="87dp"
         android:ems="10"
         android:inputType="textPassword"
-        tools:layout_editor_absoluteX="103dp"
-        tools:layout_editor_absoluteY="385dp" />
+        android:textSize="36sp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/topText" />
+
     <LinearLayout
         android:id="@+id/bigButtonsLayout"
-        app:layout_constraintTop_toBottomOf="@+id/bottomText"
-        android:layout_width="match_parent"
-        android:layout_height="50dp"
-        android:gravity="center">
+        android:layout_width="1026dp"
+        android:layout_height="89dp"
+        android:layout_marginTop="8dp"
+        android:gravity="center"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/bottomText">
+
         <Button
-        android:background="@drawable/left_long"
-        android:layout_width="100dp"
-        android:layout_height="match_parent"
-        android:text="@string/register"
-        android:id="@+id/register_button"
-        android:layout_marginEnd="50dp">
-    </Button>
+            android:id="@+id/register_button"
+            android:layout_width="324dp"
+            android:layout_height="55dp"
+            android:layout_marginEnd="50dp"
+            android:background="@drawable/left_long"
+            android:text="@string/register"
+            android:textColor="#FFFFFF"
+            android:textSize="24sp"></Button>
 
         <TextView
-            android:textColor = "#141414"
-            android:textSize="25sp"
             android:id="@+id/orText"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
+            android:layout_width="64dp"
+            android:layout_height="61dp"
+            android:layout_marginEnd="50dp"
             android:text="@string/or"
-            android:layout_marginEnd="50dp"/>
+            android:textColor="#141414"
+            android:textSize="36sp" />
 
         <Button
+            android:id="@+id/login_button"
+            android:layout_width="335dp"
+            android:layout_height="56dp"
             android:background="@drawable/right_long"
-            android:layout_width="100dp"
-            android:layout_height="match_parent"
             android:text="@string/login"
-            android:id="@+id/login_button"/>
+            android:textColor="#FFFFFF"
+            android:textSize="24sp" />
     </LinearLayout>
+
     <RelativeLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
+        android:layout_width="962dp"
+        android:layout_height="75dp"
+        android:layout_marginTop="60dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/bigButtonsLayout">
+
         <Button
-            android:background="@drawable/left_short"
-            android:layout_width="100dp"
-            android:layout_height="50dp"
-            android:text="@string/back"
+            android:id="@+id/back_button"
+            android:layout_width="153dp"
+            android:layout_height="88dp"
             android:layout_alignParentStart="true"
             android:layout_marginStart="50dp"
-            android:id="@+id/back_button"/>
-        <Button
-        android:background="@drawable/right_long_2"
-        android:layout_width="100dp"
-        android:layout_height="50dp"
-        android:layout_marginEnd="50dp"
-        android:text="@string/continueString"
-        android:layout_centerHorizontal="true"
-        android:id="@+id/continue_button"/>
-        <Button
-            android:background="@drawable/right_short"
-            android:layout_width="100dp"
-            android:layout_height="50dp"
-            android:layout_marginEnd="50dp"
-            android:text="@string/next"
-            android:layout_alignParentEnd="true"
-            android:id="@+id/next_button"/>
-    </RelativeLayout>
+            android:background="@drawable/left_short"
+            android:text="@string/back"
+            android:textColor="#FFFFFF"
+            android:textSize="24sp" />
 
+        <Button
+            android:id="@+id/continue_button"
+            android:layout_width="252dp"
+            android:layout_height="75dp"
+            android:layout_centerHorizontal="true"
+            android:layout_marginEnd="50dp"
+            android:background="@drawable/right_long_2"
+            android:text="@string/continueString"
+            android:textColor="#FFFFFF"
+            android:textSize="24sp" />
+
+        <Button
+            android:id="@+id/next_button"
+            android:layout_width="155dp"
+            android:layout_height="91dp"
+            android:layout_alignParentEnd="true"
+            android:layout_marginEnd="50dp"
+            android:background="@drawable/right_short"
+            android:text="@string/next"
+            android:textColor="#FFFFFF"
+            android:textSize="24sp" />
+    </RelativeLayout>
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>

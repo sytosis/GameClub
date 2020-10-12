@@ -1,6 +1,8 @@
 package com.example.gameclub.ui.authentication;
 
 import android.content.SharedPreferences;
+import android.graphics.Color;
+import android.graphics.Typeface;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -10,20 +12,12 @@ import android.widget.EditText;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
-import androidx.annotation.Nullable;
-import androidx.drawerlayout.widget.DrawerLayout;
 import androidx.fragment.app.Fragment;
-import androidx.lifecycle.Observer;
 import androidx.lifecycle.ViewModelProviders;
-import androidx.navigation.NavController;
-import androidx.navigation.Navigation;
 import androidx.navigation.fragment.NavHostFragment;
 
 import com.example.gameclub.MainActivity;
 import com.example.gameclub.R;
-import com.example.gameclub.ui.home.HomeFragment;
-
-import java.util.Objects;
 
 import static android.content.Context.MODE_PRIVATE;
 
@@ -47,11 +41,13 @@ public class AuthenticationFragment extends Fragment {
     String registerLastName;
     String registerCountry;
     String registerInterests;
+    View view;
     public View onCreateView(@NonNull LayoutInflater inflater,
                              ViewGroup container, Bundle savedInstanceState) {
         authenticationViewModel =
                 ViewModelProviders.of(this).get(AuthenticationViewModel.class);
         sharedPreferences = requireActivity().getSharedPreferences("accounts", MODE_PRIVATE);
+        //getContext().getSharedPreferences("accounts",0).edit().clear().commit();
         authenticationViewModel.setSharedPreferences(sharedPreferences);
         authenticationViewModel.setMainActivity((MainActivity) getActivity());
         View root = inflater.inflate(R.layout.login_signup, container, false);
@@ -64,6 +60,7 @@ public class AuthenticationFragment extends Fragment {
         bottomEditText = root.findViewById(R.id.bottomText);
         topText = root.findViewById(R.id.authenticationTextTop);
         bottomText = root.findViewById(R.id.authenticationTextBottom);
+        view = root.findViewById(R.id.layout);
         orText = root.findViewById(R.id.orText);
         final MainActivity ma = (MainActivity) requireActivity();
         ma.disableNav(true);
@@ -208,19 +205,36 @@ public class AuthenticationFragment extends Fragment {
         if (pageNumber == 1) {
             topText.setVisibility(View.VISIBLE);
             bottomText.setVisibility(View.VISIBLE);
-            topText.setText("Welcome to GameClub!");
+            topText.setTypeface(Typeface.DEFAULT_BOLD);
+            topText.setTextSize(70);
+            bottomText.setTypeface(Typeface.DEFAULT_BOLD);
+            bottomText.setTextColor(Color.WHITE);
+            topText.setTextColor(Color.WHITE);
+            view.setBackgroundResource(R.drawable.backgroundimghome);
+            topText.setText(" GameClub");
             bottomText.setText("Let's start by setting up your account");
             registerButton.setVisibility(View.VISIBLE);
+            registerButton.setText("I'm new");
+            loginButton.setText("I have an account");
             loginButton.setVisibility(View.VISIBLE);
             orText.setVisibility(View.VISIBLE);
+            orText.setTypeface(Typeface.DEFAULT_BOLD);
+            loginButton.setTypeface(Typeface.DEFAULT_BOLD);
+            registerButton.setTypeface(Typeface.DEFAULT_BOLD);
+            loginButton.setTextColor(Color.WHITE);
+            registerButton.setTextColor(Color.WHITE);
+            orText.setTextColor(Color.WHITE);
             topEditText.setVisibility(View.GONE);
             bottomEditText.setVisibility(View.GONE);
             nextButton.setVisibility(View.GONE);
             backButton.setVisibility(View.GONE);
             continueButton.setVisibility(View.GONE);
         } else if (pageNumber == 2) {
+            view.setBackgroundResource(R.drawable.wood_background);
             bottomText.setText("What's your first name?");
             topEditText.setHint("Type your first name here");
+            bottomText.setTextColor(Color.BLACK);
+            bottomText.setTextSize(50);
             orText.setVisibility(View.GONE);
             topText.setVisibility(View.GONE);
             registerButton.setVisibility(View.GONE);
