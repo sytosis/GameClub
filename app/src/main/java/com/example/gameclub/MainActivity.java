@@ -24,13 +24,14 @@ import org.w3c.dom.Text;
 public class MainActivity extends AppCompatActivity {
 
     private AppBarConfiguration mAppBarConfiguration;
-    DrawerLayout drawer;
-    String email;
-    String firstName;
-    String lastName;
-    String country;
-    String interests;
-    Toolbar toolbar;
+    private DrawerLayout drawer;
+    private String email;
+    private String firstName;
+    private String lastName;
+    private String country;
+    private String interests;
+    private Toolbar toolbar;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
