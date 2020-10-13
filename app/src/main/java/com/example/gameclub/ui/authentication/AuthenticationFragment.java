@@ -55,7 +55,13 @@ public class AuthenticationFragment extends Fragment {
     private View view;
     private DatabaseReference mDatabase = FirebaseDatabase.getInstance().getReference();
     private Long userNum; //Number of users
-    List<String> existingEmails = new ArrayList<String>();
+    private List<String> existingId = new ArrayList<String>();
+    private List<String> existingEmails = new ArrayList<String>();
+    private List<String> existingPasswords = new ArrayList<String>();
+    private List<User> existingUsers = new ArrayList<User>();
+    private boolean exists = false;
+    private boolean emailExists = false;
+    private boolean correctPassword = false;
 
     public AuthenticationFragment() {
     }
@@ -69,11 +75,18 @@ public class AuthenticationFragment extends Fragment {
                 Log.d(snapshot.getKey(), snapshot.getChildrenCount() + "");
                 userNum = snapshot.getChildrenCount();
                 for (DataSnapshot postSnapshot: snapshot.getChildren()) {
-                    Object placeHolder = postSnapshot.child("email").getValue();
-                    String email = placeHolder.toString();
+                    Object idHolder = postSnapshot.getKey();
+                    Object emailHolder = postSnapshot.child("email").getValue();
+                    Object passHolder = postSnapshot.child("email").getValue();
+                    String email = emailHolder.toString();
+                    String pass = passHolder.toString();
+                    String id = idHolder.toString();
                     existingEmails.add(email);
+                    existingId.add(id);
+                    existingPasswords.add(pass);
+                    User user = new User(id, email, pass);
+                    existingUsers.add(user);
                     Log.d("added", email);
-
                 }
             }
 
