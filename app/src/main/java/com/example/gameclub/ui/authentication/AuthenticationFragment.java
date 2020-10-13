@@ -4,6 +4,7 @@ import android.content.SharedPreferences;
 import android.graphics.Color;
 import android.graphics.Typeface;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -18,6 +19,11 @@ import androidx.navigation.fragment.NavHostFragment;
 
 import com.example.gameclub.MainActivity;
 import com.example.gameclub.R;
+import com.example.gameclub.Users.User;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
+
+import java.util.List;
 
 import static android.content.Context.MODE_PRIVATE;
 
@@ -42,6 +48,9 @@ public class AuthenticationFragment extends Fragment {
     String registerCountry;
     String registerInterests;
     View view;
+    DatabaseReference mDatabase = FirebaseDatabase.getInstance().getReference();
+    List<User> userList;
+
     public View onCreateView(@NonNull LayoutInflater inflater,
                              ViewGroup container, Bundle savedInstanceState) {
         authenticationViewModel =
@@ -186,6 +195,11 @@ public class AuthenticationFragment extends Fragment {
             @Override
             public void onClick(View view) {
                 if (authenticationViewModel.register(registerEmail,registerPassword,registerFirstName,registerLastName,registerCountry,registerInterests) != null) {
+                    //Check user does not already exist
+
+                    //Add new user to database
+                    writeNewUser("0", registerEmail, registerPassword);
+
                     //display registered and go to home page
                     NavHostFragment.findNavController(AuthenticationFragment.this).navigate(R.id.action_AuthenticationFragment_to_HomeFragment);
                     System.out.println("registered");
@@ -197,6 +211,15 @@ public class AuthenticationFragment extends Fragment {
         });
         refreshPageLayout();
         return root;
+    }
+
+    /*
+     *  Creates new user in firebase database
+     */
+    public void writeNewUser(String userId, String email, String password) {
+        mDatabase.child("users").child(userId).child("email").setValue(email);
+        mDatabase.child("users").child(userId).child("password").setValue(password);
+        Log.d("writeNewUser", userId);
     }
 
     public void refreshPageLayout() {
