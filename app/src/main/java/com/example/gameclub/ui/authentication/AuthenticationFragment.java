@@ -4,6 +4,7 @@ import android.content.SharedPreferences;
 import android.graphics.Color;
 import android.graphics.Typeface;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -12,38 +13,90 @@ import android.widget.EditText;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
 import androidx.lifecycle.ViewModelProviders;
 import androidx.navigation.fragment.NavHostFragment;
 
 import com.example.gameclub.MainActivity;
 import com.example.gameclub.R;
+import com.example.gameclub.Users.User;
+import com.google.firebase.database.ChildEventListener;
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
+
+import java.util.ArrayList;
+import java.util.List;
 
 import static android.content.Context.MODE_PRIVATE;
 
 public class AuthenticationFragment extends Fragment {
     private AuthenticationViewModel authenticationViewModel;
     private Integer pageNumber = 1;
-    SharedPreferences sharedPreferences;
-    Button registerButton;
-    Button loginButton;
-    Button nextButton;
-    Button backButton;
-    Button continueButton;
-    TextView topText;
-    TextView bottomText;
-    TextView orText;
-    EditText topEditText;
-    EditText bottomEditText;
-    String registerEmail;
-    String registerPassword;
-    String registerFirstName;
-    String registerLastName;
-    String registerCountry;
-    String registerInterests;
-    View view;
+    private SharedPreferences sharedPreferences;
+    private Button registerButton;
+    private Button loginButton;
+    private Button nextButton;
+    private Button backButton;
+    private Button continueButton;
+    private TextView topText;
+    private TextView bottomText;
+    private TextView orText;
+    private EditText topEditText;
+    private EditText bottomEditText;
+    private String registerEmail;
+    private String registerPassword;
+    private String registerFirstName;
+    private String registerLastName;
+    private String registerCountry;
+    private String registerInterests;
+    private View view;
+    private DatabaseReference mDatabase = FirebaseDatabase.getInstance().getReference();
+    private Long userNum; //Number of users
+    List<String> existingEmails = new ArrayList<String>();
+
+    public AuthenticationFragment() {
+    }
+
     public View onCreateView(@NonNull LayoutInflater inflater,
                              ViewGroup container, Bundle savedInstanceState) {
+        // Firebase stuff
+        mDatabase.addChildEventListener(new ChildEventListener() {
+            @Override
+            public void onChildAdded(@NonNull DataSnapshot snapshot, @Nullable String previousChildName) {
+                Log.d(snapshot.getKey(), snapshot.getChildrenCount() + "");
+                userNum = snapshot.getChildrenCount();
+                for (DataSnapshot postSnapshot: snapshot.getChildren()) {
+                    Object placeHolder = postSnapshot.child("email").getValue();
+                    String email = placeHolder.toString();
+                    existingEmails.add(email);
+                    Log.d("added", email);
+
+                }
+            }
+
+            @Override
+            public void onChildChanged(@NonNull DataSnapshot snapshot, @Nullable String previousChildName) {
+
+            }
+
+            @Override
+            public void onChildRemoved(@NonNull DataSnapshot snapshot) {
+
+            }
+
+            @Override
+            public void onChildMoved(@NonNull DataSnapshot snapshot, @Nullable String previousChildName) {
+
+            }
+
+            @Override
+            public void onCancelled(@NonNull DatabaseError error) {
+
+            }
+        });
         authenticationViewModel =
                 ViewModelProviders.of(this).get(AuthenticationViewModel.class);
         sharedPreferences = requireActivity().getSharedPreferences("accounts", MODE_PRIVATE);
@@ -134,6 +187,13 @@ public class AuthenticationFragment extends Fragment {
                         pageNumber = pageNumber - 1;
                         System.out.println("EMAIL USED");
                     }
+
+                    //Check user does not already exist
+                    if (checkNewUser(registerEmail)) {
+                        pageNumber = pageNumber - 1;
+                        System.out.println("Already existing email");
+                    }
+
                     if (registerEmail.contains(";")) {
                         pageNumber = pageNumber - 1;
                         System.out.println("NO ; ALLOWED");
@@ -186,6 +246,9 @@ public class AuthenticationFragment extends Fragment {
             @Override
             public void onClick(View view) {
                 if (authenticationViewModel.register(registerEmail,registerPassword,registerFirstName,registerLastName,registerCountry,registerInterests) != null) {
+                    //Add new user to database
+                    writeNewUser(userNum.toString(), registerEmail, registerPassword);
+
                     //display registered and go to home page
                     NavHostFragment.findNavController(AuthenticationFragment.this).navigate(R.id.action_AuthenticationFragment_to_HomeFragment);
                     System.out.println("registered");
@@ -197,6 +260,27 @@ public class AuthenticationFragment extends Fragment {
         });
         refreshPageLayout();
         return root;
+    }
+    /*
+     *  Returns true if the new user's email already exists in the database.
+     *  Returns false otherwise.
+     */
+    public boolean checkNewUser(String email) {
+        if (existingEmails.contains(email)) {
+            return true;
+        }
+        else {
+            return false;
+        }
+    }
+
+    /*
+     *  Creates new user in firebase database
+     */
+    public void writeNewUser(String userId, String email, String password) {
+        mDatabase.child("users").child(userId).child("email").setValue(email);
+        mDatabase.child("users").child(userId).child("password").setValue(password);
+        Log.d("writeNewUser", userId);
     }
 
     public void refreshPageLayout() {
