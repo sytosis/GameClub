@@ -27,6 +27,7 @@ import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import static android.content.Context.MODE_PRIVATE;
@@ -53,8 +54,11 @@ public class AuthenticationFragment extends Fragment {
     private String registerInterests;
     private View view;
     private DatabaseReference mDatabase = FirebaseDatabase.getInstance().getReference();
-    private List<User> userList;
     private Long userNum; //Number of users
+    List<String> existingEmails = new ArrayList<String>();
+
+    public AuthenticationFragment() {
+    }
 
     public View onCreateView(@NonNull LayoutInflater inflater,
                              ViewGroup container, Bundle savedInstanceState) {
@@ -64,6 +68,13 @@ public class AuthenticationFragment extends Fragment {
             public void onChildAdded(@NonNull DataSnapshot snapshot, @Nullable String previousChildName) {
                 Log.d(snapshot.getKey(), snapshot.getChildrenCount() + "");
                 userNum = snapshot.getChildrenCount();
+                for (DataSnapshot postSnapshot: snapshot.getChildren()) {
+                    Object placeHolder = postSnapshot.child("email").getValue();
+                    String email = placeHolder.toString();
+                    existingEmails.add(email);
+                    Log.d("added", email);
+
+                }
             }
 
             @Override
@@ -176,6 +187,13 @@ public class AuthenticationFragment extends Fragment {
                         pageNumber = pageNumber - 1;
                         System.out.println("EMAIL USED");
                     }
+
+                    //Check user does not already exist
+                    if (checkNewUser(registerEmail)) {
+                        pageNumber = pageNumber - 1;
+                        System.out.println("Already existing email");
+                    }
+
                     if (registerEmail.contains(";")) {
                         pageNumber = pageNumber - 1;
                         System.out.println("NO ; ALLOWED");
@@ -228,8 +246,6 @@ public class AuthenticationFragment extends Fragment {
             @Override
             public void onClick(View view) {
                 if (authenticationViewModel.register(registerEmail,registerPassword,registerFirstName,registerLastName,registerCountry,registerInterests) != null) {
-                    //Check user does not already exist
-
                     //Add new user to database
                     writeNewUser(userNum.toString(), registerEmail, registerPassword);
 
@@ -244,6 +260,18 @@ public class AuthenticationFragment extends Fragment {
         });
         refreshPageLayout();
         return root;
+    }
+    /*
+     *  Returns true if the new user's email already exists in the database.
+     *  Returns false otherwise.
+     */
+    public boolean checkNewUser(String email) {
+        if (existingEmails.contains(email)) {
+            return true;
+        }
+        else {
+            return false;
+        }
     }
 
     /*
