@@ -13,6 +13,7 @@ import android.widget.EditText;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
 import androidx.lifecycle.ViewModelProviders;
 import androidx.navigation.fragment.NavHostFragment;
@@ -20,6 +21,9 @@ import androidx.navigation.fragment.NavHostFragment;
 import com.example.gameclub.MainActivity;
 import com.example.gameclub.R;
 import com.example.gameclub.Users.User;
+import com.google.firebase.database.ChildEventListener;
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 
@@ -30,29 +34,58 @@ import static android.content.Context.MODE_PRIVATE;
 public class AuthenticationFragment extends Fragment {
     private AuthenticationViewModel authenticationViewModel;
     private Integer pageNumber = 1;
-    SharedPreferences sharedPreferences;
-    Button registerButton;
-    Button loginButton;
-    Button nextButton;
-    Button backButton;
-    Button continueButton;
-    TextView topText;
-    TextView bottomText;
-    TextView orText;
-    EditText topEditText;
-    EditText bottomEditText;
-    String registerEmail;
-    String registerPassword;
-    String registerFirstName;
-    String registerLastName;
-    String registerCountry;
-    String registerInterests;
-    View view;
-    DatabaseReference mDatabase = FirebaseDatabase.getInstance().getReference();
-    List<User> userList;
+    private SharedPreferences sharedPreferences;
+    private Button registerButton;
+    private Button loginButton;
+    private Button nextButton;
+    private Button backButton;
+    private Button continueButton;
+    private TextView topText;
+    private TextView bottomText;
+    private TextView orText;
+    private EditText topEditText;
+    private EditText bottomEditText;
+    private String registerEmail;
+    private String registerPassword;
+    private String registerFirstName;
+    private String registerLastName;
+    private String registerCountry;
+    private String registerInterests;
+    private View view;
+    private DatabaseReference mDatabase = FirebaseDatabase.getInstance().getReference();
+    private List<User> userList;
+    private Long userNum; //Number of users
 
     public View onCreateView(@NonNull LayoutInflater inflater,
                              ViewGroup container, Bundle savedInstanceState) {
+        // Firebase stuff
+        mDatabase.addChildEventListener(new ChildEventListener() {
+            @Override
+            public void onChildAdded(@NonNull DataSnapshot snapshot, @Nullable String previousChildName) {
+                Log.d(snapshot.getKey(), snapshot.getChildrenCount() + "");
+                userNum = snapshot.getChildrenCount();
+            }
+
+            @Override
+            public void onChildChanged(@NonNull DataSnapshot snapshot, @Nullable String previousChildName) {
+
+            }
+
+            @Override
+            public void onChildRemoved(@NonNull DataSnapshot snapshot) {
+
+            }
+
+            @Override
+            public void onChildMoved(@NonNull DataSnapshot snapshot, @Nullable String previousChildName) {
+
+            }
+
+            @Override
+            public void onCancelled(@NonNull DatabaseError error) {
+
+            }
+        });
         authenticationViewModel =
                 ViewModelProviders.of(this).get(AuthenticationViewModel.class);
         sharedPreferences = requireActivity().getSharedPreferences("accounts", MODE_PRIVATE);
@@ -198,7 +231,7 @@ public class AuthenticationFragment extends Fragment {
                     //Check user does not already exist
 
                     //Add new user to database
-                    writeNewUser("0", registerEmail, registerPassword);
+                    writeNewUser(userNum.toString(), registerEmail, registerPassword);
 
                     //display registered and go to home page
                     NavHostFragment.findNavController(AuthenticationFragment.this).navigate(R.id.action_AuthenticationFragment_to_HomeFragment);
