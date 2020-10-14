@@ -7,45 +7,47 @@
     tools:context=".ui.home.HomeFragment"
     android:background="@drawable/wood_background">
 
-    <androidx.constraintlayout.widget.ConstraintLayout
-        android:layout_height="wrap_content"
+    <TextView
+        android:id="@+id/text_home"
         android:layout_width="match_parent"
-        app:layout_constraintBottom_toTopOf="@id/bigButtonsLayout"
-        app:layout_constraintEnd_toEndOf="parent"
+        android:layout_height="wrap_content"
+        android:textAlignment="center"
+        android:textSize="40dp"
+        android:textStyle="bold"
+        android:textColor="#303030"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" >
-        <TextView
-            android:id="@+id/text_home"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:textAlignment="center"
-            android:textSize="40dp"
-            android:textStyle="bold"
-            android:textColor="#303030"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintTop_toTopOf="parent"
-            />
-        <Button
-            android:layout_width="@dimen/_40sdp"
-            android:layout_height="@dimen/_40sdp"
-            android:background="@drawable/message"
-            android:layout_marginRight="@dimen/_30sdp"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintTop_toTopOf="parent"
-            >
-
-        </Button>
-
-    </androidx.constraintlayout.widget.ConstraintLayout>
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintBottom_toTopOf="@id/bigButtonsLayout"
+        android:layout_marginTop="@dimen/_30sdp"
+        />
+    <Button
+        android:id="@+id/home_chat"
+        android:layout_width="@dimen/_40sdp"
+        android:layout_height="@dimen/_40sdp"
+        android:background="@drawable/message"
+        android:layout_marginRight="@dimen/_30sdp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintBottom_toTopOf="@+id/text_home"
+        />
+    <Button
+        android:id="@+id/home_back"
+        android:visibility="invisible"
+        android:layout_width="@dimen/_50sdp"
+        android:layout_height="@dimen/_30sdp"
+        android:background="@drawable/home_back"
+        android:layout_marginLeft="@dimen/_30sdp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintBottom_toTopOf="@+id/text_home"
+        />
 
     <LinearLayout
         android:id="@+id/bigButtonsLayout"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:gravity="center"
+        app:layout_constraintTop_toBottomOf="@+id/text_home"
         app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
         tools:layout_editor_absoluteX="-109dp">
 
         <Button
@@ -73,6 +75,6 @@
             android:layout_width="@dimen/_100sdp"
             android:layout_height="@dimen/_170sdp"
             android:background="@drawable/my_profile_button"/>
-
     </LinearLayout>
+
 </androidx.constraintlayout.widget.ConstraintLayout>
