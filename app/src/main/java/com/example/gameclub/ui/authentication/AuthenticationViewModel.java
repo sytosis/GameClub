@@ -26,25 +26,10 @@ public class AuthenticationViewModel extends ViewModel {
 
     }
 
-
-    @SuppressLint("CommitPrefEdits")
-    public void setSharedPreferences(SharedPreferences sp) {
-        accounts = sp;
-        accountsEditor = accounts.edit();
-    }
-
     public void setMainActivity(MainActivity ma) {
         this.ma = ma;
     }
 
-    public boolean checkEmailUsed(String email) {
-        System.out.println(accounts.getStringSet(email, null));
-        if (accounts.getString(email, null) == null) {
-            return false;
-        } else {
-            return true;
-        }
-    }
 
     public String[] login(String email, String password) {
         String userDetails[];

@@ -116,7 +116,6 @@ public class AuthenticationFragment extends Fragment {
                 ViewModelProviders.of(this).get(AuthenticationViewModel.class);
         sharedPreferences = requireActivity().getSharedPreferences("accounts", MODE_PRIVATE);
         //getContext().getSharedPreferences("accounts",0).edit().clear().commit();
-        authenticationViewModel.setSharedPreferences(sharedPreferences);
         authenticationViewModel.setMainActivity((MainActivity) getActivity());
         View root = inflater.inflate(R.layout.login_signup, container, false);
         registerButton = root.findViewById(R.id.register_button);
@@ -196,12 +195,6 @@ public class AuthenticationFragment extends Fragment {
                 } else if (pageNumber == 6) {
                     registerEmail = topEditText.getText().toString();
                     System.out.println(registerEmail);
-                    System.out.println(authenticationViewModel.checkEmailUsed(registerEmail));
-                    if (authenticationViewModel.checkEmailUsed(registerEmail)) {
-                        pageNumber = pageNumber - 1;
-                        System.out.println("EMAIL USED");
-                    }
-
                     //Check user does not already exist
                     if (checkNewUser(registerEmail)) {
                         pageNumber = pageNumber - 1;
