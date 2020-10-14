@@ -47,16 +47,12 @@ public class MainActivity extends AppCompatActivity {
             }
         });
         drawer = findViewById(R.id.drawer_layout);
-        NavigationView navigationView = findViewById(R.id.nav_view);
         // Passing each menu ID as a set of Ids because each
         // menu should be considered as top level destinations.
         mAppBarConfiguration = new AppBarConfiguration.Builder(
                 R.id.nav_home, R.id.nav_gallery, R.id.nav_slideshow)
                 .setDrawerLayout(drawer)
                 .build();
-        NavController navController = Navigation.findNavController(this, R.id.nav_host_fragment);
-        NavigationUI.setupActionBarWithNavController(this, navController, mAppBarConfiguration);
-        NavigationUI.setupWithNavController(navigationView, navController);
     }
 
     public void disableNav(boolean bool) {
@@ -71,8 +67,6 @@ public class MainActivity extends AppCompatActivity {
 
     public void setEmail(String email) {
         this.email = email;
-        TextView usernameText = findViewById(R.id.usernameText);
-        usernameText.setText(email);
     }
 
     public void setFirstName(String firstName) {
