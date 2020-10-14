@@ -76,16 +76,17 @@ public class AuthenticationFragment extends Fragment {
                 userNum = snapshot.getChildrenCount();
                 for (DataSnapshot postSnapshot: snapshot.getChildren()) {
                     try {
-                        Object idHolder = postSnapshot.getKey();
-                        Object emailHolder = postSnapshot.child("email").getValue();
-                        Object passHolder = postSnapshot.child("password").getValue();
-                        String email = emailHolder.toString();
-                        String pass = passHolder.toString();
-                        String id = idHolder.toString();
+                        String id = postSnapshot.getKey();
+                        String email = postSnapshot.child("email").getValue().toString();
+                        String pass = postSnapshot.child("password").getValue().toString();
+                        String first = postSnapshot.child("firstName").getValue().toString();
+                        String last = postSnapshot.child("lastName").getValue().toString();
+                        String country = postSnapshot.child("country").getValue().toString();
+                        String interests = postSnapshot.child("interest").getValue().toString();
                         existingEmails.add(email);
                         existingId.add(id);
                         existingPasswords.add(pass);
-                        User user = new User(id, email, pass);
+                        User user = new User(id, email, pass, first, last, country, interests);
                         existingUsers.add(user);
                         Log.d("added", email);
                     } catch (NullPointerException n) {
@@ -273,7 +274,7 @@ public class AuthenticationFragment extends Fragment {
             public void onClick(View view) {
                 if (authenticationViewModel.register(registerEmail,registerPassword,registerFirstName,registerLastName,registerCountry,registerInterests) != null) {
                     //Add new user to database
-                    writeNewUser(userNum.toString(), registerEmail, registerPassword);
+                    writeNewUser(userNum.toString(), registerEmail, registerPassword, registerFirstName, registerLastName, registerCountry, registerInterests);
 
                     //display registered and go to home page
                     NavHostFragment.findNavController(AuthenticationFragment.this).navigate(R.id.action_AuthenticationFragment_to_HomeFragment);
@@ -298,9 +299,13 @@ public class AuthenticationFragment extends Fragment {
     /*
      *  Creates new user in firebase database
      */
-    public void writeNewUser(String userId, String email, String password) {
-        mDatabase.child("users").child(userId).child("email").setValue(email);
-        mDatabase.child("users").child(userId).child("password").setValue(password);
+    public void writeNewUser(String userId, String e, String pass, String first, String last, String c, String i) {
+        mDatabase.child("users").child(userId).child("email").setValue(e);
+        mDatabase.child("users").child(userId).child("password").setValue(pass);
+        mDatabase.child("users").child(userId).child("firstName").setValue(first);
+        mDatabase.child("users").child(userId).child("lastName").setValue(last);
+        mDatabase.child("users").child(userId).child("country").setValue(c);
+        mDatabase.child("users").child(userId).child("interest").setValue(i);
         Log.d("writeNewUser", userId);
     }
 
