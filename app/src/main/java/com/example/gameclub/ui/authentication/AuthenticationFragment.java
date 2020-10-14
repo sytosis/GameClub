@@ -134,6 +134,7 @@ public class AuthenticationFragment extends Fragment {
         registerButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+                topText.setVisibility(View.INVISIBLE);
                 pageNumber = 2;
                 fragment.refreshPageLayout();
             }
@@ -150,47 +151,38 @@ public class AuthenticationFragment extends Fragment {
         nextButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                //implement checks later
+                topText.setVisibility(View.INVISIBLE);
                 if (pageNumber == 2) {
                     registerFirstName = topEditText.getText().toString();
                     if (registerFirstName.equals("")) {
                         pageNumber = pageNumber - 1;
-                        System.out.println("INVALID");
-                    }
-
-                    if (registerFirstName.contains(";")) {
-                        pageNumber = pageNumber - 1;
-                        System.out.println("NO ; ALLOWED");
+                        topText.setText("Empty!");
+                        topText.setVisibility(View.VISIBLE);
+                        topText.setTextColor(Color.RED);
                     }
                 } else if (pageNumber == 3) {
                     registerLastName = topEditText.getText().toString();
                     if (registerLastName.equals("")) {
                         pageNumber = pageNumber - 1;
-                        System.out.println("INVALID");
-                    }
-                    if (registerLastName.contains(";")) {
-                        pageNumber = pageNumber - 1;
-                        System.out.println("NO ; ALLOWED");
+                        topText.setText("Empty!");
+                        topText.setVisibility(View.VISIBLE);
+                        topText.setTextColor(Color.RED);
                     }
                 } else if (pageNumber == 4) {
                     registerCountry = topEditText.getText().toString();
                     if (registerCountry.equals("")) {
                         pageNumber = pageNumber - 1;
-                        System.out.println("INVALID");
-                    }
-                    if (registerCountry.contains(";")) {
-                        pageNumber = pageNumber - 1;
-                        System.out.println("NO ; ALLOWED");
+                        topText.setText("Empty!");
+                        topText.setVisibility(View.VISIBLE);
+                        topText.setTextColor(Color.RED);
                     }
                 } else if (pageNumber == 5) {
                     registerInterests = topEditText.getText().toString();
                     if (registerInterests.equals("")) {
                         pageNumber = pageNumber - 1;
-                        System.out.println("INVALID");
-                    }
-                    if (registerInterests.contains(";")) {
-                        pageNumber = pageNumber - 1;
-                        System.out.println("NO ; ALLOWED");
+                        topText.setText("Empty!");
+                        topText.setVisibility(View.VISIBLE);
+                        topText.setTextColor(Color.RED);
                     }
                 } else if (pageNumber == 6) {
                     registerEmail = topEditText.getText().toString();
@@ -198,22 +190,23 @@ public class AuthenticationFragment extends Fragment {
                     //Check user does not already exist
                     if (checkNewUser(registerEmail)) {
                         pageNumber = pageNumber - 1;
-                        System.out.println("Already existing email");
+                        topText.setText("Email already exists");
+                        topText.setVisibility(View.VISIBLE);
+                        topText.setTextColor(Color.RED);
                     }
-
-                    if (registerEmail.contains(";")) {
+                    if (registerEmail.equals("")) {
                         pageNumber = pageNumber - 1;
-                        System.out.println("NO ; ALLOWED");
+                        topText.setText("Empty!");
+                        topText.setVisibility(View.VISIBLE);
+                        topText.setTextColor(Color.RED);
                     }
                 } else if (pageNumber == 7) {
                     registerPassword = topEditText.getText().toString();
                     if (registerPassword.equals("")) {
                         pageNumber = pageNumber - 1;
-                        System.out.println("INVALID");
-                    }
-                    if (registerPassword.contains(";")) {
-                        pageNumber = pageNumber - 1;
-                        System.out.println("NO ; ALLOWED");
+                        topText.setText("Empty!");
+                        topText.setVisibility(View.VISIBLE);
+                        topText.setTextColor(Color.RED);
                     }
                 } else if (pageNumber == 9) {
                     if (existingEmails.contains(topEditText.getText().toString())) {
@@ -224,14 +217,15 @@ public class AuthenticationFragment extends Fragment {
                             System.out.println("Logged in");
                         } else {
                             bottomEditText.setText("");
-                            bottomEditText.setHint("Incorrect Password");
-                            System.out.println("Incorrect password " + correctPass);
+                            topText.setText("Incorrect password");
+                            topText.setVisibility(View.VISIBLE);
+                            topText.setTextColor(Color.RED);
                         }
                     } else {
                         topEditText.setText("");
-                        topEditText.setHint("Incorrect or Email doesn't exist");
-                        //display registered and go to home page
-                        System.out.println("Incorrect email ");
+                        topText.setText("Email doesn't exist");
+                        topText.setVisibility(View.VISIBLE);
+                        topText.setTextColor(Color.RED);
                     }
                 }
                 if (pageNumber != 9) {
@@ -340,7 +334,6 @@ public class AuthenticationFragment extends Fragment {
             bottomText.setTextColor(Color.BLACK);
             bottomText.setTextSize(50);
             orText.setVisibility(View.GONE);
-            topText.setVisibility(View.GONE);
             registerButton.setVisibility(View.GONE);
             loginButton.setVisibility(View.GONE);
             topEditText.setVisibility(View.VISIBLE);
