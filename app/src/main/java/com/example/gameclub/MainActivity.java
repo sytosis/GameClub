@@ -33,7 +33,7 @@ public class MainActivity extends AppCompatActivity {
     private String lastName;
     private String country;
     private String interests;
-  
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
