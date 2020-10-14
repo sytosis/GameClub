@@ -33,15 +33,11 @@ public class MainActivity extends AppCompatActivity {
     private String lastName;
     private String country;
     private String interests;
-    private Toolbar toolbar;
-    private DatabaseReference mDatabase = FirebaseDatabase.getInstance().getReference();
-
+  
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-        toolbar = findViewById(R.id.toolbar);
-        setSupportActionBar(toolbar);
         FloatingActionButton fab = findViewById(R.id.fab);
         fab.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -51,32 +47,16 @@ public class MainActivity extends AppCompatActivity {
             }
         });
         drawer = findViewById(R.id.drawer_layout);
-        NavigationView navigationView = findViewById(R.id.nav_view);
         // Passing each menu ID as a set of Ids because each
         // menu should be considered as top level destinations.
         mAppBarConfiguration = new AppBarConfiguration.Builder(
                 R.id.nav_home, R.id.nav_gallery, R.id.nav_slideshow)
                 .setDrawerLayout(drawer)
                 .build();
-        NavController navController = Navigation.findNavController(this, R.id.nav_host_fragment);
-        NavigationUI.setupActionBarWithNavController(this, navController, mAppBarConfiguration);
-        NavigationUI.setupWithNavController(navigationView, navController);
-    }
-
-    public void disableNav(boolean bool) {
-        if (bool) {
-            toolbar.setVisibility(View.INVISIBLE);
-            drawer.setDrawerLockMode(DrawerLayout.LOCK_MODE_LOCKED_CLOSED);
-        } else {
-            toolbar.setVisibility(View.VISIBLE);
-            drawer.setDrawerLockMode(DrawerLayout.LOCK_MODE_UNLOCKED);
-        }
     }
 
     public void setEmail(String email) {
         this.email = email;
-        TextView usernameText = findViewById(R.id.usernameText);
-        usernameText.setText(email);
     }
 
     public void setFirstName(String firstName) {
