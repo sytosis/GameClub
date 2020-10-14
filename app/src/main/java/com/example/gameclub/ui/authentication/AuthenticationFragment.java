@@ -269,6 +269,7 @@ public class AuthenticationFragment extends Fragment {
             @Override
             public void onClick(View view) {
                 if (authenticationViewModel.register(registerEmail,registerPassword,registerFirstName,registerLastName,registerCountry,registerInterests) != null) {
+                    System.out.println(userNum.toString());
                     //Add new user to database
                     writeNewUser(userNum.toString(), registerEmail, registerPassword, registerFirstName, registerLastName, registerCountry, registerInterests);
 

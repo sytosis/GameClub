@@ -6,9 +6,12 @@ import android.view.View;
 import android.view.Menu;
 import android.widget.TextView;
 
+import com.example.gameclub.ui.authentication.AuthenticationFragment;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import com.google.android.material.snackbar.Snackbar;
 import com.google.android.material.navigation.NavigationView;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
 
 import androidx.navigation.NavController;
 import androidx.navigation.Navigation;
@@ -30,6 +33,7 @@ public class MainActivity extends AppCompatActivity {
     private String lastName;
     private String country;
     private String interests;
+  
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
