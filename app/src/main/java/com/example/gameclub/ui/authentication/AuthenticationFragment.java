@@ -80,7 +80,7 @@ public class AuthenticationFragment extends Fragment {
                         String last = postSnapshot.child("lastName").getValue().toString();
                         String country = postSnapshot.child("country").getValue().toString();
                         String interests = postSnapshot.child("interest").getValue().toString();
-                        String friends = postSnapshot.child("friendList").getValue().toString();
+                        String friends = postSnapshot.child("friends").getValue().toString();
                         existingEmails.add(email);
                         existingId.add(id);
                         existingPasswords.add(pass);
@@ -187,9 +187,9 @@ public class AuthenticationFragment extends Fragment {
                     }
                 } else if (pageNumber == 6) {
                     registerEmail = topEditText.getText().toString();
-                    System.out.println(registerEmail);
                     //Check user does not already exist
                     if (checkNewUser(registerEmail)) {
+                        Log.d("EMAIL: ", "email already exists");
                         topEditText.setHint("Already existing email");
                         topEditText.setText("");
                         pageNumber = pageNumber - 1;
