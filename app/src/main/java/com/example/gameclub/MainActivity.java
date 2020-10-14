@@ -30,14 +30,10 @@ public class MainActivity extends AppCompatActivity {
     private String lastName;
     private String country;
     private String interests;
-    private Toolbar toolbar;
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-        toolbar = findViewById(R.id.toolbar);
-        setSupportActionBar(toolbar);
         FloatingActionButton fab = findViewById(R.id.fab);
         fab.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -53,16 +49,6 @@ public class MainActivity extends AppCompatActivity {
                 R.id.nav_home, R.id.nav_gallery, R.id.nav_slideshow)
                 .setDrawerLayout(drawer)
                 .build();
-    }
-
-    public void disableNav(boolean bool) {
-        if (bool) {
-            toolbar.setVisibility(View.INVISIBLE);
-            drawer.setDrawerLockMode(DrawerLayout.LOCK_MODE_LOCKED_CLOSED);
-        } else {
-            toolbar.setVisibility(View.VISIBLE);
-            drawer.setDrawerLockMode(DrawerLayout.LOCK_MODE_UNLOCKED);
-        }
     }
 
     public void setEmail(String email) {

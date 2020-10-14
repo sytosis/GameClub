@@ -134,7 +134,6 @@ public class AuthenticationFragment extends Fragment {
         view = root.findViewById(R.id.layout);
         orText = root.findViewById(R.id.orText);
         final MainActivity ma = (MainActivity) requireActivity();
-        ma.disableNav(true);
         final AuthenticationFragment fragment = this;
         registerButton.setOnClickListener(new View.OnClickListener() {
             @Override

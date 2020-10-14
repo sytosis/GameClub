@@ -68,7 +68,6 @@ public class AuthenticationViewModel extends ViewModel {
             return null;
         } else {
             System.out.println(userDetails);
-            ma.disableNav(false);
             ma.setEmail(email);
             ma.setFirstName(firstName);
             ma.setLastName(lastName);
@@ -93,7 +92,6 @@ public class AuthenticationViewModel extends ViewModel {
             String detailsString = password + ";" + firstName + ";" + lastName + ";" + country + ";" + interests;
             Set<String> set = new LinkedHashSet<>(Arrays.asList(password,firstName,lastName,country,interests));
             System.out.println(set);
-            ma.disableNav(false);
             ma.setEmail(email);
             ma.setFirstName(firstName);
             ma.setLastName(lastName);
