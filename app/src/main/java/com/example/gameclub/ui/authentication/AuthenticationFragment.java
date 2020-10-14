@@ -197,8 +197,9 @@ public class AuthenticationFragment extends Fragment {
                     System.out.println(registerEmail);
                     //Check user does not already exist
                     if (checkNewUser(registerEmail)) {
+                        topEditText.setHint("Already existing email");
+                        topEditText.setText("");
                         pageNumber = pageNumber - 1;
-                        System.out.println("Already existing email");
                     }
 
                     if (registerEmail.contains(";")) {
