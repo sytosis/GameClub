@@ -55,7 +55,13 @@ public class AuthenticationFragment extends Fragment {
     private View view;
     private DatabaseReference mDatabase = FirebaseDatabase.getInstance().getReference();
     private Long userNum; //Number of users
-    List<String> existingEmails = new ArrayList<String>();
+    private List<String> existingId = new ArrayList<String>();
+    private List<String> existingEmails = new ArrayList<String>();
+    private List<String> existingPasswords = new ArrayList<String>();
+    private List<User> existingUsers = new ArrayList<User>();
+    private boolean exists = false;
+    private boolean emailExists = false;
+    private boolean correctPassword = false;
 
     public AuthenticationFragment() {
     }
@@ -69,11 +75,22 @@ public class AuthenticationFragment extends Fragment {
                 Log.d(snapshot.getKey(), snapshot.getChildrenCount() + "");
                 userNum = snapshot.getChildrenCount();
                 for (DataSnapshot postSnapshot: snapshot.getChildren()) {
-                    Object placeHolder = postSnapshot.child("email").getValue();
-                    String email = placeHolder.toString();
-                    existingEmails.add(email);
-                    Log.d("added", email);
-
+                    try {
+                        Object idHolder = postSnapshot.getKey();
+                        Object emailHolder = postSnapshot.child("email").getValue();
+                        Object passHolder = postSnapshot.child("password").getValue();
+                        String email = emailHolder.toString();
+                        String pass = passHolder.toString();
+                        String id = idHolder.toString();
+                        existingEmails.add(email);
+                        existingId.add(id);
+                        existingPasswords.add(pass);
+                        User user = new User(id, email, pass);
+                        existingUsers.add(user);
+                        Log.d("added", email);
+                    } catch (NullPointerException n) {
+                        System.out.println("Null Pointer Caught");
+                    }
                 }
             }
 
@@ -209,13 +226,22 @@ public class AuthenticationFragment extends Fragment {
                         System.out.println("NO ; ALLOWED");
                     }
                 } else if (pageNumber == 9) {
-                    if (authenticationViewModel.login(topEditText.getText().toString(),bottomEditText.getText().toString()) != null) {
-                        //display registered and go to home page
-                        NavHostFragment.findNavController(AuthenticationFragment.this).navigate(R.id.action_AuthenticationFragment_to_HomeFragment);
-                        System.out.println("Logged in");
+                    if (existingEmails.contains(topEditText.getText().toString())) {
+                        int index = existingEmails.indexOf(topEditText.getText().toString());
+                        String correctPass = existingPasswords.get(index);
+                        if (correctPass.equals(bottomEditText.getText().toString())) {
+                            NavHostFragment.findNavController(AuthenticationFragment.this).navigate(R.id.action_AuthenticationFragment_to_HomeFragment);
+                            System.out.println("Logged in");
+                        } else {
+                            bottomEditText.setText("");
+                            bottomEditText.setHint("Incorrect Password");
+                            System.out.println("Incorrect password " + correctPass);
+                        }
                     } else {
-                        //display login failed, account already exists or account doesnt exist
-                        System.out.println("Incorrect combination");
+                        topEditText.setText("");
+                        topEditText.setHint("Incorrect or Email doesn't exist");
+                        //display registered and go to home page
+                        System.out.println("Incorrect email ");
                     }
                 }
                 if (pageNumber != 9) {
@@ -266,12 +292,7 @@ public class AuthenticationFragment extends Fragment {
      *  Returns false otherwise.
      */
     public boolean checkNewUser(String email) {
-        if (existingEmails.contains(email)) {
-            return true;
-        }
-        else {
-            return false;
-        }
+        return existingEmails.contains(email);
     }
 
     /*
