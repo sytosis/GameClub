@@ -86,9 +86,8 @@ public class AuthenticationFragment extends Fragment {
                         existingPasswords.add(pass);
                         User user = new User(id, email, pass, first, last, country, interests, friends);
                         existingUsers.add(user);
-                        Log.d("added", email);
                     } catch (NullPointerException n) {
-                        System.out.println("Null Pointer Caught");
+                        System.out.println("Null Pointer Caught" + n);
                     }
                 }
             }
