@@ -59,9 +59,6 @@ public class AuthenticationFragment extends Fragment {
     private List<String> existingEmails = new ArrayList<String>();
     private List<String> existingPasswords = new ArrayList<String>();
     private List<User> existingUsers = new ArrayList<User>();
-    private boolean exists = false;
-    private boolean emailExists = false;
-    private boolean correctPassword = false;
 
     public AuthenticationFragment() {
     }
@@ -306,6 +303,10 @@ public class AuthenticationFragment extends Fragment {
         mDatabase.child("users").child(userId).child("country").setValue(c);
         mDatabase.child("users").child(userId).child("interest").setValue(i);
         Log.d("writeNewUser", userId);
+    }
+
+    public List<User> getUsers() {
+        return existingUsers;
     }
 
     public void refreshPageLayout() {
