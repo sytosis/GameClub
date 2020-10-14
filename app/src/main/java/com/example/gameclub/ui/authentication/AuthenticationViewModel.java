@@ -64,29 +64,4 @@ public class AuthenticationViewModel extends ViewModel {
 
 
     }
-
-    public String register(String email, String password, String firstName, String lastName, String country, String interests) {
-        System.out.println(email);
-        System.out.println(password);
-        System.out.println(firstName);
-        System.out.println(lastName);
-        System.out.println(country);
-        System.out.println(interests);
-        //probably implement a better check but then again you dont have to
-        if (accounts.getStringSet(email, new LinkedHashSet<String>()).equals(new LinkedHashSet<String>())) {
-            String detailsString = password + ";" + firstName + ";" + lastName + ";" + country + ";" + interests;
-            Set<String> set = new LinkedHashSet<>(Arrays.asList(password,firstName,lastName,country,interests));
-            System.out.println(set);
-            ma.setEmail(email);
-            ma.setFirstName(firstName);
-            ma.setLastName(lastName);
-            ma.setCountry(country);
-            ma.setInterests(interests);
-            accountsEditor.putString(email,detailsString);
-            accountsEditor.apply();
-            return accounts.getString(email,null);
-        } else {
-            return null;
-        }
-    }
 }

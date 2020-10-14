@@ -80,10 +80,11 @@ public class AuthenticationFragment extends Fragment {
                         String last = postSnapshot.child("lastName").getValue().toString();
                         String country = postSnapshot.child("country").getValue().toString();
                         String interests = postSnapshot.child("interest").getValue().toString();
+                        String friends = postSnapshot.child("friendList").getValue().toString();
                         existingEmails.add(email);
                         existingId.add(id);
                         existingPasswords.add(pass);
-                        User user = new User(id, email, pass, first, last, country, interests);
+                        User user = new User(id, email, pass, first, last, country, interests, friends);
                         existingUsers.add(user);
                         Log.d("added", email);
                     } catch (NullPointerException n) {
@@ -262,18 +263,14 @@ public class AuthenticationFragment extends Fragment {
         continueButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                if (authenticationViewModel.register(registerEmail,registerPassword,registerFirstName,registerLastName,registerCountry,registerInterests) != null) {
                     System.out.println(userNum.toString());
                     //Add new user to database
                     writeNewUser(userNum.toString(), registerEmail, registerPassword, registerFirstName, registerLastName, registerCountry, registerInterests);
-
                     //display registered and go to home page
                     NavHostFragment.findNavController(AuthenticationFragment.this).navigate(R.id.action_AuthenticationFragment_to_HomeFragment);
                     System.out.println("registered");
-                } else {
                     //display failed to register, username exists
                     System.out.println("register failed");
-                }
             }
         });
         refreshPageLayout();
@@ -297,6 +294,7 @@ public class AuthenticationFragment extends Fragment {
         mDatabase.child("users").child(userId).child("lastName").setValue(last);
         mDatabase.child("users").child(userId).child("country").setValue(c);
         mDatabase.child("users").child(userId).child("interest").setValue(i);
+        mDatabase.child("users").child(userId).child("friends").setValue("");
         Log.d("writeNewUser", userId);
     }
 
