@@ -2,12 +2,16 @@ package com.example.gameclub.Users;
 
 public class User {
 
-    private String id, email, password;
+    private String id, email, password, firstName, lastName, country, interest;
 
-    public User(String userId, String e, String pass) {
+    public User(String userId, String e, String pass, String first, String last, String c, String i) {
         id = userId;
         email = e;
         password = pass;
+        firstName = first;
+        lastName = last;
+        country = c;
+        interest = i;
     }
 
     public String getPassword() {
@@ -22,15 +26,19 @@ public class User {
         return id;
     }
 
-    public void setEmail(String email) {
-        this.email = email;
+    public String getFirstName() {
+        return firstName;
     }
 
-    public void setId(String id) {
-        this.id = id;
+    public String getLastName() {
+        return lastName;
     }
 
-    public void setPassword(String password) {
-        this.password = password;
+    public String getCountry() {
+        return country;
+    }
+
+    public String getInterest() {
+        return interest;
     }
 }
