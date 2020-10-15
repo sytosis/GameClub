@@ -6,6 +6,7 @@ import android.view.View;
 import android.view.Menu;
 import android.widget.TextView;
 
+import com.example.gameclub.Users.User;
 import com.example.gameclub.ui.authentication.AuthenticationFragment;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import com.google.android.material.snackbar.Snackbar;
@@ -33,6 +34,7 @@ public class MainActivity extends AppCompatActivity {
     private String lastName;
     private String country;
     private String interests;
+    public static User currentUser;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {

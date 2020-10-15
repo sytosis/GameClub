@@ -1,8 +1,10 @@
 package com.example.gameclub.ui.authentication;
 
 import android.content.SharedPreferences;
+import android.graphics.Bitmap;
 import android.graphics.Color;
 import android.graphics.Typeface;
+import android.graphics.drawable.BitmapDrawable;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.LayoutInflater;
@@ -10,6 +12,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.ImageView;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
@@ -21,12 +24,18 @@ import androidx.navigation.fragment.NavHostFragment;
 import com.example.gameclub.MainActivity;
 import com.example.gameclub.R;
 import com.example.gameclub.Users.User;
+import com.google.android.gms.tasks.OnFailureListener;
+import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.firebase.database.ChildEventListener;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.storage.FirebaseStorage;
+import com.google.firebase.storage.StorageReference;
+import com.google.firebase.storage.UploadTask;
 
+import java.io.ByteArrayOutputStream;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -59,6 +68,10 @@ public class AuthenticationFragment extends Fragment {
     private List<String> existingEmails = new ArrayList<String>();
     private List<String> existingPasswords = new ArrayList<String>();
     private List<User> existingUsers = new ArrayList<User>();
+    private StorageReference storageRef = FirebaseStorage.getInstance().getReference() ;
+    private StorageReference imagesRef = storageRef.child("images");
+    private StorageReference spaceRef = storageRef.child("images/space.jpg");
+    private ImageView imageView;
 
     public AuthenticationFragment() {
     }
@@ -112,6 +125,7 @@ public class AuthenticationFragment extends Fragment {
 
             }
         });
+
         authenticationViewModel =
                 ViewModelProviders.of(this).get(AuthenticationViewModel.class);
         sharedPreferences = requireActivity().getSharedPreferences("accounts", MODE_PRIVATE);
@@ -215,6 +229,7 @@ public class AuthenticationFragment extends Fragment {
                         int index = existingEmails.indexOf(topEditText.getText().toString());
                         String correctPass = existingPasswords.get(index);
                         if (correctPass.equals(bottomEditText.getText().toString())) {
+                            MainActivity.currentUser = existingUsers.get(index);
                             NavHostFragment.findNavController(AuthenticationFragment.this).navigate(R.id.action_AuthenticationFragment_to_HomeFragment);
                             System.out.println("Logged in");
                         } else {
@@ -260,6 +275,7 @@ public class AuthenticationFragment extends Fragment {
                     System.out.println(userNum.toString());
                     //Add new user to database
                     writeNewUser(userNum.toString(), registerEmail, registerPassword, registerFirstName, registerLastName, registerCountry, registerInterests);
+                    MainActivity.currentUser = new User(userNum.toString(), registerEmail, registerPassword, registerFirstName, registerLastName, registerCountry, registerInterests, "");
                     //display registered and go to home page
                     NavHostFragment.findNavController(AuthenticationFragment.this).navigate(R.id.action_AuthenticationFragment_to_HomeFragment);
                     System.out.println("registered");

@@ -38,7 +38,7 @@ public class HomeFragment extends Fragment {
         View root = inflater.inflate(R.layout.fragment_home, container, false);
         final MainActivity main = (MainActivity) requireActivity();
         final TextView homeText = root.findViewById(R.id.text_home);
-        homeText.setText("Hi " + main.getFirstName() + ", what would you like to do?");
+        homeText.setText("Hi " + MainActivity.currentUser.getFirstName() + ", what would you like to do?");
         gameButton = root.findViewById(R.id.game_button);
         leftButton = root.findViewById(R.id.left_button);
         leftButton.setOnClickListener(new View.OnClickListener() {
@@ -97,7 +97,7 @@ public class HomeFragment extends Fragment {
                     rightButton.setLayoutParams(lp);
                     gameButton.setVisibility(View.VISIBLE);
                     homeBack.setVisibility(View.INVISIBLE);
-                    homeText.setText("Hi " + main.getFirstName() + ", what would you like to do?");
+                    homeText.setText("Hi " + MainActivity.currentUser.getFirstName() + ", what would you like to do?");
                 }
             }
         });
