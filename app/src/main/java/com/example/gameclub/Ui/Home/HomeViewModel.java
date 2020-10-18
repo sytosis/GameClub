@@ -1,4 +1,4 @@
-package com.example.gameclub.ui.home;
+package com.example.gameclub.Ui.Home;
 
 import androidx.lifecycle.LiveData;
 import androidx.lifecycle.MutableLiveData;

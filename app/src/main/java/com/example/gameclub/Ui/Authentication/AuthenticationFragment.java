@@ -1,10 +1,8 @@
-package com.example.gameclub.ui.authentication;
+package com.example.gameclub.Ui.Authentication;
 
 import android.content.SharedPreferences;
-import android.graphics.Bitmap;
 import android.graphics.Color;
 import android.graphics.Typeface;
-import android.graphics.drawable.BitmapDrawable;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.LayoutInflater;
@@ -24,8 +22,6 @@ import androidx.navigation.fragment.NavHostFragment;
 import com.example.gameclub.MainActivity;
 import com.example.gameclub.R;
 import com.example.gameclub.Users.User;
-import com.google.android.gms.tasks.OnFailureListener;
-import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.firebase.database.ChildEventListener;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
@@ -33,9 +29,7 @@ import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.storage.FirebaseStorage;
 import com.google.firebase.storage.StorageReference;
-import com.google.firebase.storage.UploadTask;
 
-import java.io.ByteArrayOutputStream;
 import java.util.ArrayList;
 import java.util.List;
 
