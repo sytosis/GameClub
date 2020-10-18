@@ -1,15 +1,16 @@
 package com.example.gameclub.Network;
-import java.net.*;
-import java.io.*;
 
-import android.graphics.Color;
-import android.os.Bundle;
-import android.view.LayoutInflater;
 import android.view.View;
-import android.view.ViewGroup;
 import android.widget.Button;
-import android.widget.LinearLayout;
 import android.widget.TextView;
+
+
+import com.example.gameclub.R;
+
+import java.io.IOException;
+import java.io.PrintWriter;
+import java.net.ServerSocket;
+import java.net.Socket;
 
 
 public class ServerNetwork implements Runnable {

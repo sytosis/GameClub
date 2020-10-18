@@ -1,17 +1,6 @@
-package com.example.gameclub.ui.gallery;
+package com.example.gameclub.Ui.Gallery;
 
-import androidx.lifecycle.LiveData;
-import androidx.lifecycle.MutableLiveData;
 import androidx.lifecycle.ViewModel;
-
-import com.example.gameclub.MainActivity;
-
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.Collections;
-import java.util.List;
-import java.util.Random;
-import java.util.StringJoiner;
 
 public class ChessViewModel extends ViewModel {
     private int[] selectedPiece= new int[2];

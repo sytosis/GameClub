@@ -1,21 +1,10 @@
-package com.example.gameclub.ui.authentication;
+package com.example.gameclub.Ui.Authentication;
 
-import android.annotation.SuppressLint;
 import android.content.SharedPreferences;
 
 import androidx.lifecycle.ViewModel;
 
 import com.example.gameclub.MainActivity;
-
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.HashSet;
-import java.util.LinkedHashSet;
-import java.util.List;
-import java.util.Objects;
-import java.util.Set;
-
-import static android.content.Context.MODE_PRIVATE;
 
 public class AuthenticationViewModel extends ViewModel {
     SharedPreferences accounts;

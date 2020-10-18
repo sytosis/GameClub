@@ -1,4 +1,4 @@
-package com.example.gameclub.ui.slideshow;
+package com.example.gameclub.Ui.Slideshow;
 
 import android.os.Bundle;
 import android.view.LayoutInflater;
