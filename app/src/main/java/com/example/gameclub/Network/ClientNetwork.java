@@ -9,7 +9,9 @@ public class ClientNetwork implements Runnable{
 
         try{
             /*make connection to server socket */
-            Socket sock = new Socket("localhost", 6013);
+            Socket sock = new Socket("localhost", 6013,null,2222);
+
+            System.out.println(sock.getPort());
             InputStream in = sock.getInputStream();
             BufferedReader bin = new BufferedReader(new InputStreamReader(in));
 
