@@ -153,7 +153,31 @@ public class BingoFragment extends Fragment {
         });
 
         Button resetButton = root.findViewById(R.id.new_list_button);
+        final Button button1 = root.findViewById(R.id.serv);
+        button1.setOnClickListener(new View.OnClickListener() {
+            public void onClick(View v) {
+                System.out.println("here");
+                View newView = root.findViewById(R.id.servtext);
+                server = new ServerNetwork((TextView) newView);
+                thread = new Thread(server);
+                thread.start();
 
+                return;
+            }
+        });
+
+        final Button button2 = root.findViewById(R.id.client);
+         button2.setOnClickListener(new View.OnClickListener() {
+             public void onClick(View v) {
+                 System.out.println("here");
+                 client = new ClientNetwork();
+                 thread = new Thread(client);
+                 thread.start();
+
+                 return;
+
+             }
+         });
         return root;
     }
     public void clientConn(View view) {
