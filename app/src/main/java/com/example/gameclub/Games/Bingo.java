@@ -23,7 +23,7 @@ public class Bingo extends ViewModel {
     Random randomGenerator = new Random();
     private String id;
     private boolean isHost = false;
-    private Integer ballNum;
+    private Integer ballNum = 0;
 
     public Bingo() {
         setBoard();
@@ -95,8 +95,7 @@ public class Bingo extends ViewModel {
                 mDatabase.child("Games").child("Bingo").child("Hosting").child("Ball").setValue(number);
                 return number;
             }
-        }
-        else {
+        } else {
             number = ballNum;
         }
         return number;
