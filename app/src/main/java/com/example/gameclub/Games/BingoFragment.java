@@ -110,9 +110,14 @@ public class BingoFragment extends Fragment {
         ((TextView) root.findViewById(R.id.RollText)).setText(String.valueOf(number));
     }
 
-    public void bingoTurn() {
-        displayBall(bingoGame.getBall());
+    public void removeBall(int number) {
+        // Kevin magic please
+    }
 
+    public void bingoTurn() {
+        int number = bingoGame.getBall();
+        displayBall(number);
+        bingoGame.checkWin(number);
     }
 
     public void setBoardText() {

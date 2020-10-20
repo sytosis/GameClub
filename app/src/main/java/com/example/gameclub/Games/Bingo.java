@@ -18,6 +18,7 @@ import java.util.Random;
 
 public class Bingo extends ViewModel {
     public List<Integer> bingoBoard = new ArrayList<>(25);
+    public List<Boolean> checker = new ArrayList<>(25);
     private DatabaseReference mDatabase = FirebaseDatabase.getInstance().getReference();
     List<Integer> usedNumbers = new ArrayList<>();
     Random randomGenerator = new Random();
@@ -52,7 +53,7 @@ public class Bingo extends ViewModel {
                                 System.out.println("Ball is empty");
                             }
                             ballNum = Integer.parseInt(snapshot.child("Bingo").child("Hosting").child("Ball").getValue().toString());
-                            Log.d("BallNum ", String.valueOf(ballNum));
+                            Log.d("BNDB ", String.valueOf(ballNum));
                         } catch (Exception e) {
                             Log.d("Exception: ", String.valueOf(e));
                         }
@@ -84,6 +85,7 @@ public class Bingo extends ViewModel {
             number = randomGenerator.nextInt(100) + 1;
             if (!bingoBoard.contains(number)) {
                 bingoBoard.add(number);
+                checker.add(false);
             }
         }
     }
@@ -113,9 +115,21 @@ public class Bingo extends ViewModel {
 
     }
 
-    public boolean checkWin() {
+    public void checkWin(Integer number) {
+        Boolean win = false;
+        Integer key = null;
+        if (bingoBoard.contains(number)) {
+            key = bingoBoard.indexOf(number);
+            checker.set(key, true);
+        }
 
-
-        return false;
+        if (win) {
+            reset();
+        }
+        for (int i = 0; i < 25; ++i) {
+            Integer send = bingoBoard.get(i);
+            Boolean state = checker.get(i);
+            System.out.println(i + ":number:" + send + " state:" + state);
+        }
     }
 }
