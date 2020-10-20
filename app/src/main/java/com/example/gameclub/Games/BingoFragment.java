@@ -111,7 +111,7 @@ public class BingoFragment extends Fragment {
     }
 
     public void removeBall(int number) {
-        // Kevin magic please
+        // Robbie magic please
     }
 
     public void bingoTurn() {
