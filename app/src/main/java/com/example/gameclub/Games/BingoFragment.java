@@ -18,6 +18,7 @@ import com.example.gameclub.R;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Timer;
 
 public class BingoFragment extends Fragment {
 
@@ -201,7 +202,6 @@ public class BingoFragment extends Fragment {
         client = new ClientNetwork();
         thread = new Thread(client);
         thread.start();
-
         return;
 
     }
@@ -211,7 +211,6 @@ public class BingoFragment extends Fragment {
         server = new ServerNetwork((TextView) view);
         thread = new Thread(server);
         thread.start();
-
         return;
 
     }
