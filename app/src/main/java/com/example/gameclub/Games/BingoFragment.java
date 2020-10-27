@@ -160,6 +160,12 @@ public class BingoFragment extends Fragment {
 
         Button resetButton = root.findViewById(R.id.new_list_button);
         final Button button1 = root.findViewById(R.id.serv);
+
+        resetButton.setOnClickListener(new View.OnClickListener() {
+            public void onClick(View v) {
+                bingoGame.reset();
+            }
+        });
         button1.setOnClickListener(new View.OnClickListener() {
             public void onClick(View v) {
 
