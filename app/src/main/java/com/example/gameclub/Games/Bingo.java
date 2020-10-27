@@ -1,12 +1,15 @@
 package com.example.gameclub.Games;
 import android.os.health.SystemHealthManager;
 import android.util.Log;
+import android.view.View;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.lifecycle.ViewModel;
+import androidx.lifecycle.ViewModelProviders;
 
 import com.example.gameclub.MainActivity;
+import com.example.gameclub.R;
 import com.google.firebase.database.ChildEventListener;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
@@ -16,6 +19,8 @@ import com.google.firebase.database.FirebaseDatabase;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Random;
+import java.util.Timer;
+import java.util.TimerTask;
 
 
 public class Bingo extends ViewModel {
@@ -31,6 +36,7 @@ public class Bingo extends ViewModel {
     private String started = "false";
     private Integer playerNum = 0;
     private boolean add = true;
+    private boolean finish = false;
 
     public Bingo() {
         setBoard();
@@ -81,13 +87,9 @@ public class Bingo extends ViewModel {
                                 startGame();
                             }
                             winner = Integer.parseInt(snapshot.child("Bingo").child("Hosting").child("winner").getValue().toString());
-                            if (winner != -1) {
-                                System.out.println("YOU WON " + MainActivity.currentUser.getId() + " " + winner);
-                                if (MainActivity.currentUser.getId().equals(winner)) {
-                                    System.out.println("YOU WON");
-                                } else {
-                                    System.out.println("The winner is " + winner);
-                                }
+                            if (winner != -1 && !finish) {
+                                finish = true;
+                                finishGame();
                             }
                         } catch (Exception e) {
                             Log.d("Exception ", String.valueOf(e));
@@ -125,12 +127,30 @@ public class Bingo extends ViewModel {
     }
 
     public void startGame() {
+        Timer timer = new Timer();
+        timer.scheduleAtFixedRate(new TimerTask() {
+            @Override
+            public void run() {
+                if (!finish) {
+                    int newBall = getBall();
+                    BingoFragment.displayBall(newBall);
+                    checkWin(newBall);
+                }
+            }
+        }, 5000, 10000);
+    }
 
+    public void finishGame() {
+        if (MainActivity.currentUser.getId().equals(winner.toString())) {
+            System.out.println("YOU WON");
+        } else {
+            System.out.println("The winner is " + winner);
+        }
     }
 
     public int getBall() {
         int number = 0;
-        if (isHost) {
+        if (isHost && started.equals("true")) {
             while (!usedNumbers.contains(number = randomGenerator.nextInt(100) + 1)) {
                 mDatabase.child("Games").child("Bingo").child("Hosting").child("Ball").setValue(number);
                 return number;
@@ -162,7 +182,7 @@ public class Bingo extends ViewModel {
             checker.set(key, true);
         }
 
-        if (bingoBoard.contains(55) && number == 55) {
+        if (number > 80) {
             win = true;
         }
 

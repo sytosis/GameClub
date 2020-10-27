@@ -23,7 +23,7 @@ import java.util.Timer;
 public class BingoFragment extends Fragment {
 
     public Bingo bingoGame;
-    View root;
+    static View root;
     List<ImageView> bingoBoardImages = new ArrayList<>();
     List<TextView> bingoBoardText = new ArrayList<>();
     private Thread thread;
@@ -87,7 +87,7 @@ public class BingoFragment extends Fragment {
         bingoBoardImages.add((ImageView) root.findViewById(R.id.Ball25));
     }
 
-    public void setBallColour(ImageView ball, int number) {
+    public static void setBallColour(ImageView ball, int number) {
         if (number < 16) {
             ball.setImageResource(R.drawable.pink_ball);
         }
@@ -106,7 +106,7 @@ public class BingoFragment extends Fragment {
     }
 
 
-    public void displayBall(int number) {
+    public static void displayBall(int number) {
         setBallColour((ImageView) root.findViewById(R.id.RollBall), number);
         ((TextView) root.findViewById(R.id.RollText)).setText(String.valueOf(number));
     }
