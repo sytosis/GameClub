@@ -75,7 +75,7 @@ public class Bingo extends ViewModel {
                             if (snapshot.child("Bingo").child("Hosting").child("Num").getValue().toString().equals("0")) {
                                 System.out.println("Player num is empty");
                             }
-                            playerNum = (Integer) snapshot.child("Bingo").child("Hosting").child("Num").getValue();
+                            playerNum = Integer.parseInt(snapshot.child("Bingo").child("Hosting").child("Num").getValue().toString());
                             if (playerNum == 2) {
                                 startGame();
                             }
