@@ -3,6 +3,7 @@ package com.example.gameclub.Ui.Gallery;
 import android.graphics.drawable.Drawable;
 import android.graphics.drawable.LayerDrawable;
 import android.os.Bundle;
+import android.util.Pair;
 import android.util.TypedValue;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -14,12 +15,17 @@ import android.widget.ScrollView;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
 import androidx.appcompat.content.res.AppCompatResources;
 import androidx.fragment.app.Fragment;
+import androidx.lifecycle.Observer;
 import androidx.lifecycle.ViewModelProviders;
 import androidx.navigation.fragment.NavHostFragment;
 
 import com.example.gameclub.MainActivity;
+import com.example.gameclub.Network.ChessGame;
+import com.example.gameclub.Network.ClientNetwork;
+import com.example.gameclub.Network.ServerNetwork;
 import com.example.gameclub.R;
 
 
@@ -37,6 +43,11 @@ public class ChessFragment extends Fragment {
     View rootSave;
     ScrollView scrollViewChat;
     Boolean onWhite = true;
+    private ChessGame chessGame;
+    private Thread thread;
+    private ClientNetwork client;
+    private ServerNetwork server;
+    private TextView networkBox;
     int knightMoves[][] = {{2,1},{2,-1},{-2,1},{-2,-1},{1,2},{1,-2},{-1,2},{-1,-2}};
     public View onCreateView(@NonNull LayoutInflater inflater,
                              ViewGroup container, Bundle savedInstanceState) {
@@ -45,6 +56,17 @@ public class ChessFragment extends Fragment {
                 ViewModelProviders.of(this).get(ChessViewModel.class);
         final View root = inflater.inflate(R.layout.fragment_chess, container, false);
         rootSave = root;
+        final Observer<Pair<Integer, Integer>> chessMove = new Observer<Pair<Integer, Integer>>() {
+            @Override
+            public void onChanged(@Nullable final Pair<Integer,Integer> newMove) {
+                // Update the UI, in this case, a TextView.
+                chessViewModel.moveSelectedPiece(newMove.first,newMove.second);
+                redrawBoard();
+                onWhite = !onWhite;
+            }
+
+        };
+        chessViewModel.getMove().observe(getViewLifecycleOwner(), chessMove);
         wholeChatBox = root.findViewById(R.id.whole_chat_box);
         resetBoardButton = root.findViewById(R.id.reset_board_button);
         chatCloseButton = root.findViewById(R.id.close_chat_button);
@@ -54,6 +76,7 @@ public class ChessFragment extends Fragment {
         chatChessBox = root.findViewById(R.id.chess_chat_box);
         scrollViewChat = root.findViewById(R.id.scrollview_chat);
         text = root.findViewById(R.id.chess_chat_id);
+        chessGame = new ChessGame(chessViewModel, root);
         homeButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -101,14 +124,21 @@ public class ChessFragment extends Fragment {
                             @Override
                             public void onClick(View view) {
                                 //move the piece
-                                if (AppCompatResources.getDrawable(getContext(),R.drawable.red).getConstantState().equals(((LayerDrawable)view.getBackground()).getDrawable(0).getConstantState())) {
+                                if (AppCompatResources.getDrawable(getContext(),R.drawable.red).
+                                        getConstantState().
+                                        equals(((LayerDrawable)view.getBackground()).
+                                                getDrawable(0).getConstantState())) {
+
                                     chessViewModel.moveSelectedPiece(newX,newY);
                                     redrawBoard();
                                     onWhite = !onWhite;
                                 } else {
                                     redrawBoard();
+
                                     String id = view.getResources().getResourceEntryName(view.getId());
+                                    System.out.println(id);
                                     id = id.substring(5);
+                                    System.out.println(id);
                                     int x = Integer.parseInt(id.substring(0, 1));
                                     int y = Integer.parseInt(id.substring(1));
                                     String boardId = "board" + x + y;
@@ -1225,6 +1255,25 @@ public class ChessFragment extends Fragment {
     }
 
     public void whiteLoss() {
+
+    }
+    public void clientConn(View view) {
+        System.out.println("here");
+        client = new ClientNetwork();
+        thread = new Thread(client);
+        thread.start();
+
+        return;
+
+    }
+
+    public void serverConn(View view) {
+        System.out.println("here");
+        server = new ServerNetwork((TextView) view, chessGame);
+        thread = new Thread(server);
+        thread.start();
+
+        return;
 
     }
 }

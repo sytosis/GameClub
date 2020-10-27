@@ -1,11 +1,26 @@
 package com.example.gameclub.Ui.Gallery;
 
+import android.app.Activity;
+import android.util.Pair;
+
+import androidx.lifecycle.MutableLiveData;
 import androidx.lifecycle.ViewModel;
+
+import com.example.gameclub.R;
 
 public class ChessViewModel extends ViewModel {
     private int[] selectedPiece= new int[2];
     private boolean isWhite;
     private String[][] chessBoard = new String[8][8];
+
+    private MutableLiveData<Pair<Integer,Integer>> chessMoves;
+
+    public MutableLiveData<Pair<Integer,Integer>> getMove() {
+        if (chessMoves == null) {
+            chessMoves = new MutableLiveData<Pair<Integer,Integer>>();
+        }
+        return chessMoves;
+    }
 
     public ChessViewModel() {
 

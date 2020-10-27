@@ -12,7 +12,7 @@ public class ClientNetwork implements Runnable{
 
         try{
             /*make connection to server socket */
-            Socket sock = new Socket("localhost", 6013,null,2222);
+            Socket sock = new Socket("10.0.2.2", 6013,null,2222);
 
             System.out.println(sock.getPort());
             InputStream in = sock.getInputStream();
