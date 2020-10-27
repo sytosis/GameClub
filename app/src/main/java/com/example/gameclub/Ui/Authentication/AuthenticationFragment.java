@@ -67,6 +67,8 @@ public class AuthenticationFragment extends Fragment {
     private StorageReference spaceRef = storageRef.child("images/space.jpg");
     private ImageView imageView;
 
+
+
     public AuthenticationFragment() {
     }
 
