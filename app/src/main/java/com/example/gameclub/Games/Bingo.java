@@ -66,11 +66,21 @@ public class Bingo extends ViewModel {
                             }
                             ballNum = Integer.parseInt(snapshot.child("Bingo").child("Hosting").child("Ball").getValue().toString());
                             Log.d("BNDB ", String.valueOf(ballNum));
+
+                            if (isHost) {
+                                playerNum = Integer.parseInt(snapshot.child("Bingo").child("Hosting").child("Num").getValue().toString());
+                            }
+
+                            if (isHost && playerNum.equals(2) && started.equals("false")) {
+                                started = "true";
+                                startGame();
+                            }
                         } catch (Exception e) {
                             Log.d("Exception: ", String.valueOf(e));
                         }
                     }
                 }
+
             }
 
             @Override
@@ -100,6 +110,10 @@ public class Bingo extends ViewModel {
                 checker.add(false);
             }
         }
+    }
+
+    public void startGame() {
+        System.out.println("start game\n");
     }
 
     public int getBall() {
