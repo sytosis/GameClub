@@ -67,16 +67,16 @@ public class Bingo extends ViewModel {
                             ballNum = Integer.parseInt(snapshot.child("Bingo").child("Hosting").child("Ball").getValue().toString());
                             Log.d("BNDB ", String.valueOf(ballNum));
 
-                            if (isHost) {
-                                playerNum = Integer.parseInt(snapshot.child("Bingo").child("Hosting").child("Num").getValue().toString());
-                            }
+
+                            playerNum = Integer.parseInt(snapshot.child("Bingo").child("Hosting").child("Num").getValue().toString());
+                            Log.d("playerNum is host", String.valueOf(playerNum));
 
                             if (isHost && playerNum.equals(2) && started.equals("false")) {
                                 started = "true";
                                 startGame();
                             }
                         } catch (Exception e) {
-                            Log.d("Exception: ", String.valueOf(e));
+                            Log.d("Exception ", String.valueOf(e));
                         }
                     }
                 }
