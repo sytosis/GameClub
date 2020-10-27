@@ -161,7 +161,7 @@ public class BingoFragment extends Fragment {
         final Button button1 = root.findViewById(R.id.serv);
         button1.setOnClickListener(new View.OnClickListener() {
             public void onClick(View v) {
-                System.out.println("here");
+
                 View newView = root.findViewById(R.id.servtext);
                 server = new ServerNetwork((TextView) newView);
                 thread = new Thread(server);
@@ -174,7 +174,7 @@ public class BingoFragment extends Fragment {
         final Button button2 = root.findViewById(R.id.client);
          button2.setOnClickListener(new View.OnClickListener() {
              public void onClick(View v) {
-                 System.out.println("here");
+
                  client = new ClientNetwork();
                  thread = new Thread(client);
                  thread.start();
@@ -183,6 +183,17 @@ public class BingoFragment extends Fragment {
 
              }
          });
+
+//         Button homeButton = root.findViewById(R.id.Bingo_Home_Button);
+//        homeButton.setOnClickListener(new View.OnClickListener() {
+//            public void onClick(View v) {
+//
+//
+//
+//                return;
+//            }
+//        });
+
         return root;
     }
     public void clientConn(View view) {
