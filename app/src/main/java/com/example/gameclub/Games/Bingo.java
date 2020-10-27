@@ -74,6 +74,8 @@ public class Bingo extends ViewModel {
                                     System.out.println("Ball is empty");
                                 }
                                 ballNum = Integer.parseInt(snapshot.child("Bingo").child("Hosting").child("Ball").getValue().toString());
+                                BingoFragment.displayBall(ballNum);
+                                checkWin(ballNum);
                                 Log.d("BNDB ", String.valueOf(ballNum));
                             }
 
