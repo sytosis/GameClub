@@ -18,6 +18,7 @@ import com.example.gameclub.R;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Timer;
 
 public class BingoFragment extends Fragment {
 
@@ -110,9 +111,14 @@ public class BingoFragment extends Fragment {
         ((TextView) root.findViewById(R.id.RollText)).setText(String.valueOf(number));
     }
 
-    public void bingoTurn() {
-        displayBall(bingoGame.getBall());
+    public void removeBall(int number) {
+        // Robbie magic please
+    }
 
+    public void bingoTurn() {
+        int number = bingoGame.getBall();
+        displayBall(number);
+        bingoGame.checkWin(number);
     }
 
     public void setBoardText() {
@@ -153,6 +159,41 @@ public class BingoFragment extends Fragment {
         });
 
         Button resetButton = root.findViewById(R.id.new_list_button);
+        final Button button1 = root.findViewById(R.id.serv);
+        button1.setOnClickListener(new View.OnClickListener() {
+            public void onClick(View v) {
+
+                View newView = root.findViewById(R.id.servtext);
+                server = new ServerNetwork((TextView) newView);
+                thread = new Thread(server);
+                thread.start();
+
+                return;
+            }
+        });
+
+        final Button button2 = root.findViewById(R.id.client);
+         button2.setOnClickListener(new View.OnClickListener() {
+             public void onClick(View v) {
+
+                 client = new ClientNetwork();
+                 thread = new Thread(client);
+                 thread.start();
+
+                 return;
+
+             }
+         });
+
+//         Button homeButton = root.findViewById(R.id.Bingo_Home_Button);
+//        homeButton.setOnClickListener(new View.OnClickListener() {
+//            public void onClick(View v) {
+//
+//
+//
+//                return;
+//            }
+//        });
 
         return root;
     }
@@ -161,7 +202,6 @@ public class BingoFragment extends Fragment {
         client = new ClientNetwork();
         thread = new Thread(client);
         thread.start();
-
         return;
 
     }
@@ -171,7 +211,6 @@ public class BingoFragment extends Fragment {
         server = new ServerNetwork((TextView) view);
         thread = new Thread(server);
         thread.start();
-
         return;
 
     }

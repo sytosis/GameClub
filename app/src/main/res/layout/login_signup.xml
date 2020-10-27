@@ -4,7 +4,7 @@
     android:layout_height="match_parent"
     xmlns:tools="http://schemas.android.com/tools"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    tools:context=".ui.authentication.AuthenticationFragment"
+    tools:context=".Ui.Authentication.AuthenticationFragment"
     android:background="@drawable/wood_background"
     android:id="@+id/layout">
 

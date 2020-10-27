@@ -1,9 +1,5 @@
-package com.example.gameclub.ui.gallery;
+package com.example.gameclub.Ui.Gallery;
 
-import android.content.res.Resources;
-import android.graphics.Color;
-import android.graphics.PorterDuff;
-import android.graphics.drawable.ColorDrawable;
 import android.graphics.drawable.Drawable;
 import android.graphics.drawable.LayerDrawable;
 import android.os.Bundle;
@@ -18,12 +14,10 @@ import android.widget.ScrollView;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
-import androidx.annotation.Nullable;
 import androidx.appcompat.content.res.AppCompatResources;
-import androidx.core.graphics.drawable.DrawableCompat;
 import androidx.fragment.app.Fragment;
-import androidx.lifecycle.Observer;
 import androidx.lifecycle.ViewModelProviders;
+import androidx.navigation.fragment.NavHostFragment;
 
 import com.example.gameclub.MainActivity;
 import com.example.gameclub.R;
@@ -36,11 +30,13 @@ public class ChessFragment extends Fragment {
     Button chatCloseButton;
     Button chatOpenButton;
     Button sendChat;
+    Button homeButton;
     LinearLayout wholeChatBox;
     EditText text;
     LinearLayout chatChessBox;
     View rootSave;
     ScrollView scrollViewChat;
+    Boolean onWhite = true;
     int knightMoves[][] = {{2,1},{2,-1},{-2,1},{-2,-1},{1,2},{1,-2},{-1,2},{-1,-2}};
     public View onCreateView(@NonNull LayoutInflater inflater,
                              ViewGroup container, Bundle savedInstanceState) {
@@ -52,11 +48,18 @@ public class ChessFragment extends Fragment {
         wholeChatBox = root.findViewById(R.id.whole_chat_box);
         resetBoardButton = root.findViewById(R.id.reset_board_button);
         chatCloseButton = root.findViewById(R.id.close_chat_button);
-        chatOpenButton = root.findViewById(R.id.open_messaging_button);
+        chatOpenButton = root.findViewById(R.id.message_button);
+        homeButton = root.findViewById(R.id.home_button);
         sendChat = root.findViewById(R.id.send_chat_button);
         chatChessBox = root.findViewById(R.id.chess_chat_box);
         scrollViewChat = root.findViewById(R.id.scrollview_chat);
         text = root.findViewById(R.id.chess_chat_id);
+        homeButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                NavHostFragment.findNavController(ChessFragment.this).navigate((R.id.action_nav_chess_to_nav_home));
+            }
+        });
         sendChat.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -101,6 +104,7 @@ public class ChessFragment extends Fragment {
                                 if (AppCompatResources.getDrawable(getContext(),R.drawable.red).getConstantState().equals(((LayerDrawable)view.getBackground()).getDrawable(0).getConstantState())) {
                                     chessViewModel.moveSelectedPiece(newX,newY);
                                     redrawBoard();
+                                    onWhite = !onWhite;
                                 } else {
                                     redrawBoard();
                                     String id = view.getResources().getResourceEntryName(view.getId());
@@ -110,7 +114,7 @@ public class ChessFragment extends Fragment {
                                     String boardId = "board" + x + y;
                                     int boardFinder = getResources().getIdentifier(boardId, "id", getActivity().getPackageName());
                                     Button selectedBoard = root.findViewById(boardFinder);
-                                    if (chessViewModel.selectChessPiece(x, y)) {
+                                    if (chessViewModel.selectChessPiece(x, y) && (onWhite && chessViewModel.getChessBoard()[x][y].contains("w") || !onWhite && chessViewModel.getChessBoard()[x][y].contains("b"))) {
                                         Drawable[] layers = new Drawable[2];
                                         try {
                                             LayerDrawable tempBackground = (LayerDrawable) selectedBoard.getBackground();
@@ -124,6 +128,7 @@ public class ChessFragment extends Fragment {
 
                                         String piece = chessViewModel.getChessBoard()[x][y];
                                         if (piece.contains("n")) {
+
                                             for (int i = 0; i < 8; i++) {
                                                 int newX = x + knightMoves[i][0];
                                                 int newY = y + knightMoves[i][1];

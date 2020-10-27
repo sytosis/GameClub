@@ -582,4 +582,47 @@
         app:layout_constraintStart_toStartOf="@+id/Ball25"
         app:layout_constraintTop_toTopOf="@+id/Ball25" />
 
+    <Button
+        android:id="@+id/serv"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="16dp"
+        android:layout_marginBottom="850dp"
+        android:text="server"
+        app:layout_constraintBottom_toTopOf="@+id/linearLayout2"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.0" />
+
+    <Button
+        android:id="@+id/client"
+        android:layout_width="92dp"
+        android:layout_height="40dp"
+        android:layout_marginTop="148dp"
+        android:text="client"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/serv" />
+
+    <TextView
+        android:id="@+id/servtext"
+        android:layout_width="354dp"
+        android:layout_height="116dp"
+        android:layout_marginBottom="24dp"
+        android:text="TextView"
+        app:layout_constraintBottom_toTopOf="@+id/linearLayout2"
+        app:layout_constraintTop_toBottomOf="@+id/client"
+        app:layout_constraintVertical_bias="0.978"
+        tools:layout_editor_absoluteX="26dp" />
+
+    <Button
+        android:id="@+id/Bingo_Home_Button"
+        android:layout_width="100dp"
+        android:layout_height="80dp"
+        android:layout_marginTop="10dp"
+        android:layout_marginEnd="10dp"
+        android:background="@drawable/back_home"
+        android:text="Home"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
 </androidx.constraintlayout.widget.ConstraintLayout>

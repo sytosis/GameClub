@@ -1,15 +1,20 @@
 package com.example.gameclub.Network;
-import android.view.View;
 
-import java.net.*;
-import java.io.*;
+import java.io.BufferedReader;
+import java.io.IOException;
+import java.io.InputStream;
+import java.io.InputStreamReader;
+import java.net.Socket;
+
 public class ClientNetwork implements Runnable{
 
     public void run() {
 
         try{
             /*make connection to server socket */
-            Socket sock = new Socket("localhost", 6013);
+            Socket sock = new Socket("localhost", 6013,null,2222);
+
+            System.out.println(sock.getPort());
             InputStream in = sock.getInputStream();
             BufferedReader bin = new BufferedReader(new InputStreamReader(in));
 

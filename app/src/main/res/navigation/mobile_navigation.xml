@@ -7,7 +7,7 @@
 
     <fragment
         android:id="@+id/nav_home"
-        android:name="com.example.gameclub.ui.home.HomeFragment"
+        android:name="com.example.gameclub.Ui.Home.HomeFragment"
         android:label="@string/menu_home"
         tools:layout="@layout/fragment_home">
         <action
@@ -29,18 +29,22 @@
 
     <fragment
         android:id="@+id/nav_slideshow"
-        android:name="com.example.gameclub.ui.slideshow.SlideshowFragment"
+        android:name="com.example.gameclub.Ui.Slideshow.SlideshowFragment"
         android:label="@string/menu_slideshow"
         tools:layout="@layout/fragment_slideshow" />
     <fragment
         android:id="@+id/nav_chess"
-        android:name="com.example.gameclub.ui.gallery.ChessFragment"
+        android:name="com.example.gameclub.Ui.Gallery.ChessFragment"
         android:label="@string/menu_slideshow"
-        tools:layout="@layout/fragment_chess" />
+        tools:layout="@layout/fragment_chess" >
+        <action
+            android:id="@+id/action_nav_chess_to_nav_home"
+            app:destination="@id/nav_home" />
+    </fragment>
 
     <fragment
         android:id="@+id/nav_authentication"
-        android:name="com.example.gameclub.ui.authentication.AuthenticationFragment"
+        android:name="com.example.gameclub.Ui.Authentication.AuthenticationFragment"
         android:label="Authentication"
         tools:layout="@layout/login_signup">
         <action

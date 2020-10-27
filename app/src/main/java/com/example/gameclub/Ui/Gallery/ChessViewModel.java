@@ -1,16 +1,6 @@
-package com.example.gameclub.ui.gallery;
+package com.example.gameclub.Ui.Gallery;
 
-import androidx.lifecycle.LiveData;
-import androidx.lifecycle.MutableLiveData;
 import androidx.lifecycle.ViewModel;
-
-import com.example.gameclub.MainActivity;
-
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.Collections;
-import java.util.List;
-import java.util.Random;
 
 public class ChessViewModel extends ViewModel {
     private int[] selectedPiece= new int[2];
@@ -81,7 +71,31 @@ public class ChessViewModel extends ViewModel {
             return false;
         }
     }
+    public String getBoardString(String[][] string) {
+        String chessBoardString = "";
+        for (int i = 0; i < 8; i++) {
+            for (int z = 0; z < 8; z++) {
+                chessBoardString = chessBoardString + string[i][z] + ";";
+            }
+        }
+        return chessBoardString;
+    }
 
+    public String[][] convertStringToBoard(String string) {
+        int xAxis = 0;
+        int yAxis = 0;
+        String[][] newChessBoard = new String[8][8];
+        String [] boardString = string.split(";");
+        for (int i = 0; i < boardString.length; i++) {
+            if (xAxis > 7) {
+                xAxis = 0;
+                yAxis++;
+            }
+            newChessBoard[yAxis][xAxis] = boardString[i];
+            xAxis++;
+        }
+        return newChessBoard;
+    }
     public String[][] getChessBoard() {
         return chessBoard;
     }
@@ -89,6 +103,8 @@ public class ChessViewModel extends ViewModel {
         String piece = chessBoard[selectedPiece[0]][selectedPiece[1]];
         chessBoard[selectedPiece[0]][selectedPiece[1]] = null;
         chessBoard[x][y] = piece;
+        System.out.println(getBoardString(chessBoard));
+        System.out.println(getBoardString(convertStringToBoard(getBoardString(chessBoard))));
     }
     public int[] getSelectedPiece() {
         return selectedPiece;
