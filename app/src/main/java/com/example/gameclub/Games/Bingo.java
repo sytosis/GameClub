@@ -44,8 +44,9 @@ public class Bingo extends ViewModel {
                             mDatabase.child("Games").child("Bingo").child("Hosting").child("id").setValue(MainActivity.currentUser.getId());
                             isHost = true;
                         }
-                        playerNum = (Integer) snapshot.child("Games").child("Bingo").child("Hosting").child("Num").getValue();
+                        playerNum = Integer.parseInt(snapshot.child("Games").child("Bingo").child("Hosting").child("Num").getValue().toString());
                         playerNum = playerNum + 1;
+                        Log.d("PlayerNum", String.valueOf(playerNum));
                         mDatabase.child("Games").child("Bingo").child("Hosting").child("Num").setValue(playerNum);
                     } catch (Exception e) {
                         Log.d("Exception: ", String.valueOf(e));
@@ -74,7 +75,7 @@ public class Bingo extends ViewModel {
                             if (snapshot.child("Bingo").child("Hosting").child("Num").getValue().toString().equals("0")) {
                                 System.out.println("Player num is empty");
                             }
-                            playerNum = (Integer) snapshot.child("Bingo").child("Hosting").child("Num").getValue();
+                            playerNum = Integer.parseInt(snapshot.child("Bingo").child("Hosting").child("Num").getValue().toString());
                             if (playerNum == 2) {
                                 startGame();
                             }
