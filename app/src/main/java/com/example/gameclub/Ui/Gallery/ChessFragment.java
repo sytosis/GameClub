@@ -1125,6 +1125,8 @@ public class ChessFragment extends Fragment {
     }
 
     public void redrawBoard() {
+        Boolean wKing = false;
+        Boolean bKing = false;
         for (int x = 0; x < 8; x++) {
             for (int y = 0; y < 8; y++) {
                 String boardId = "board" + x + y;
@@ -1134,12 +1136,14 @@ public class ChessFragment extends Fragment {
                 if (chessViewModel.getChessBoard()[x][y] != null) {
                     String currentPiece = chessViewModel.getChessBoard()[x][y];
                     if (currentPiece == "wk") {
+                        wKing = true;
                         Drawable[] layers = new Drawable[2];
                         layers[0] = AppCompatResources.getDrawable(getContext(),R.drawable.black);
                         layers[1] =  AppCompatResources.getDrawable(getContext(),R.drawable.wking);
                         LayerDrawable pieceImage = new LayerDrawable(layers);
                         boardButton.setBackground(pieceImage);
                     } else if (currentPiece == "bk") {
+                        bKing = true;
                         Drawable[] layers = new Drawable[2];
                         layers[0] = AppCompatResources.getDrawable(getContext(),R.drawable.black);
                         layers[1] =  AppCompatResources.getDrawable(getContext(),R.drawable.bking);
@@ -1237,6 +1241,21 @@ public class ChessFragment extends Fragment {
                 }
             }
         }
+        if (!bKing) {
+            blackLoss();
+        }
+
+        if(!wKing) {
+            whiteLoss();
+        }
+    }
+
+    public void blackLoss() {
+
+    }
+
+    public void whiteLoss() {
+
     }
     public void clientConn(View view) {
         System.out.println("here");
