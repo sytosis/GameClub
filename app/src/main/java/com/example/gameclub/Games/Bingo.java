@@ -26,6 +26,10 @@ public class Bingo extends ViewModel {
     private String id;
     private boolean isHost = false;
     private Integer ballNum = 0;
+    private Integer winner = -1;
+    private String started = "false";
+    private Integer playerNum = 0;
+    private boolean add = true;
 
     public Bingo() {
         setBoard();
@@ -39,8 +43,15 @@ public class Bingo extends ViewModel {
                             mDatabase.child("Games").child("Bingo").child("Hosting").child("id").setValue(MainActivity.currentUser.getId());
                             isHost = true;
                         }
+                        if (add) {
+                            playerNum = Integer.parseInt(snapshot.child("Bingo").child("Hosting").child("Num").getValue().toString());
+                            playerNum = playerNum + 1;
+                            mDatabase.child("Games").child("Bingo").child("Hosting").child("Num").setValue(playerNum);
+                            Log.d("playerNum", String.valueOf(playerNum));
+                            add = false;
+                        }
                     } catch (Exception e) {
-                        Log.d("Exception: ", String.valueOf(e));
+                        Log.d("Exception", String.valueOf(e));
                     }
                 }
             }
@@ -108,6 +119,9 @@ public class Bingo extends ViewModel {
         if (isHost) {
             mDatabase.child("Games").child("Bingo").child("Hosting").child("id").setValue("empty");
             mDatabase.child("Games").child("Bingo").child("Hosting").child("Ball").setValue("empty");
+            mDatabase.child("Games").child("Bingo").child("Hosting").child("Num").setValue(0);
+            mDatabase.child("Games").child("Bingo").child("Hosting").child("started").setValue("false");
+            mDatabase.child("Games").child("Bingo").child("Hosting").child("winner").setValue(-1);
         }
         bingoBoard.clear();
         usedNumbers.clear();
@@ -129,10 +143,10 @@ public class Bingo extends ViewModel {
         if (win) {
             reset();
         }
-        for (int i = 0; i < 25; ++i) {
-            Integer send = bingoBoard.get(i);
-            Boolean state = checker.get(i);
-            System.out.println(i + ":number:" + send + " state:" + state);
-        }
+//        for (int i = 0; i < 25; ++i) {
+//            Integer send = bingoBoard.get(i);
+//            Boolean state = checker.get(i);
+//            System.out.println(i + ":number:" + send + " state:" + state);
+//        }
     }
 }
