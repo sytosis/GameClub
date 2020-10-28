@@ -5,12 +5,16 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
+import android.widget.TextView;
 
 import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;
 import androidx.lifecycle.ViewModelProviders;
+import androidx.navigation.fragment.NavHostFragment;
 
 import com.example.gameclub.Games.Bingo;
+import com.example.gameclub.Games.BingoFragment;
+import com.example.gameclub.MainActivity;
 import com.example.gameclub.R;
 
 public class MakeFriendsFragment extends Fragment {
@@ -21,8 +25,20 @@ public class MakeFriendsFragment extends Fragment {
                              ViewGroup container, Bundle savedInstanceState) {
         root = inflater.inflate(R.layout.make_new_friends, container, false);
 
-        Button backButton = root.findViewById(R.id.back_button);
+        Button homeButton = root.findViewById(R.id.home_button);
+        homeButton.setOnClickListener(new View.OnClickListener() {
+            public void onClick(View v) {
+                NavHostFragment.findNavController(MakeFriendsFragment.this).navigate((R.id.action_nav_bingo_to_home));
+            }
+        });
 
+        TextView textInfo = root.findViewById(R.id.textInfo);
+        String info = "First Name\n" + MainActivity.currentUser.getFirstName() + "\n" +
+                "Last Name\n" + MainActivity.currentUser.getLastName() + "\n" +
+                "Interest\n" + MainActivity.currentUser.getInterest() + "\n" +
+                "Country\n" + MainActivity.currentUser.getCountry() + "\n" +
+                "Email\n" + MainActivity.currentUser.getEmail();
+        textInfo.setText(info);
 
 
         return root;

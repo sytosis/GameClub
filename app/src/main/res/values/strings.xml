@@ -21,6 +21,7 @@
     <string name="game">Game</string>
     <string name="Friend" />
     <string name="friend">Friend</string>
+    <string name="profile">Profile</string>
 
     <color name="white">#FFFFFF</color>
     <color name="yelloworange">#e8ab10</color>

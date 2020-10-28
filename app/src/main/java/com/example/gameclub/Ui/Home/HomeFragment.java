@@ -117,6 +117,19 @@ public class HomeFragment extends Fragment {
                   onPlayHome = true;
               }
         });
+        profileButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                leftButton.setBackground(AppCompatResources.getDrawable(getContext(),R.drawable.bingo_button));
+                rightButton.setBackground(AppCompatResources.getDrawable(getContext(),R.drawable.chess_button));
+                ViewGroup.LayoutParams lp = leftButton.getLayoutParams();
+                lp.width = (int) (leftButton.getWidth()*1.2);
+                leftButton.setLayoutParams(lp);
+                rightButton.setLayoutParams(lp);
+                profileButton.setVisibility(View.INVISIBLE);
+                gameButton.setVisibility(View.INVISIBLE);
+            }
+        });
 
         /*
         chessButton.setOnClickListener(new View.OnClickListener() {
