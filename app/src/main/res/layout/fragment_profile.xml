@@ -7,17 +7,23 @@
     android:background="@drawable/wood_background"
     tools:context=".Ui.Home.HomeFragment">
 
-    <TextView
-        android:id="@+id/textInfo"
-        android:layout_width="862dp"
-        android:layout_height="545dp"
-        android:layout_marginStart="128dp"
-        android:layout_marginTop="196dp"
-        android:text="First Name\n\nLast Name\n\nInterest\n\nCountry\n\nEmail"
-        android:textSize="24sp"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="@dimen/_230sdp"
+        android:layout_height="@dimen/_200sdp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintBottom_toBottomOf="parent"
+        >
 
+    </androidx.constraintlayout.widget.ConstraintLayout>
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="@dimen/_170sdp"
+        android:layout_height="@dimen/_200sdp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintBottom_toBottomOf="parent">
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
     <Button
         android:id="@+id/home_button"
         android:layout_width="@dimen/_40sdp"
