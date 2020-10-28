@@ -32,14 +32,6 @@ public class MakeFriendsFragment extends Fragment {
             }
         });
 
-        TextView textInfo = root.findViewById(R.id.textInfo);
-        String info = "First Name\n" + MainActivity.currentUser.getFirstName() + "\n" +
-                "Last Name\n" + MainActivity.currentUser.getLastName() + "\n" +
-                "Interest\n" + MainActivity.currentUser.getInterest() + "\n" +
-                "Country\n" + MainActivity.currentUser.getCountry() + "\n" +
-                "Email\n" + MainActivity.currentUser.getEmail();
-        textInfo.setText(info);
-
 
         return root;
     }

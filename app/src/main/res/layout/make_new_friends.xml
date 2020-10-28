@@ -142,8 +142,12 @@
         android:layout_width="150dp"
         android:layout_height="150dp"
         android:background="@drawable/rose_photo"
-        tools:layout_editor_absoluteX="565dp"
-        tools:layout_editor_absoluteY="187dp" />
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.68"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.38" />
 
     <Button
         android:id="@+id/button6"
