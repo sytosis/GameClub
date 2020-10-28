@@ -91,7 +91,7 @@ public class Bingo extends ViewModel {
                             startGame();
                         }
                         winner = Integer.parseInt(snapshot.child("Bingo").child("Hosting").child("winner").getValue().toString());
-                        if (winner != -1 && !finish && win) {
+                        if (winner != -1) {
                             finish = true;
                             winName = snapshot.child("Bingo").child("Hosting").child("name").getValue().toString();
                         }

@@ -139,7 +139,7 @@ public class BingoFragment extends Fragment {
         if (Integer.parseInt(MainActivity.currentUser.getId()) == winner) {
             System.out.println("YOU WON");
         } else {
-            System.out.println("The winner is " + winName);
+            System.out.println("The winner is asd" + winName);
             winText = root.findViewById(R.id.winText);
             String win = "The winner is " + winName;
             winText.setText(win);
