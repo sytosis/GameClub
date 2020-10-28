@@ -52,6 +52,7 @@ public class BingoFragment extends Fragment {
     TextView RollText;
     private DatabaseReference mDatabase = FirebaseDatabase.getInstance().getReference();
     private String receive;
+    private String[] record;
 
     public void fillBingoBoardTextList() {
         bingoBoardText.add((TextView) root.findViewById(R.id.Text1));
@@ -189,6 +190,7 @@ public class BingoFragment extends Fragment {
                     try {
                         receive = snapshot.child("Bingo").child("Hosting").child("Chat").getValue().toString();
                         String[] messages = receive.split("/");
+                        record = receive.split("/");
                         for (int i = 0; i < messages.length - 1; ++i) {
                             printChat(messages[i]);
                         }
@@ -202,6 +204,17 @@ public class BingoFragment extends Fragment {
                 try {
                         receive = snapshot.child("Bingo").child("Hosting").child("Chat").getValue().toString();
                         String[] messages = receive.split("/");
+                        int recordlen = record.length;
+                        int receivelen = messages.length;
+                        if (recordlen < receivelen) {
+                            int difference = receivelen - recordlen;
+                            for (int i = receivelen - difference; i < receivelen; ++i) {
+                                printChat(messages[i]);
+                            }
+                            record = messages;
+                        }
+
+
                         printChat(messages[messages.length - 1]);
                     } catch (Exception e) {
                         Log.d("Exception ", String.valueOf(e));
