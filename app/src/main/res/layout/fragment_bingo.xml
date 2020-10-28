@@ -688,7 +688,7 @@
         app:layout_constraintTop_toTopOf="parent" />
 
     <androidx.constraintlayout.widget.ConstraintLayout
-
+        android:id = "@+id/game_over_screen"
         android:layout_width="@dimen/_200sdp"
         android:layout_height="@dimen/_200sdp"
         android:background = "@color/yelloworange"
