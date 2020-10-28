@@ -136,11 +136,13 @@ public class BingoFragment extends Fragment {
     }
 
     public static void gameOver(int winner, String winName) {
+        winText = root.findViewById(R.id.winText);
         if (Integer.parseInt(MainActivity.currentUser.getId()) == winner) {
+            String won = "You won!!!";
+            winText.setText(won);
             System.out.println("YOU WON");
         } else {
             System.out.println("The winner is asd" + winName);
-            winText = root.findViewById(R.id.winText);
             String win = "The winner is " + winName;
             winText.setText(win);
         }

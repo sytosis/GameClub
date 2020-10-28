@@ -184,6 +184,7 @@ public class Bingo extends ViewModel {
         mDatabase.child("Games").child("Bingo").child("Hosting").child("name").setValue("");
         bingoBoard.clear();
         usedNumbers.clear();
+        checker.clear();
 
     }
 
@@ -224,7 +225,7 @@ public class Bingo extends ViewModel {
             }
         }
 
-        if (win && winner.equals(-1)) {
+        if (winner.toString().equals(MainActivity.currentUser.getId())) {
             mDatabase.child("Games").child("Bingo").child("Hosting").child("winner").setValue(MainActivity.currentUser.getId());
             mDatabase.child("Games").child("Bingo").child("Hosting").child("name").setValue(MainActivity.currentUser.getFirstName());
         }
