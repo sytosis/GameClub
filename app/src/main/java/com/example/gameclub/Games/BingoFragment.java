@@ -188,7 +188,7 @@ public class BingoFragment extends Fragment {
 
     public View onCreateView(@NonNull LayoutInflater inflater,
                              ViewGroup container, Bundle savedInstanceState) {
-        gameOverScreen = root.findViewById(R.id.game_end_screen);
+
         bingoGame = ViewModelProviders.of(this).get(Bingo.class);
         root = inflater.inflate(R.layout.fragment_bingo, container, false);
         chatCloseButton = root.findViewById(R.id.close_chat_button);
@@ -203,6 +203,7 @@ public class BingoFragment extends Fragment {
         RollText = root.findViewById(R.id.RollText);
         replayButton = root.findViewById(R.id.replay);
         quitButton = root.findViewById(R.id.quit);
+        gameOverScreen = root.findViewById(R.id.game_end_screen);
 
         mDatabase.addChildEventListener(new ChildEventListener() {
             @Override
@@ -275,12 +276,18 @@ public class BingoFragment extends Fragment {
             }
         });
 
+        String replay = "Play Again";
+        replayButton.setText(replay);
+
         replayButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 NavHostFragment.findNavController(BingoFragment.this).navigate((R.id.action_nav_home_to_nav_gallery));
             }
         });
+
+        String quit = "Quit";
+        quitButton.setText(quit);
 
         quitButton.setOnClickListener(new View.OnClickListener() {
             @Override
