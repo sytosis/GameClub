@@ -240,6 +240,8 @@ public class BingoFragment extends Fragment {
         sendChat.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+                String sendChat = (" " + MainActivity.currentUser.getFirstName() + ": " + text.getText());
+                text.getText().clear();
                 mDatabase.child("Games").child("Bingo").child("Hosting").child("Chat").setValue(receive+"/"+sendChat);
                 scrollViewChat.fullScroll(View.FOCUS_DOWN);
             }
