@@ -661,7 +661,6 @@
         app:layout_constraintStart_toStartOf="@+id/Ball25"
         app:layout_constraintTop_toTopOf="@+id/Ball25" />
 
-<<<<<<< HEAD
     <TextView
         android:id="@+id/Text24"
         android:layout_width="40dp"
@@ -673,7 +672,7 @@
         app:layout_constraintEnd_toEndOf="@+id/Ball24"
         app:layout_constraintStart_toStartOf="@+id/Ball24"
         app:layout_constraintTop_toTopOf="@+id/Ball24" />
-=======
+
     <Button
         android:id="@+id/serv"
         android:layout_width="wrap_content"
