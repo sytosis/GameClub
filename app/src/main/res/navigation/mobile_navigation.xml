@@ -19,6 +19,9 @@
         <action
             android:id="@+id/action_nav_home_to_nav_chess"
             app:destination="@id/nav_chess" />
+        <action
+            android:id="@+id/action_nav_home_to_nav_make_friends"
+            app:destination="@id/nav_make_friends" />
     </fragment>
 
     <fragment
@@ -27,11 +30,6 @@
         android:label="@string/menu_gallery"
         tools:layout="@layout/fragment_bingo" />
 
-    <fragment
-        android:id="@+id/nav_slideshow"
-        android:name="com.example.gameclub.Ui.Slideshow.SlideshowFragment"
-        android:label="@string/menu_slideshow"
-        tools:layout="@layout/fragment_slideshow" />
     <fragment
         android:id="@+id/nav_chess"
         android:name="com.example.gameclub.Ui.Gallery.ChessFragment"
@@ -50,5 +48,13 @@
         <action
             android:id="@+id/action_AuthenticationFragment_to_HomeFragment"
             app:destination="@id/nav_home"/>
+    </fragment>
+    <fragment
+        android:id="@+id/nav_make_friends"
+        android:name="com.example.gameclub.Ui.Friends.MakeFriendsFragment"
+        android:label="MakeFriendsFragment" >
+        <action
+            android:id="@+id/action_nav_make_friends_to_nav_home"
+            app:destination="@id/nav_home" />
     </fragment>
 </navigation>

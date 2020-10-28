@@ -23,7 +23,7 @@ import java.util.Timer;
 public class BingoFragment extends Fragment {
 
     public Bingo bingoGame;
-    View root;
+    static View root;
     List<ImageView> bingoBoardImages = new ArrayList<>();
     List<TextView> bingoBoardText = new ArrayList<>();
     private Thread thread;
@@ -87,7 +87,7 @@ public class BingoFragment extends Fragment {
         bingoBoardImages.add((ImageView) root.findViewById(R.id.Ball25));
     }
 
-    public void setBallColour(ImageView ball, int number) {
+    public static void setBallColour(ImageView ball, int number) {
         if (number < 16) {
             ball.setImageResource(R.drawable.pink_ball);
         }
@@ -106,7 +106,7 @@ public class BingoFragment extends Fragment {
     }
 
 
-    public void displayBall(int number) {
+    public static void displayBall(int number) {
         setBallColour((ImageView) root.findViewById(R.id.RollBall), number);
         ((TextView) root.findViewById(R.id.RollText)).setText(String.valueOf(number));
     }
@@ -160,30 +160,7 @@ public class BingoFragment extends Fragment {
 
         Button resetButton = root.findViewById(R.id.new_list_button);
         final Button button1 = root.findViewById(R.id.serv);
-        button1.setOnClickListener(new View.OnClickListener() {
-            public void onClick(View v) {
 
-                View newView = root.findViewById(R.id.servtext);
-                server = new ServerNetwork((TextView) newView);
-                thread = new Thread(server);
-                thread.start();
-
-                return;
-            }
-        });
-
-        final Button button2 = root.findViewById(R.id.client);
-         button2.setOnClickListener(new View.OnClickListener() {
-             public void onClick(View v) {
-
-                 client = new ClientNetwork();
-                 thread = new Thread(client);
-                 thread.start();
-
-                 return;
-
-             }
-         });
 
 //         Button homeButton = root.findViewById(R.id.Bingo_Home_Button);
 //        homeButton.setOnClickListener(new View.OnClickListener() {
@@ -197,23 +174,7 @@ public class BingoFragment extends Fragment {
 
         return root;
     }
-    public void clientConn(View view) {
-        System.out.println("here");
-        client = new ClientNetwork();
-        thread = new Thread(client);
-        thread.start();
-        return;
 
-    }
-
-    public void serverConn(View view) {
-        System.out.println("here");
-        server = new ServerNetwork((TextView) view);
-        thread = new Thread(server);
-        thread.start();
-        return;
-
-    }
 
 
 
