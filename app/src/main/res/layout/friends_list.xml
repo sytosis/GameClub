@@ -22,50 +22,80 @@
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="88dp"
-                android:orientation="horizontal">
+                android:orientation="horizontal"
+                android:background="@drawable/border">
+
+                <Space
+                    style="?android:attr/borderlessButtonStyle"
+                    android:layout_width="150dp"
+                    android:layout_height="match_parent"
+                    android:layout_weight="1" />
 
                 <TextView
                     android:id="@+id/textView2"
                     android:layout_width="157dp"
                     android:layout_height="match_parent"
                     android:layout_weight="1"
-                    android:text="TextView" />
+                    android:text="TextView"
+                    style="?android:attr/borderlessButtonStyle"/>
 
                 <Space
+                    style="?android:attr/borderlessButtonStyle"
                     android:layout_width="250dp"
-                    android:layout_height="wrap_content"
-                    android:layout_weight="1"/>
+                    android:layout_height="match_parent"
+                    android:layout_weight="1" />
 
                 <Button
                     android:id="@+id/button7"
+                    style="?android:attr/borderlessButtonStyle"
                     android:layout_width="161dp"
                     android:layout_height="match_parent"
                     android:layout_weight="1"
-                    android:text="Button" />
+                    android:background="@drawable/invite3"
+                    android:gravity="right|center"
+                    android:text="invite"
+                    android:textSize="24sp" />
 
                 <Space
+                    style="?android:attr/borderlessButtonStyle"
                     android:layout_width="25dp"
-                    android:layout_height="wrap_content"
-                    android:layout_weight="1"/>
+                    android:layout_height="match_parent"
+                    android:layout_weight="1" />
 
                 <Button
                     android:id="@+id/button"
+                    style="?android:attr/borderlessButtonStyle"
                     android:layout_width="161dp"
                     android:layout_height="match_parent"
                     android:layout_weight="1"
-                    android:text="Button" />
+                    android:text="chat"
+                    android:gravity="right|center"
+                    android:background="@drawable/chat2"
+                    android:textSize="24sp" />
 
                 <Space
+                    style="?android:attr/borderlessButtonStyle"
                     android:layout_width="25dp"
-                    android:layout_height="wrap_content"
-                    android:layout_weight="1"/>
+                    android:layout_height="match_parent"
+                    android:layout_weight="1" />
 
                 <Button
                     android:id="@+id/button2"
+                    style="?android:attr/borderlessButtonStyle"
                     android:layout_width="161dp"
                     android:layout_height="match_parent"
                     android:layout_weight="1"
-                    android:text="Button" />
+                    android:shadowColor="#00FFFFFF"
+                    android:singleLine="false"
+                    android:gravity="right|center"
+                    android:text="Delete"
+                    android:background="@drawable/delete2"
+                    android:textSize="24sp" />
+
+                <Space
+                    android:layout_width="50dp"
+                    android:layout_height="match_parent"
+                    android:layout_weight="1" />
             </LinearLayout>
 
             <LinearLayout
