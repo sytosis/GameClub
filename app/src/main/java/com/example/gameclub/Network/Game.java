@@ -1,12 +1,12 @@
 package com.example.gameclub.Network;
 
+import java.util.ArrayList;
+
 public interface Game {
 
-    public String gameBoard();
+    public ArrayList<Integer> gameBoard();
 
-    public void chat(Chat newMessage);
-
-    public void setGame(String string);
+    public void setGame(ArrayList<Integer> arrayList);
 
     public String typeof();
 

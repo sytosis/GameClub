@@ -8,16 +8,18 @@ import androidx.lifecycle.ViewModel;
 
 import com.example.gameclub.R;
 
+import java.util.List;
+
 public class ChessViewModel extends ViewModel {
     private int[] selectedPiece= new int[2];
     private boolean isWhite;
     private String[][] chessBoard = new String[8][8];
 
-    private MutableLiveData<Pair<Integer,Integer>> chessMoves;
+    private MutableLiveData<List<Integer>> chessMoves;
 
-    public MutableLiveData<Pair<Integer,Integer>> getMove() {
+    public MutableLiveData<List<Integer>> getMove() {
         if (chessMoves == null) {
-            chessMoves = new MutableLiveData<Pair<Integer,Integer>>();
+            chessMoves = new MutableLiveData<List<Integer>>();
         }
         return chessMoves;
     }
