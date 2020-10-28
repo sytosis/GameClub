@@ -11,6 +11,7 @@ import androidx.annotation.NonNull;
 import androidx.appcompat.content.res.AppCompatResources;
 import androidx.fragment.app.Fragment;
 import androidx.lifecycle.ViewModelProviders;
+import androidx.navigation.NavController;
 import androidx.navigation.fragment.NavHostFragment;
 
 import com.example.gameclub.MainActivity;
@@ -91,12 +92,14 @@ public class HomeFragment extends Fragment {
                     leftButton.setBackground(AppCompatResources.getDrawable(getContext(),R.drawable.make_friends_button));
                     rightButton.setBackground(AppCompatResources.getDrawable(getContext(),R.drawable.friends_and_messages_button));
                     ViewGroup.LayoutParams lp = leftButton.getLayoutParams();
-                    lp.width = (int) (leftButton.getWidth() / 1.2);profileButton.setVisibility(View.VISIBLE);
+                    lp.width = (int) (leftButton.getWidth() / 1.2);
+                    profileButton.setVisibility(View.VISIBLE);
                     leftButton.setLayoutParams(lp);
                     rightButton.setLayoutParams(lp);
                     gameButton.setVisibility(View.VISIBLE);
                     homeBack.setVisibility(View.INVISIBLE);
                     homeText.setText("Hi " + MainActivity.currentUser.getFirstName() + ", what would you like to do?");
+                    onPlayHome = false;
                 }
             }
         });
@@ -120,14 +123,7 @@ public class HomeFragment extends Fragment {
         profileButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                leftButton.setBackground(AppCompatResources.getDrawable(getContext(),R.drawable.bingo_button));
-                rightButton.setBackground(AppCompatResources.getDrawable(getContext(),R.drawable.chess_button));
-                ViewGroup.LayoutParams lp = leftButton.getLayoutParams();
-                lp.width = (int) (leftButton.getWidth()*1.2);
-                leftButton.setLayoutParams(lp);
-                rightButton.setLayoutParams(lp);
-                profileButton.setVisibility(View.INVISIBLE);
-                gameButton.setVisibility(View.INVISIBLE);
+                NavHostFragment.findNavController(HomeFragment.this).navigate(R.id.action_nav_home_to_nav_profile);
             }
         });
 
