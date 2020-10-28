@@ -1,7 +1,10 @@
 package com.example.gameclub.Games;
 import android.os.health.SystemHealthManager;
 import android.util.Log;
+import android.util.TypedValue;
 import android.view.View;
+import android.view.ViewGroup;
+import android.widget.TextView;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
@@ -37,6 +40,8 @@ public class Bingo extends ViewModel {
     private Integer playerNum = 0;
     private boolean add = true;
     private boolean finish = false;
+    private Boolean win = false;
+    private Boolean done = false;
 
     public Bingo() {
         setBoard();
@@ -49,13 +54,11 @@ public class Bingo extends ViewModel {
                         if (id.equals("empty")) {
                             mDatabase.child("Games").child("Bingo").child("Hosting").child("id").setValue(MainActivity.currentUser.getId());
                             isHost = true;
-                            Log.d("ishost", String.valueOf(isHost));
                         }
                         if (add) {
                             playerNum = Integer.parseInt(snapshot.child("Bingo").child("Hosting").child("Num").getValue().toString());
                             playerNum = playerNum + 1;
                             mDatabase.child("Games").child("Bingo").child("Hosting").child("Num").setValue(playerNum);
-                            Log.d("playerNum", String.valueOf(playerNum));
                             add = false;
                         }
                     } catch (Exception e) {
@@ -66,37 +69,34 @@ public class Bingo extends ViewModel {
 
             @Override
             public void onChildChanged(@NonNull DataSnapshot snapshot, @Nullable String previousChildName) {
-                Log.d("ishost", String.valueOf(isHost));
-                    for (DataSnapshot postSnapshot : snapshot.getChildren()) {
-                        try {
-                            if (!isHost) {
-                                if (snapshot.child("Bingo").child("Hosting").child("Ball").getValue().toString().equals("empty")) {
-                                    System.out.println("Ball is empty");
-                                }
-                                ballNum = Integer.parseInt(snapshot.child("Bingo").child("Hosting").child("Ball").getValue().toString());
-                                BingoFragment.displayBall(ballNum);
-                                checkWin(ballNum);
-                                Log.d("BNDB ", String.valueOf(ballNum));
+                for (DataSnapshot postSnapshot : snapshot.getChildren()) {
+                    try {
+                        if (!isHost) {
+                            if (snapshot.child("Bingo").child("Hosting").child("Ball").getValue().toString().equals("empty")) {
+                                System.out.println("Ball is empty");
                             }
-
-                            playerNum = Integer.parseInt(snapshot.child("Bingo").child("Hosting").child("Num").getValue().toString());
-                            Log.d("playerNum is host", String.valueOf(playerNum));
-
-                            if (isHost && playerNum.equals(2) && started.equals("false")) {
-                                System.out.println("start game\n");
-                                started = "true";
-                                mDatabase.child("Games").child("Bingo").child("Hosting").child("started").setValue("true");
-                                startGame();
-                            }
-                            winner = Integer.parseInt(snapshot.child("Bingo").child("Hosting").child("winner").getValue().toString());
-                            if (winner != -1 && !finish) {
-                                finish = true;
-                                finishGame();
-                            }
-                        } catch (Exception e) {
-                            Log.d("Exception ", String.valueOf(e));
+                            ballNum = Integer.parseInt(snapshot.child("Bingo").child("Hosting").child("Ball").getValue().toString());
+                            BingoFragment.displayBall(ballNum);
+                            checkWin(ballNum);
+                            Log.d("BNDB ", String.valueOf(ballNum));
                         }
+
+                        playerNum = Integer.parseInt(snapshot.child("Bingo").child("Hosting").child("Num").getValue().toString());
+
+                        if (isHost && playerNum.equals(2) && started.equals("false")) {
+                            System.out.println("start game\n");
+                            started = "true";
+                            mDatabase.child("Games").child("Bingo").child("Hosting").child("started").setValue("true");
+                            startGame();
+                        }
+                        winner = Integer.parseInt(snapshot.child("Bingo").child("Hosting").child("winner").getValue().toString());
+                        if (winner != -1 && !finish && win) {
+                            finish = true;
+                        }
+                    } catch (Exception e) {
+                        Log.d("Exception ", String.valueOf(e));
                     }
+                }
             }
 
             @Override
@@ -133,20 +133,27 @@ public class Bingo extends ViewModel {
         timer.scheduleAtFixedRate(new TimerTask() {
             @Override
             public void run() {
+                if (finish) {
+                    finishGame();
+                }
                 if (!finish) {
                     int newBall = getBall();
                     BingoFragment.displayBall(newBall);
                     checkWin(newBall);
                 }
             }
-        }, 5000, 10000);
+        }, 5000, 1000);
     }
 
     public void finishGame() {
-        if (MainActivity.currentUser.getId().equals(winner.toString())) {
-            System.out.println("YOU WON");
-        } else {
-            System.out.println("The winner is " + winner);
+        if (!done) {
+            done = true;
+            if (MainActivity.currentUser.getId().equals(winner.toString())) {
+                System.out.println("YOU WON");
+            } else {
+                System.out.println("The winner is " + winner);
+            }
+            reset();
         }
     }
 
@@ -170,31 +177,51 @@ public class Bingo extends ViewModel {
         mDatabase.child("Games").child("Bingo").child("Hosting").child("Num").setValue(0);
         mDatabase.child("Games").child("Bingo").child("Hosting").child("started").setValue("false");
         mDatabase.child("Games").child("Bingo").child("Hosting").child("winner").setValue(-1);
-
+        mDatabase.child("Games").child("Bingo").child("Hosting").child("Chat").setValue("");
         bingoBoard.clear();
         usedNumbers.clear();
 
     }
 
     public void checkWin(Integer number) {
-        Boolean win = false;
         Integer key = null;
         if (bingoBoard.contains(number)) {
             key = bingoBoard.indexOf(number);
             checker.set(key, true);
         }
 
-        if (number > 80) {
+        for (int i = 0; i < 5; ++i) {
+            if (checker.get(i) && checker.get(i + 5) && checker.get(i + 10) && checker.get(i + 15) && checker.get(i + 20)) {
+                win = true;
+                System.out.println("vertical");
+            }
+        }
+
+        for (int i =0; i < 21; i = i + 5) {
+            if (checker.get(i) && checker.get(i + 1) && checker.get(i + 2) && checker.get(i + 3) && checker.get(i + 4)) {
+                win = true;
+                System.out.println("horizontal");
+            }
+        }
+
+        if (checker.get(0) && checker.get(6) && checker.get(12) && checker.get(18) && checker.get(24)) {
             win = true;
+            System.out.println("diagonal1");
+        }
+
+        if (checker.get(4) && checker.get(8) && checker.get(12) && checker.get(16) && checker.get(20)) {
+            win = true;
+            System.out.println("diagonal2");
+        }
+
+        if (win) {
+            for (int i = 0; i < 25; ++i) {
+                Log.d("win state", i + ":" + checker.get(i));
+            }
         }
 
         if (win && winner.equals(-1)) {
             mDatabase.child("Games").child("Bingo").child("Hosting").child("winner").setValue(MainActivity.currentUser.getId());
         }
-//        for (int i = 0; i < 25; ++i) {
-//            Integer send = bingoBoard.get(i);
-//            Boolean state = checker.get(i);
-//            System.out.println(i + ":number:" + send + " state:" + state);
-//        }
     }
 }

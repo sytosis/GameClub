@@ -86,7 +86,7 @@ public class ChessFragment extends Fragment {
         sendChat.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                String sendChat = ((MainActivity)getActivity()).getFirstName() + ": " + text.getText();
+                String sendChat = (MainActivity.currentUser.getFirstName() + ": " + text.getText());
                 text.getText().clear();
                 TextView tv = new TextView(getContext());
                 tv.setText(sendChat);
