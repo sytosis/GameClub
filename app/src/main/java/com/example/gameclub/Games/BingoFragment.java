@@ -216,6 +216,7 @@ public class BingoFragment extends Fragment {
             @Override
             public void onChildMoved(@NonNull DataSnapshot snapshot, @Nullable String previousChildName) {
 
+<<<<<<< HEAD
             }
 
             @Override
@@ -244,6 +245,8 @@ public class BingoFragment extends Fragment {
                 scrollViewChat.fullScroll(View.FOCUS_DOWN);
             }
         });
+=======
+>>>>>>> f351aa50420329ebfdfbc3ecbf41efed253cd7af
 
         chatOpenButton.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -468,6 +471,11 @@ public class BingoFragment extends Fragment {
         });
         return root;
     }
+<<<<<<< HEAD
+=======
+
+
+>>>>>>> f351aa50420329ebfdfbc3ecbf41efed253cd7af
 
 
 }

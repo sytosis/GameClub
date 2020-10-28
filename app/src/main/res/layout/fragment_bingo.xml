@@ -661,6 +661,7 @@
         app:layout_constraintStart_toStartOf="@+id/Ball25"
         app:layout_constraintTop_toTopOf="@+id/Ball25" />
 
+<<<<<<< HEAD
     <TextView
         android:id="@+id/Text24"
         android:layout_width="40dp"
@@ -672,6 +673,30 @@
         app:layout_constraintEnd_toEndOf="@+id/Ball24"
         app:layout_constraintStart_toStartOf="@+id/Ball24"
         app:layout_constraintTop_toTopOf="@+id/Ball24" />
+=======
+    <Button
+        android:id="@+id/serv"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="16dp"
+        android:layout_marginBottom="850dp"
+        android:text="server"
+        app:layout_constraintBottom_toTopOf="@+id/linearLayout2"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.0" />
+
+    <Button
+        android:id="@+id/client"
+        android:layout_width="92dp"
+        android:layout_height="40dp"
+        android:layout_marginTop="148dp"
+        android:text="client"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/serv" />
+
+
+>>>>>>> f351aa50420329ebfdfbc3ecbf41efed253cd7af
 
     <Button
         android:id="@+id/Bingo_Home_Button"
