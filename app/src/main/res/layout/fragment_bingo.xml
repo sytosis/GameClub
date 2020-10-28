@@ -691,19 +691,22 @@
 
         android:layout_width="@dimen/_200sdp"
         android:layout_height="@dimen/_200sdp"
-        android:background = "@color/white"
+        android:background = "@color/yelloworange"
         app:layout_constraintTop_toTopOf="@id/Ball1"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        android:orientation="vertical">
+        android:orientation="vertical"
+        android:visibility="invisible">
         <TextView
+            android:id="@id/winText"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
             android:layout_width="match_parent"
             android:layout_height="@dimen/_50sdp"
             android:textSize="@dimen/_30ssp"
             android:gravity="center"
-            android:text="You win!"/>
+            android:text="You win!"
+            android:visibility="invisible"/>
         <androidx.constraintlayout.widget.ConstraintLayout
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
@@ -714,17 +717,17 @@
             <Button
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent"
-                android:id="@+id/left_button"
+                android:id="@+id/quit"
                 android:layout_width="@dimen/_50sdp"
                 android:layout_height="@dimen/_50sdp"
-                />
+                android:visibility="invisible"/>
             <Button
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintTop_toTopOf="parent"
-                android:id="@+id/right_button"
+                android:id="@+id/replay"
                 android:layout_width="@dimen/_50sdp"
                 android:layout_height="@dimen/_50sdp"
-                />
+                android:visibility="invisible" />
         </androidx.constraintlayout.widget.ConstraintLayout>
 
 
