@@ -91,7 +91,7 @@ public class Bingo extends ViewModel {
                             startGame();
                         }
                         winner = Integer.parseInt(snapshot.child("Bingo").child("Hosting").child("winner").getValue().toString());
-                        if (winner != -1) {
+                        if (winner != -1 && !finish && win) {
                             finish = true;
                             winName = snapshot.child("Bingo").child("Hosting").child("name").getValue().toString();
                         }
@@ -220,12 +220,6 @@ public class Bingo extends ViewModel {
         }
 
         if (win) {
-            for (int i = 0; i < 25; ++i) {
-                Log.d("win state", i + ":" + checker.get(i));
-            }
-        }
-
-        if (winner.toString().equals(MainActivity.currentUser.getId())) {
             mDatabase.child("Games").child("Bingo").child("Hosting").child("winner").setValue(MainActivity.currentUser.getId());
             mDatabase.child("Games").child("Bingo").child("Hosting").child("name").setValue(MainActivity.currentUser.getFirstName());
         }
