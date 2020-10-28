@@ -208,14 +208,14 @@ public class BingoFragment extends Fragment {
                         int receivelen = messages.length;
                         if (recordlen < receivelen) {
                             int difference = receivelen - recordlen;
+                            System.out.println("receive length " + receivelen);
+                            System.out.println("record length " + recordlen);
+
                             for (int i = receivelen - difference; i < receivelen; ++i) {
                                 printChat(messages[i]);
                             }
                             record = messages;
                         }
-
-
-                        printChat(messages[messages.length - 1]);
                     } catch (Exception e) {
                         Log.d("Exception ", String.valueOf(e));
                     }
