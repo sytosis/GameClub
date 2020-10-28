@@ -11,7 +11,7 @@ import android.widget.ScrollView;
 import androidx.appcompat.content.res.AppCompatResources;
 
 import com.example.gameclub.R;
-import com.example.gameclub.Ui.Gallery.ChessViewModel;
+import com.example.gameclub.ui.gallery.ChessViewModel;
 
 public class ChessGame implements Game{
 
