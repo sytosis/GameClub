@@ -15,6 +15,7 @@ import android.widget.TextView;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
+import androidx.constraintlayout.widget.ConstraintLayout;
 import androidx.fragment.app.Fragment;
 import androidx.lifecycle.ViewModelProviders;
 import androidx.navigation.fragment.NavHostFragment;
@@ -57,6 +58,8 @@ public class BingoFragment extends Fragment {
     private String[] record;
     private static Button replayButton;
     private static Button quitButton;
+    private ConstraintLayout gameOverScreen;
+    private Integer winner;
 
     public void fillBingoBoardTextList() {
         bingoBoardText.add((TextView) root.findViewById(R.id.Text1));
@@ -140,31 +143,16 @@ public class BingoFragment extends Fragment {
             winText = root.findViewById(R.id.winText);
             String win = "The winner is " + winName;
             winText.setText(win);
-            winText.setVisibility(View.VISIBLE);
-            replayButton.setVisibility(View.VISIBLE);
-            quitButton.setVisibility(View.VISIBLE);
             //Kevin
         }
     }
-
 
     public static void displayBall(int number) {
         setBallColour((ImageView) root.findViewById(R.id.RollBall), number);
         ((TextView) root.findViewById(R.id.RollText)).setText(String.valueOf(number));
     }
 
-    public void removeBall(int number) {
-        // Robbie magic please
-    }
-
-    public void bingoTurn() {
-        int number = bingoGame.getBall();
-        displayBall(number);
-        bingoGame.checkWin(number);
-    }
-
     public void setBoardText() {
-
         for (int i = 0; i < 25; ++i) {
             bingoBoardText.get(i).setText(String.valueOf(bingoGame.bingoBoard.get(i)));
         }
@@ -176,6 +164,17 @@ public class BingoFragment extends Fragment {
         for (int i = 0; i < 25; ++i) {
             number = bingoGame.bingoBoard.get(i);
             setBallColour(bingoBoardImages.get(i), bingoGame.bingoBoard.get(i));
+            if (bingoGame.checker.get(i)) {
+                bingoBoardImages.get(i).setImageResource(R.drawable.grey_ball);
+            }
+        }
+    }
+
+    public void stampBall() {
+        for (int i = 0; i < 25; ++i) {
+            if (bingoGame.checker.get(i)) {
+                bingoBoardImages.get(i).setImageResource(R.drawable.grey_ball);
+            }
         }
     }
 
@@ -189,7 +188,7 @@ public class BingoFragment extends Fragment {
 
     public View onCreateView(@NonNull LayoutInflater inflater,
                              ViewGroup container, Bundle savedInstanceState) {
-
+        gameOverScreen = root.findViewById(R.id.game_end_screen);
         bingoGame = ViewModelProviders.of(this).get(Bingo.class);
         root = inflater.inflate(R.layout.fragment_bingo, container, false);
         chatCloseButton = root.findViewById(R.id.close_chat_button);
@@ -223,23 +222,28 @@ public class BingoFragment extends Fragment {
             @Override
             public void onChildChanged(@NonNull DataSnapshot snapshot, @Nullable String previousChildName) {
                 try {
-                        receive = snapshot.child("Bingo").child("Hosting").child("Chat").getValue().toString();
-                        String[] messages = receive.split("/");
-                        int recordlen = record.length;
-                        int receivelen = messages.length;
-                        if (recordlen < receivelen) {
-                            int difference = receivelen - recordlen;
-                            System.out.println("receive length " + receivelen);
-                            System.out.println("record length " + recordlen);
+                    winner = Integer.parseInt(snapshot.child("Bingo").child("Hosting").child("winner").getValue().toString());
+                    stampBall();
+                    receive = snapshot.child("Bingo").child("Hosting").child("Chat").getValue().toString();
+                    String[] messages = receive.split("/");
+                    int recordlen = record.length;
+                    int receivelen = messages.length;
+                    if (recordlen < receivelen) {
+                        int difference = receivelen - recordlen;
+                        System.out.println("receive length " + receivelen);
+                        System.out.println("record length " + recordlen);
 
-                            for (int i = receivelen - difference; i < receivelen; ++i) {
-                                printChat(messages[i]);
-                            }
-                            record = messages;
+                        for (int i = receivelen - difference; i < receivelen; ++i) {
+                            printChat(messages[i]);
                         }
-                    } catch (Exception e) {
-                        Log.d("Exception ", String.valueOf(e));
+                        record = messages;
                     }
+                    if (winner != -1) {
+                        gameOverScreen.setVisibility(View.VISIBLE);
+                    }
+                } catch (Exception e) {
+                    Log.d("Exception ", String.valueOf(e));
+                }
             }
 
             @Override
