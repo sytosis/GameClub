@@ -7,33 +7,149 @@
     android:background="@drawable/wood_background"
     tools:context=".Ui.Home.HomeFragment">
 
-    <TextView
-        android:id="@+id/textInfo"
-        android:layout_width="862dp"
-        android:layout_height="545dp"
-        android:layout_marginStart="128dp"
-        android:layout_marginTop="196dp"
-        android:text="First Name\n\nLast Name\n\nInterest\n\nCountry\n\nEmail"
-        android:textSize="24sp"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+    <LinearLayout
+        android:layout_width="@dimen/_230sdp"
+        android:layout_height="@dimen/_200sdp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintBottom_toBottomOf="parent"
+        android:orientation="vertical">
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/_40sdp">
+            <TextView
+                android:layout_width="@dimen/_70sdp"
+                android:layout_height="match_parent"
+                android:text="Email"
+                android:textStyle="bold"
+                android:textSize="@dimen/_17sdp"
+                android:gravity="end"/>
+            <TextView
+                android:id="@+id/email_text"
+                android:layout_width="@dimen/_130sdp"
+                android:layout_height="match_parent"
+                android:textStyle="italic"
+                android:textSize="@dimen/_14sdp"
+                android:layout_marginLeft="@dimen/_23sdp"/>
+        </LinearLayout>
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/_40sdp">
+            <TextView
+                android:layout_width="@dimen/_70sdp"
+                android:layout_height="match_parent"
+                android:text="Name"
+                android:textStyle="bold"
+                android:textSize="@dimen/_17sdp"
+                android:gravity="end"/>
+            <TextView
+                android:id="@+id/first_name_text"
+                android:layout_width="@dimen/_130sdp"
+                android:layout_height="match_parent"
+                android:textStyle="italic"
+                android:textSize="@dimen/_14sdp"
+                android:layout_marginLeft="@dimen/_23sdp"/>
+        </LinearLayout>
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/_40sdp">
+            <TextView
+                android:layout_width="@dimen/_70sdp"
+                android:layout_height="match_parent"
+                android:text="Surname"
+                android:textStyle="bold"
+                android:textSize="@dimen/_17sdp"
+                android:gravity="end"/>
+            <TextView
+                android:id="@+id/last_name_text"
+                android:layout_width="@dimen/_130sdp"
+                android:layout_height="match_parent"
+                android:textStyle="italic"
+                android:textSize="@dimen/_14sdp"
+                android:layout_marginLeft="@dimen/_23sdp"/>
+        </LinearLayout>
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/_40sdp">
+            <TextView
+                android:layout_width="@dimen/_70sdp"
+                android:layout_height="match_parent"
+                android:text="Country"
+                android:textStyle="bold"
+                android:textSize="@dimen/_17sdp"
+                android:gravity="end"/>
+            <TextView
+                android:id="@+id/country_text"
+                android:layout_width="@dimen/_130sdp"
+                android:layout_height="match_parent"
+                android:textStyle="italic"
+                android:textSize="@dimen/_14sdp"
+                android:layout_marginLeft="@dimen/_23sdp"/>
+        </LinearLayout>
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/_40sdp">
+            <TextView
+                android:layout_width="@dimen/_70sdp"
+                android:layout_height="match_parent"
+                android:text="Interests"
+                android:textStyle="bold"
+                android:textSize="@dimen/_17sdp"
+                android:gravity="end"/>
+            <TextView
+                android:id="@+id/interests_text"
+                android:layout_width="@dimen/_130sdp"
+                android:layout_height="match_parent"
+                android:textStyle="italic"
+                android:textSize="@dimen/_14sdp"
+                android:layout_marginLeft="@dimen/_23sdp"/>
+        </LinearLayout>
+    </LinearLayout>
 
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="@dimen/_170sdp"
+        android:layout_height="@dimen/_200sdp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintBottom_toBottomOf="parent">
+        <ImageView
+            android:id="@+id/profile_photo"
+            android:layout_width="@dimen/_100sdp"
+            android:layout_height="@dimen/_100sdp"
+            android:background="@drawable/clay_photo"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toTopOf="parent"/>
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/_50sdp"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/profile_photo"
+            app:layout_constraintBottom_toTopOf="@+id/edit_profile_button"
+            android:textSize="@dimen/_25sdp"
+            android:text="Me"
+            android:gravity="center"
+            />
+        <Button
+            android:id="@+id/edit_profile_button"
+            android:layout_width="@dimen/_100sdp"
+            android:layout_height="@dimen/_50sdp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            android:background="@drawable/border2"
+            android:textColor="@color/white"
+            android:text="Edit Profile"
+            android:textSize="@dimen/_14sdp"
+            />
+    </androidx.constraintlayout.widget.ConstraintLayout>
     <Button
         android:id="@+id/home_button"
         android:layout_width="@dimen/_40sdp"
         android:layout_height="@dimen/_40sdp"
         android:background="@drawable/home_icon"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
-
-    <TextView
-        android:id="@+id/textProfile"
-        android:layout_width="134dp"
-        android:layout_height="63dp"
-        android:layout_marginStart="128dp"
-        android:layout_marginTop="100dp"
-        android:text="@string/profile"
-        android:textSize="36sp"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
+
+
 </androidx.constraintlayout.widget.ConstraintLayout>
