@@ -1,4 +1,4 @@
-package com.example.gameclub.Ui.Authentication;
+package com.example.gameclub.ui.authentication;
 
 import android.content.SharedPreferences;
 import android.graphics.Color;
@@ -36,7 +36,7 @@ import java.util.List;
 import static android.content.Context.MODE_PRIVATE;
 
 public class AuthenticationFragment extends Fragment {
-    private AuthenticationViewModel authenticationViewModel;
+    private com.example.gameclub.Ui.Authentication.AuthenticationViewModel authenticationViewModel;
     private Integer pageNumber = 1;
     private SharedPreferences sharedPreferences;
     private Button registerButton;
@@ -123,7 +123,7 @@ public class AuthenticationFragment extends Fragment {
         });
 
         authenticationViewModel =
-                ViewModelProviders.of(this).get(AuthenticationViewModel.class);
+                ViewModelProviders.of(this).get(com.example.gameclub.Ui.Authentication.AuthenticationViewModel.class);
         sharedPreferences = requireActivity().getSharedPreferences("accounts", MODE_PRIVATE);
         //getContext().getSharedPreferences("accounts",0).edit().clear().commit();
         authenticationViewModel.setMainActivity((MainActivity) getActivity());

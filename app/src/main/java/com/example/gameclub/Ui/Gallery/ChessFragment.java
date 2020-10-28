@@ -1,4 +1,4 @@
-package com.example.gameclub.Ui.Gallery;
+package com.example.gameclub.ui.gallery;
 
 import android.graphics.drawable.Drawable;
 import android.graphics.drawable.LayerDrawable;

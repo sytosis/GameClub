@@ -1,4 +1,4 @@
-package com.example.gameclub.Ui.Gallery;
+package com.example.gameclub.ui.gallery;
 
 import androidx.lifecycle.ViewModel;
 
