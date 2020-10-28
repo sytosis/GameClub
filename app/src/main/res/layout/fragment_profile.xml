@@ -1,0 +1,80 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".Ui.Home.HomeFragment"
+    android:background="@drawable/wood_background">
+
+    <TextView
+        android:id="@+id/text_home"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:textAlignment="center"
+        android:textSize="40dp"
+        android:textStyle="bold"
+        android:textColor="#303030"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintBottom_toTopOf="@id/bigButtonsLayout"
+        android:layout_marginTop="@dimen/_30sdp"
+        />
+    <Button
+        android:id="@+id/home_chat"
+        android:layout_width="@dimen/_40sdp"
+        android:layout_height="@dimen/_40sdp"
+        android:background="@drawable/message"
+        android:layout_marginRight="@dimen/_30sdp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintBottom_toTopOf="@+id/text_home"
+        />
+    <Button
+        android:id="@+id/home_back"
+        android:visibility="invisible"
+        android:layout_width="@dimen/_50sdp"
+        android:layout_height="@dimen/_30sdp"
+        android:background="@drawable/home_back"
+        android:layout_marginLeft="@dimen/_30sdp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintBottom_toTopOf="@+id/text_home"
+        />
+
+    <LinearLayout
+        android:id="@+id/bigButtonsLayout"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:gravity="center"
+        app:layout_constraintTop_toBottomOf="@+id/text_home"
+        app:layout_constraintBottom_toBottomOf="parent"
+        tools:layout_editor_absoluteX="-109dp">
+
+        <Button
+            android:id="@+id/game_button"
+            android:layout_width="@dimen/_90sdp"
+            android:layout_height="@dimen/_150sdp"
+            android:layout_marginRight="@dimen/_15sdp"
+            android:background="@drawable/play_game_button"/>
+
+        <Button
+            android:id="@+id/make_new_friends_button"
+            android:layout_width="@dimen/_90sdp"
+            android:layout_height="@dimen/_150sdp"
+            android:layout_marginRight="@dimen/_15sdp"
+            android:background="@drawable/make_friends_button"/>
+
+        <Button
+            android:id="@+id/right_button"
+            android:layout_width="@dimen/_90sdp"
+            android:layout_height="@dimen/_150sdp"
+            android:layout_marginRight="@dimen/_15sdp"
+            android:background="@drawable/friends_and_messages_button" />
+        <Button
+            android:id="@+id/profile_button"
+            android:layout_width="@dimen/_90sdp"
+            android:layout_height="@dimen/_150sdp"
+            android:background="@drawable/my_profile_button"/>
+    </LinearLayout>
+
+</androidx.constraintlayout.widget.ConstraintLayout>
