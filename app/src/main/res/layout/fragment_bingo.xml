@@ -7,6 +7,111 @@
     android:layout_height="match_parent"
     tools:context=".Games.Bingo">
 
+
+
+    <LinearLayout
+        android:id="@+id/whole_chat_box"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_gravity = "center_vertical"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        android:orientation="vertical"
+        android:background="@color/cardview_dark_background"
+        android:visibility="invisible">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@color/yelloworange"
+            android:gravity="end">
+
+            <Button
+                android:id="@+id/close_chat_button"
+                android:layout_width="100dp"
+                android:layout_height="50dp"
+                android:text="CLOSE" />
+        </LinearLayout>
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:background="@color/white"
+            android:orientation="vertical">
+
+            <ScrollView
+                android:id="@+id/scrollview_chat"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="@color/white"
+                app:layout_constraintBottom_toTopOf="@+id/layout_chat">
+
+                <LinearLayout
+                    android:id="@+id/chess_chat_box"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:orientation="vertical">
+
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:text="Be nice to other players!"
+                        android:textSize="20dp"></TextView>
+                </LinearLayout>
+
+            </ScrollView>
+
+            <LinearLayout
+                android:id="@+id/layout_chat"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent">
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="10dp"
+                    android:background="@color/yelloworange" />
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:orientation="horizontal">
+
+                    <EditText
+                        android:id="@+id/chess_chat_id"
+                        android:layout_width="match_parent"
+                        android:layout_height="50dp"
+                        android:layout_weight="90" />
+
+                    <Button
+                        android:id="@+id/send_chat_button"
+                        android:layout_width="50dp"
+                        android:layout_height="50dp" />
+
+                </LinearLayout>
+
+            </LinearLayout>
+
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+
+    </LinearLayout>
+
+    <Button
+        android:id="@+id/message_button"
+        android:layout_width="@dimen/_40sdp"
+        android:layout_height="@dimen/_40sdp"
+        android:layout_marginTop="@dimen/_30sdp"
+        android:layout_marginEnd="8dp"
+        android:background="@drawable/message"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.381" />
+
     <ImageView
         android:id="@+id/Ball24"
         android:layout_width="80dp"
@@ -93,24 +198,12 @@
         app:layout_constraintStart_toStartOf="parent">
 
 
-        <Button
-            android:id="@+id/roll_ball_button"
-            android:layout_width="100dp"
-            android:layout_height="50dp"
-            android:text="Roll ball" />
-
-
         <TextView
             android:id="@+id/ball_number"
             android:layout_width="50dp"
             android:layout_height="50dp" />
 
 
-        <Button
-            android:id="@+id/new_list_button"
-            android:layout_width="100dp"
-            android:layout_height="50dp"
-            android:text="New List" />
     </LinearLayout>
 
     <ImageView
@@ -248,9 +341,10 @@
         android:src="@drawable/blue_ball"
         app:layout_constraintBottom_toBottomOf="@+id/Ball13"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.78"
+        app:layout_constraintHorizontal_bias="0.634"
         app:layout_constraintStart_toEndOf="@+id/Ball13"
-        app:layout_constraintTop_toTopOf="@+id/Ball13" />
+        app:layout_constraintTop_toTopOf="@+id/Ball13"
+        app:layout_constraintVertical_bias="0.4" />
 
     <ImageView
         android:id="@+id/Ball10"
@@ -286,8 +380,8 @@
         android:id="@+id/Text2"
         android:layout_width="40dp"
         android:layout_height="40dp"
-        android:text="1"
         android:gravity="center"
+        android:text="1"
         android:textSize="30dp"
         app:layout_constraintBottom_toBottomOf="@+id/Ball2"
         app:layout_constraintEnd_toEndOf="@+id/Ball2"
@@ -298,8 +392,8 @@
         android:id="@+id/Text3"
         android:layout_width="40dp"
         android:layout_height="40dp"
-        android:text="1"
         android:gravity="center"
+        android:text="1"
         android:textSize="30dp"
         app:layout_constraintBottom_toBottomOf="@+id/Ball3"
         app:layout_constraintEnd_toEndOf="@+id/Ball3"
@@ -310,8 +404,8 @@
         android:id="@+id/Text4"
         android:layout_width="40dp"
         android:layout_height="40dp"
-        android:text="1"
         android:gravity="center"
+        android:text="1"
         android:textSize="30dp"
         app:layout_constraintBottom_toBottomOf="@+id/Ball4"
         app:layout_constraintEnd_toEndOf="@+id/Ball4"
@@ -322,8 +416,8 @@
         android:id="@+id/Text5"
         android:layout_width="40dp"
         android:layout_height="40dp"
-        android:text="1"
         android:gravity="center"
+        android:text="1"
         android:textSize="30dp"
         app:layout_constraintBottom_toBottomOf="@+id/Ball5"
         app:layout_constraintEnd_toEndOf="@+id/Ball5"
@@ -334,8 +428,8 @@
         android:id="@+id/Text6"
         android:layout_width="40dp"
         android:layout_height="40dp"
-        android:text="1"
         android:gravity="center"
+        android:text="1"
         android:textSize="30dp"
         app:layout_constraintBottom_toBottomOf="@+id/Ball6"
         app:layout_constraintEnd_toEndOf="@+id/Ball6"
@@ -346,8 +440,8 @@
         android:id="@+id/Text7"
         android:layout_width="40dp"
         android:layout_height="40dp"
-        android:text="1"
         android:gravity="center"
+        android:text="1"
         android:textSize="30dp"
         app:layout_constraintBottom_toBottomOf="@+id/Ball7"
         app:layout_constraintEnd_toEndOf="@+id/Ball7"
@@ -358,8 +452,8 @@
         android:id="@+id/Text8"
         android:layout_width="40dp"
         android:layout_height="40dp"
-        android:text="1"
         android:gravity="center"
+        android:text="1"
         android:textSize="30dp"
         app:layout_constraintBottom_toBottomOf="@+id/Ball8"
         app:layout_constraintEnd_toEndOf="@+id/Ball8"
@@ -370,8 +464,8 @@
         android:id="@+id/Text9"
         android:layout_width="40dp"
         android:layout_height="40dp"
-        android:text="1"
         android:gravity="center"
+        android:text="1"
         android:textSize="30dp"
         app:layout_constraintBottom_toBottomOf="@+id/Ball9"
         app:layout_constraintEnd_toEndOf="@+id/Ball9"
@@ -382,8 +476,8 @@
         android:id="@+id/Text10"
         android:layout_width="40dp"
         android:layout_height="40dp"
-        android:text="1"
         android:gravity="center"
+        android:text="1"
         android:textSize="30dp"
         app:layout_constraintBottom_toBottomOf="@+id/Ball10"
         app:layout_constraintEnd_toEndOf="@+id/Ball10"
@@ -394,8 +488,8 @@
         android:id="@+id/Text11"
         android:layout_width="40dp"
         android:layout_height="40dp"
-        android:text="1"
         android:gravity="center"
+        android:text="1"
         android:textSize="30dp"
         app:layout_constraintBottom_toBottomOf="@+id/Ball11"
         app:layout_constraintEnd_toEndOf="@+id/Ball11"
@@ -406,8 +500,8 @@
         android:id="@+id/Text12"
         android:layout_width="40dp"
         android:layout_height="40dp"
-        android:text="1"
         android:gravity="center"
+        android:text="1"
         android:textSize="30dp"
         app:layout_constraintBottom_toBottomOf="@+id/Ball12"
         app:layout_constraintEnd_toEndOf="@+id/Ball12"
@@ -418,8 +512,8 @@
         android:id="@+id/Text13"
         android:layout_width="40dp"
         android:layout_height="40dp"
-        android:text="1"
         android:gravity="center"
+        android:text="1"
         android:textSize="30dp"
         app:layout_constraintBottom_toBottomOf="@+id/Ball13"
         app:layout_constraintEnd_toEndOf="@+id/Ball13"
@@ -430,8 +524,8 @@
         android:id="@+id/Text14"
         android:layout_width="40dp"
         android:layout_height="40dp"
-        android:text="1"
         android:gravity="center"
+        android:text="1"
         android:textSize="30dp"
         app:layout_constraintBottom_toBottomOf="@+id/Ball14"
         app:layout_constraintEnd_toEndOf="@+id/Ball14"
@@ -442,8 +536,8 @@
         android:id="@+id/Text15"
         android:layout_width="40dp"
         android:layout_height="40dp"
-        android:text="1"
         android:gravity="center"
+        android:text="1"
         android:textSize="30dp"
         app:layout_constraintBottom_toBottomOf="@+id/Ball15"
         app:layout_constraintEnd_toEndOf="@+id/Ball15"
@@ -466,8 +560,8 @@
         android:id="@+id/Text16"
         android:layout_width="40dp"
         android:layout_height="40dp"
-        android:text="1"
         android:gravity="center"
+        android:text="1"
         android:textSize="30dp"
         app:layout_constraintBottom_toBottomOf="@+id/Ball16"
         app:layout_constraintEnd_toEndOf="@+id/Ball16"
@@ -478,8 +572,8 @@
         android:id="@+id/Text17"
         android:layout_width="40dp"
         android:layout_height="40dp"
-        android:text="1"
         android:gravity="center"
+        android:text="1"
         android:textSize="30dp"
         app:layout_constraintBottom_toBottomOf="@+id/Ball17"
         app:layout_constraintEnd_toEndOf="@+id/Ball17"
@@ -490,8 +584,8 @@
         android:id="@+id/Text18"
         android:layout_width="40dp"
         android:layout_height="40dp"
-        android:text="1"
         android:gravity="center"
+        android:text="1"
         android:textSize="30dp"
         app:layout_constraintBottom_toBottomOf="@+id/Ball18"
         app:layout_constraintEnd_toEndOf="@+id/Ball18"
@@ -502,8 +596,8 @@
         android:id="@+id/Text19"
         android:layout_width="40dp"
         android:layout_height="40dp"
-        android:text="1"
         android:gravity="center"
+        android:text="1"
         android:textSize="30dp"
         app:layout_constraintBottom_toBottomOf="@+id/Ball19"
         app:layout_constraintEnd_toEndOf="@+id/Ball19"
@@ -514,8 +608,8 @@
         android:id="@+id/Text20"
         android:layout_width="40dp"
         android:layout_height="40dp"
-        android:text="1"
         android:gravity="center"
+        android:text="1"
         android:textSize="30dp"
         app:layout_constraintBottom_toBottomOf="@+id/Ball20"
         app:layout_constraintEnd_toEndOf="@+id/Ball20"
@@ -526,8 +620,8 @@
         android:id="@+id/Text21"
         android:layout_width="40dp"
         android:layout_height="40dp"
-        android:text="1"
         android:gravity="center"
+        android:text="1"
         android:textSize="30dp"
         app:layout_constraintBottom_toBottomOf="@+id/Ball21"
         app:layout_constraintEnd_toEndOf="@+id/Ball21"
@@ -538,8 +632,8 @@
         android:id="@+id/Text22"
         android:layout_width="40dp"
         android:layout_height="40dp"
-        android:text="1"
         android:gravity="center"
+        android:text="1"
         android:textSize="30dp"
         app:layout_constraintBottom_toBottomOf="@+id/Ball22"
         app:layout_constraintEnd_toEndOf="@+id/Ball22"
@@ -559,51 +653,28 @@
         app:layout_constraintTop_toTopOf="@+id/Ball23" />
 
     <TextView
-        android:id="@+id/Text24"
-        android:layout_width="40dp"
-        android:layout_height="40dp"
-        android:text="1"
-        android:gravity="center"
-        android:textSize="30dp"
-        app:layout_constraintBottom_toBottomOf="@+id/Ball24"
-        app:layout_constraintEnd_toEndOf="@+id/Ball24"
-        app:layout_constraintStart_toStartOf="@+id/Ball24"
-        app:layout_constraintTop_toTopOf="@+id/Ball24" />
-
-    <TextView
         android:id="@+id/Text25"
         android:layout_width="40dp"
         android:layout_height="40dp"
-        android:text="1"
         android:gravity="center"
+        android:text="1"
         android:textSize="30dp"
         app:layout_constraintBottom_toBottomOf="@+id/Ball25"
         app:layout_constraintEnd_toEndOf="@+id/Ball25"
         app:layout_constraintStart_toStartOf="@+id/Ball25"
         app:layout_constraintTop_toTopOf="@+id/Ball25" />
 
-    <Button
-        android:id="@+id/serv"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="16dp"
-        android:layout_marginBottom="850dp"
-        android:text="server"
-        app:layout_constraintBottom_toTopOf="@+id/linearLayout2"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.0" />
-
-    <Button
-        android:id="@+id/client"
-        android:layout_width="92dp"
+    <TextView
+        android:id="@+id/Text24"
+        android:layout_width="40dp"
         android:layout_height="40dp"
-        android:layout_marginTop="148dp"
-        android:text="client"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/serv" />
-
-
+        android:gravity="center"
+        android:text="1"
+        android:textSize="30dp"
+        app:layout_constraintBottom_toBottomOf="@+id/Ball24"
+        app:layout_constraintEnd_toEndOf="@+id/Ball24"
+        app:layout_constraintStart_toStartOf="@+id/Ball24"
+        app:layout_constraintTop_toTopOf="@+id/Ball24" />
 
     <Button
         android:id="@+id/Bingo_Home_Button"
@@ -616,4 +687,46 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
+    <androidx.constraintlayout.widget.ConstraintLayout
+
+        android:layout_width="@dimen/_200sdp"
+        android:layout_height="@dimen/_200sdp"
+        android:background = "@color/white"
+        app:layout_constraintTop_toTopOf="@id/Ball1"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        android:orientation="vertical">
+        <TextView
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/_50sdp"
+            android:textSize="@dimen/_30ssp"
+            android:gravity="center"
+            android:text="You win!"/>
+        <androidx.constraintlayout.widget.ConstraintLayout
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/_50sdp"
+            android:layout_gravity="bottom"
+            android:gravity="bottom">
+            <Button
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                android:id="@+id/left_button"
+                android:layout_width="@dimen/_50sdp"
+                android:layout_height="@dimen/_50sdp"
+                />
+            <Button
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                android:id="@+id/right_button"
+                android:layout_width="@dimen/_50sdp"
+                android:layout_height="@dimen/_50sdp"
+                />
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
 </androidx.constraintlayout.widget.ConstraintLayout>

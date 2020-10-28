@@ -37,7 +37,7 @@ public class HomeFragment extends Fragment {
         final TextView homeText = root.findViewById(R.id.text_home);
         homeText.setText("Hi " + MainActivity.currentUser.getFirstName() + ", what would you like to do?");
         gameButton = root.findViewById(R.id.game_button);
-        leftButton = root.findViewById(R.id.left_button);
+        leftButton = root.findViewById(R.id.make_new_friends_button);
         leftButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -52,6 +52,8 @@ public class HomeFragment extends Fragment {
                     NavHostFragment.findNavController(HomeFragment.this).navigate((R.id.action_nav_home_to_nav_gallery));
                 } else if (onChessHome) {
                     NavHostFragment.findNavController(HomeFragment.this).navigate((R.id.action_nav_home_to_nav_chess));
+                } else {
+                    NavHostFragment.findNavController(HomeFragment.this).navigate((R.id.action_nav_home_to_nav_make_friends));
                 }
             }
         });
@@ -115,6 +117,20 @@ public class HomeFragment extends Fragment {
                   onPlayHome = true;
               }
         });
+        profileButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                leftButton.setBackground(AppCompatResources.getDrawable(getContext(),R.drawable.bingo_button));
+                rightButton.setBackground(AppCompatResources.getDrawable(getContext(),R.drawable.chess_button));
+                ViewGroup.LayoutParams lp = leftButton.getLayoutParams();
+                lp.width = (int) (leftButton.getWidth()*1.2);
+                leftButton.setLayoutParams(lp);
+                rightButton.setLayoutParams(lp);
+                profileButton.setVisibility(View.INVISIBLE);
+                gameButton.setVisibility(View.INVISIBLE);
+            }
+        });
+
         /*
         chessButton.setOnClickListener(new View.OnClickListener() {
             @Override
