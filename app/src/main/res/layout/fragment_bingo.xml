@@ -705,7 +705,7 @@
             android:layout_height="@dimen/_50sdp"
             android:textSize="@dimen/_30ssp"
             android:gravity="center"
-            android:text="" />
+            android:text="You win!" />
 
         <androidx.constraintlayout.widget.ConstraintLayout
             app:layout_constraintBottom_toBottomOf="parent"
