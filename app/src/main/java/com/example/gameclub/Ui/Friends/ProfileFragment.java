@@ -25,6 +25,18 @@ public class ProfileFragment extends Fragment {
                              ViewGroup container, Bundle savedInstanceState) {
         root = inflater.inflate(R.layout.fragment_profile, container, false);
 
+        final Button homeButton = root.findViewById(R.id.home_button);
+        homeButton.setOnClickListener(new View.OnClickListener() {
+            public void onClick(View v) {
+                NavHostFragment.findNavController(ProfileFragment.this).navigate((R.id.action_nav_profile_to_home));
+            }
+        });
+        ((TextView) root.findViewById(R.id.first_name_text)).setText(MainActivity.currentUser.getFirstName());
+        ((TextView) root.findViewById(R.id.last_name_text)).setText(MainActivity.currentUser.getLastName());
+        ((TextView) root.findViewById(R.id.email_text)).setText(MainActivity.currentUser.getEmail());
+        ((TextView) root.findViewById(R.id.interests_text)).setText(MainActivity.currentUser.getInterest());
+        ((TextView) root.findViewById(R.id.country_text)).setText(MainActivity.currentUser.getCountry());
+
         return root;
     }
 }
