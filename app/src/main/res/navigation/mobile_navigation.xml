@@ -35,6 +35,9 @@
         <action
             android:id="@+id/action_nav_bingo_to_home"
             app:destination="@id/nav_home" />
+        <action
+            android:id="@+id/action_nav_gallery_self"
+            app:destination="@id/nav_gallery" />
     </fragment>
 
     <fragment

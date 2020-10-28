@@ -143,7 +143,6 @@ public class BingoFragment extends Fragment {
             winText = root.findViewById(R.id.winText);
             String win = "The winner is " + winName;
             winText.setText(win);
-            //Kevin
         }
     }
 
@@ -160,9 +159,7 @@ public class BingoFragment extends Fragment {
 
     public void setBoardColours() {
 
-        int number;
         for (int i = 0; i < 25; ++i) {
-            number = bingoGame.bingoBoard.get(i);
             setBallColour(bingoBoardImages.get(i), bingoGame.bingoBoard.get(i));
             if (bingoGame.checker.get(i)) {
                 bingoBoardImages.get(i).setImageResource(R.drawable.grey_ball);
@@ -282,7 +279,7 @@ public class BingoFragment extends Fragment {
         replayButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                NavHostFragment.findNavController(BingoFragment.this).navigate((R.id.action_nav_home_to_nav_gallery));
+                NavHostFragment.findNavController(BingoFragment.this).navigate((R.id.action_nav_gallery_self));
             }
         });
 
