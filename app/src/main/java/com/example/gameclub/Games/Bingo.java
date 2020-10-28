@@ -42,6 +42,7 @@ public class Bingo extends ViewModel {
     private boolean finish = false;
     private Boolean win = false;
     private Boolean done = false;
+    private String winName = "";
 
     public Bingo() {
         setBoard();
@@ -92,6 +93,7 @@ public class Bingo extends ViewModel {
                         winner = Integer.parseInt(snapshot.child("Bingo").child("Hosting").child("winner").getValue().toString());
                         if (winner != -1 && !finish && win) {
                             finish = true;
+                            winName = snapshot.child("Bingo").child("Hosting").child("name").getValue().toString();
                         }
                     } catch (Exception e) {
                         Log.d("Exception ", String.valueOf(e));
@@ -154,6 +156,7 @@ public class Bingo extends ViewModel {
                 System.out.println("The winner is " + winner);
             }
             reset();
+            BingoFragment.gameOver(winner, winName);
         }
     }
 
@@ -178,6 +181,7 @@ public class Bingo extends ViewModel {
         mDatabase.child("Games").child("Bingo").child("Hosting").child("started").setValue("false");
         mDatabase.child("Games").child("Bingo").child("Hosting").child("winner").setValue(-1);
         mDatabase.child("Games").child("Bingo").child("Hosting").child("Chat").setValue("");
+        mDatabase.child("Games").child("Bingo").child("Hosting").child("name").setValue("");
         bingoBoard.clear();
         usedNumbers.clear();
 
@@ -222,6 +226,7 @@ public class Bingo extends ViewModel {
 
         if (win && winner.equals(-1)) {
             mDatabase.child("Games").child("Bingo").child("Hosting").child("winner").setValue(MainActivity.currentUser.getId());
+            mDatabase.child("Games").child("Bingo").child("Hosting").child("name").setValue(MainActivity.currentUser.getFirstName());
         }
     }
 }

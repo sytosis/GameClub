@@ -23,6 +23,7 @@ import com.example.gameclub.MainActivity;
 import com.example.gameclub.Network.ClientNetwork;
 import com.example.gameclub.Network.ServerNetwork;
 import com.example.gameclub.R;
+import com.example.gameclub.Ui.Authentication.AuthenticationFragment;
 import com.example.gameclub.Ui.Gallery.ChessFragment;
 import com.google.firebase.database.ChildEventListener;
 import com.google.firebase.database.DataSnapshot;
@@ -36,6 +37,7 @@ import java.util.Timer;
 
 public class BingoFragment extends Fragment {
 
+    private static TextView winText;
     public Bingo bingoGame;
     static View root;
     List<ImageView> bingoBoardImages = new ArrayList<>();
@@ -53,6 +55,8 @@ public class BingoFragment extends Fragment {
     private DatabaseReference mDatabase = FirebaseDatabase.getInstance().getReference();
     private String receive;
     private String[] record;
+    private static Button replayButton;
+    private static Button quitButton;
 
     public void fillBingoBoardTextList() {
         bingoBoardText.add((TextView) root.findViewById(R.id.Text1));
@@ -128,6 +132,21 @@ public class BingoFragment extends Fragment {
         }
     }
 
+    public static void gameOver(int winner, String winName) {
+        if (Integer.parseInt(MainActivity.currentUser.getId()) == winner) {
+            System.out.println("YOU WON");
+        } else {
+            System.out.println("The winner is " + winName);
+            winText = root.findViewById(R.id.winText);
+            String win = "The winner is " + winName;
+            winText.setText(win);
+            winText.setVisibility(View.VISIBLE);
+            replayButton.setVisibility(View.VISIBLE);
+            quitButton.setVisibility(View.VISIBLE);
+            //Kevin
+        }
+    }
+
 
     public static void displayBall(int number) {
         setBallColour((ImageView) root.findViewById(R.id.RollBall), number);
@@ -183,6 +202,8 @@ public class BingoFragment extends Fragment {
         wholeChatBox = root.findViewById(R.id.whole_chat_box);
         RollBall = root.findViewById(R.id.RollBall);
         RollText = root.findViewById(R.id.RollText);
+        replayButton = root.findViewById(R.id.replay);
+        quitButton = root.findViewById(R.id.quit);
 
         mDatabase.addChildEventListener(new ChildEventListener() {
             @Override
@@ -246,6 +267,20 @@ public class BingoFragment extends Fragment {
         final Button homeButton = root.findViewById(R.id.Bingo_Home_Button);
         homeButton.setOnClickListener(new View.OnClickListener() {
             public void onClick(View v) {
+                NavHostFragment.findNavController(BingoFragment.this).navigate((R.id.action_nav_bingo_to_home));
+            }
+        });
+
+        replayButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                NavHostFragment.findNavController(BingoFragment.this).navigate((R.id.action_nav_home_to_nav_gallery));
+            }
+        });
+
+        quitButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
                 NavHostFragment.findNavController(BingoFragment.this).navigate((R.id.action_nav_bingo_to_home));
             }
         });

@@ -17,19 +17,13 @@ import com.example.gameclub.Games.BingoFragment;
 import com.example.gameclub.MainActivity;
 import com.example.gameclub.R;
 
-public class MakeFriendsFragment extends Fragment {
+public class ProfileFragment extends Fragment {
 
-    Button homeButton;
+    static View root;
+
     public View onCreateView(@NonNull LayoutInflater inflater,
                              ViewGroup container, Bundle savedInstanceState) {
-        final View root = inflater.inflate(R.layout.make_new_friends, container, false);
-        homeButton = root.findViewById(R.id.back_button);
-        homeButton.setOnClickListener(new View.OnClickListener() {
-            public void onClick(View v) {
-                NavHostFragment.findNavController(MakeFriendsFragment.this).navigate((R.id.action_nav_make_friends_to_nav_home));
-            }
-        });
-
+        root = inflater.inflate(R.layout.fragment_profile, container, false);
 
         return root;
     }
