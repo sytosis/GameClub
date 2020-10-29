@@ -78,6 +78,8 @@ public class ChessFragment extends Fragment {
     private Boolean won = false;
     private LayoutInflater inflater;
     private View root;
+    private TextView player1;
+    private TextView player2;
 
     public void printChat(String chat) {
         TextView tv = new TextView(getContext());
@@ -100,6 +102,9 @@ public class ChessFragment extends Fragment {
         mDatabase.child("Games").child("Chess").child("Hosting").child("winner").setValue(-1);
         mDatabase.child("Games").child("Chess").child("Hosting").child("Chat").setValue("");
         mDatabase.child("Games").child("Chess").child("Hosting").child("name").setValue("");
+        mDatabase.child("Games").child("Chess").child("Hosting").child("player1").setValue("");
+        mDatabase.child("Games").child("Chess").child("Hosting").child("player2").setValue("");
+
     }
 
     public void finishGame() {
@@ -110,11 +115,14 @@ public class ChessFragment extends Fragment {
 
     public View onCreateView(@NonNull LayoutInflater inflaterLocal,
                              ViewGroup container, Bundle savedInstanceState) {
-        mDatabase.child("Games").child("Chess").child("Hosting").child("Chat").setValue("");
-        mDatabase.child("Games").child("Chess").child("Hosting").child("name").setValue("");
+        mDatabase.child("Games").child("Chess").child("Hosting").child("player2").setValue("");
+        mDatabase.child("Games").child("Chess").child("Hosting").child("player1").setValue("");
         inflater = inflaterLocal;
         root =  inflater.inflate(R.layout.fragment_chess, container, false);
         rootSave = root;
+        player1 = root.findViewById(R.id.player_1_name);
+        player2 = root.findViewById(R.id.player_2_name);
+
         mDatabase.addChildEventListener(new ChildEventListener() {
             @Override
             public void onChildAdded(@NonNull DataSnapshot snapshot, @Nullable String previousChildName) {
@@ -123,6 +131,9 @@ public class ChessFragment extends Fragment {
                         if (id.equals("empty")) {
                             mDatabase.child("Games").child("Chess").child("Hosting").child("id").setValue(MainActivity.currentUser.getId());
                             isHost = true;
+                            mDatabase.child("Games").child("Chess").child("Hosting").child("player1").setValue(MainActivity.currentUser.getFirstName());
+                        } else {
+                            mDatabase.child("Games").child("Chess").child("Hosting").child("player2").setValue(MainActivity.currentUser.getFirstName());
                         }
                         if (add) {
                             playerNum = Integer.parseInt(snapshot.child("Chess").child("Hosting").child("Num").getValue().toString());
@@ -151,6 +162,10 @@ public class ChessFragment extends Fragment {
             @Override
             public void onChildChanged(@NonNull DataSnapshot snapshot, @Nullable String previousChildName) {
                     try {
+                        String playerName = snapshot.child("Chess").child("Hosting").child("player1").getValue().toString();
+                        player1.setText(playerName);
+                        playerName = snapshot.child("Chess").child("Hosting").child("player2").getValue().toString();
+                        player2.setText(playerName);
                         playerNum = Integer.parseInt(snapshot.child("Chess").child("Hosting").child("Num").getValue().toString());
                         if (playerNum.equals(2)) {
                             mDatabase.child("Games").child("Chess").child("Hosting").child("started").setValue("true");
