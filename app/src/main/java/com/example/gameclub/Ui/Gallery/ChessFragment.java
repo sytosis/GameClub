@@ -41,6 +41,7 @@ import java.util.List;
 
 public class ChessFragment extends Fragment {
     private com.example.gameclub.Ui.Gallery.ChessViewModel chessViewModel;
+    //setup buttons for the UI
     Button boardButton;
     Button chatCloseButton;
     Button chatOpenButton;
@@ -96,6 +97,9 @@ public class ChessFragment extends Fragment {
         chatChessBox.addView(tv);
     }
 
+    /**
+     * Reset the database within firebase
+     */
     public void reset() {
         mDatabase.child("Games").child("Chess").child("Hosting").child("id").setValue("empty");
         mDatabase.child("Games").child("Chess").child("Hosting").child("Num").setValue(0);
@@ -108,6 +112,9 @@ public class ChessFragment extends Fragment {
 
     }
 
+    /**
+     * Finish the game and sets winners
+     */
     public void finishGame() {
         // Popup magic happens
         if (Integer.parseInt(MainActivity.currentUser.getId()) == winCheck) {
@@ -123,8 +130,10 @@ public class ChessFragment extends Fragment {
     }
 
 
+    //on the creation of the page
     public View onCreateView(@NonNull LayoutInflater inflaterLocal,
                              ViewGroup container, Bundle savedInstanceState) {
+        //links the variables to the specific UI
         inflater = inflaterLocal;
         root =  inflater.inflate(R.layout.fragment_chess, container, false);
         rootSave = root;
@@ -150,6 +159,7 @@ public class ChessFragment extends Fragment {
                 }
             }
         });
+        //listener for database and linking people together
         mDatabase.addChildEventListener(new ChildEventListener() {
             @Override
             public void onChildAdded(@NonNull DataSnapshot snapshot, @Nullable String previousChildName) {
@@ -267,6 +277,7 @@ public class ChessFragment extends Fragment {
         text = root.findViewById(R.id.chess_chat_id);
         chessGame = new ChessGame(chessViewModel, root);
 
+        //return home
         homeButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -279,6 +290,7 @@ public class ChessFragment extends Fragment {
         String replay = "Play Again";
         replayButton.setText(replay);
 
+        //replay button on click (when game ends)
         replayButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -289,6 +301,7 @@ public class ChessFragment extends Fragment {
         String quit = "Quit";
         quitButton.setText(quit);
 
+        //quit button on click (when game ends)
         quitButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -296,6 +309,7 @@ public class ChessFragment extends Fragment {
             }
         });
 
+        //sends the chat currently typed in
         sendChat.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -306,12 +320,15 @@ public class ChessFragment extends Fragment {
             }
         });
 
+        //opens the chat box
         chatOpenButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 wholeChatBox.setVisibility(View.VISIBLE);
             }
         });
+
+        //close the chat box
         chatCloseButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -330,6 +347,9 @@ public class ChessFragment extends Fragment {
         return root;
     }
 
+    /**
+     * Starts the game and set up chess rules
+     */
     public void startGame() {
         chessViewModel.setChessBoard();
         String[][] currentBoard = chessViewModel.getChessBoard();
@@ -1361,6 +1381,9 @@ public class ChessFragment extends Fragment {
         }
     }
 
+    /**
+     * redraws the board based on positioning on pieces
+     */
     public void redrawBoard() {
         Boolean wKing = false;
         Boolean bKing = false;
@@ -1487,6 +1510,9 @@ public class ChessFragment extends Fragment {
         }
     }
 
+    /**
+     * function that runs when black loses
+     */
     public void blackLoss() {
         ArrayList<Integer> array = new ArrayList<>();
         synchronized (chessGame) {
@@ -1508,6 +1534,9 @@ public class ChessFragment extends Fragment {
         }
     }
 
+    /**
+     * function that runs when white loses
+     */
     public void whiteLoss() {
         ArrayList<Integer> array = new ArrayList<>();
         synchronized (chessGame) {
