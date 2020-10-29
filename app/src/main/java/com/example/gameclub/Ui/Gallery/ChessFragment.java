@@ -51,7 +51,10 @@ public class ChessFragment extends Fragment {
     LinearLayout chatChessBox;
     View rootSave;
     ScrollView scrollViewChat;
+    Button toggleHelpButton;
     Boolean onWhite = true;
+    private TextView homeHelpText;
+    private TextView chatHelpText;
     private ChessGame chessGame;
     private Thread thread;
     private ClientNetwork client;
@@ -131,7 +134,21 @@ public class ChessFragment extends Fragment {
         replayButton = root.findViewById(R.id.replay);
         quitButton = root.findViewById(R.id.quit);
         gameOverScreen = root.findViewById(R.id.game_end_screen);
-
+        homeHelpText = root.findViewById(R.id.home_help_text);
+        chatHelpText = root.findViewById(R.id.message_help_text);
+        toggleHelpButton = root.findViewById(R.id.help_button);
+        //toggles the help text which shows what home and chat button does with a popup explanation
+        toggleHelpButton.setOnClickListener(new View.OnClickListener() {
+            public void onClick(View v) {
+                if (homeHelpText.getVisibility() == View.INVISIBLE) {
+                    homeHelpText.setVisibility(View.VISIBLE);
+                    chatHelpText.setVisibility(View.VISIBLE);
+                } else {
+                    homeHelpText.setVisibility(View.INVISIBLE);
+                    chatHelpText.setVisibility(View.INVISIBLE);
+                }
+            }
+        });
         mDatabase.addChildEventListener(new ChildEventListener() {
             @Override
             public void onChildAdded(@NonNull DataSnapshot snapshot, @Nullable String previousChildName) {
@@ -167,6 +184,7 @@ public class ChessFragment extends Fragment {
                         Log.d("Exception", String.valueOf(e));
                     }
             }
+
 
             @Override
             public void onChildChanged(@NonNull DataSnapshot snapshot, @Nullable String previousChildName) {
