@@ -1,4 +1,4 @@
-package com.example.gameclub.ui.gallery;
+package com.example.gameclub.Ui.Gallery;
 
 import android.graphics.drawable.Drawable;
 import android.graphics.drawable.LayerDrawable;
@@ -18,6 +18,7 @@ import android.widget.TextView;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.appcompat.content.res.AppCompatResources;
+import androidx.constraintlayout.widget.ConstraintLayout;
 import androidx.fragment.app.Fragment;
 import androidx.lifecycle.Observer;
 import androidx.lifecycle.ViewModelProviders;
@@ -41,7 +42,7 @@ import java.util.zip.Inflater;
 
 
 public class ChessFragment extends Fragment {
-    private ChessViewModel chessViewModel;
+    private com.example.gameclub.ui.gallery.ChessViewModel chessViewModel;
     Button boardButton;
     Button chatCloseButton;
     Button chatOpenButton;
@@ -80,6 +81,11 @@ public class ChessFragment extends Fragment {
     private View root;
     private TextView player1;
     private TextView player2;
+    private String winName = "";
+    private TextView winText;
+    private static Button replayButton;
+    private static Button quitButton;
+    private ConstraintLayout gameOverScreen;
 
     public void printChat(String chat) {
         TextView tv = new TextView(getContext());
@@ -87,12 +93,6 @@ public class ChessFragment extends Fragment {
         tv.setTextSize(TypedValue.COMPLEX_UNIT_SP,20);
         tv.setLayoutParams(new ViewGroup.LayoutParams(ViewGroup.LayoutParams.WRAP_CONTENT, ViewGroup.LayoutParams.WRAP_CONTENT));
         chatChessBox.addView(tv);
-    }
-
-    public void setWinner() {
-        if (winCheck == -1) {
-            mDatabase.child("Games").child("Chess").child("Hosting").child("winner").setValue(MainActivity.currentUser.getId());
-        }
     }
 
     public void reset() {
@@ -108,20 +108,31 @@ public class ChessFragment extends Fragment {
     }
 
     public void finishGame() {
-
+        // Popup magic happens
+        if (Integer.parseInt(MainActivity.currentUser.getId()) == winCheck) {
+            System.out.println("YOU WON");
+        } else {
+            System.out.println("The winner is " + winName);
+            winText = root.findViewById(R.id.winText);
+            String win = "The winner is " + winName;
+            winText.setText(win);
+        }
+        gameOverScreen.setVisibility(View.VISIBLE);
         reset();
     }
 
 
     public View onCreateView(@NonNull LayoutInflater inflaterLocal,
                              ViewGroup container, Bundle savedInstanceState) {
-        mDatabase.child("Games").child("Chess").child("Hosting").child("player2").setValue("");
-        mDatabase.child("Games").child("Chess").child("Hosting").child("player1").setValue("");
         inflater = inflaterLocal;
         root =  inflater.inflate(R.layout.fragment_chess, container, false);
         rootSave = root;
         player1 = root.findViewById(R.id.player_1_name);
         player2 = root.findViewById(R.id.player_2_name);
+        winText = root.findViewById(R.id.winText);
+        replayButton = root.findViewById(R.id.replay);
+        quitButton = root.findViewById(R.id.quit);
+        gameOverScreen = root.findViewById(R.id.game_end_screen);
 
         mDatabase.addChildEventListener(new ChildEventListener() {
             @Override
@@ -176,6 +187,7 @@ public class ChessFragment extends Fragment {
                         }
                         winCheck = Integer.parseInt(snapshot.child("Chess").child("Hosting").child("winner").getValue().toString());
                         if (winCheck != -1) {
+                            winName = snapshot.child("Chess").child("Hosting").child("name").getValue().toString();
                             finishGame();
                         }
                         receive = snapshot.child("Chess").child("Hosting").child("Chat").getValue().toString();
@@ -213,7 +225,7 @@ public class ChessFragment extends Fragment {
             }
         });
         chessViewModel =
-                ViewModelProviders.of(this).get(ChessViewModel.class);
+                ViewModelProviders.of(this).get(com.example.gameclub.ui.gallery.ChessViewModel.class);
 
         final Observer<List<Integer>> chessMove = new Observer<List<Integer>>() {
             @Override
@@ -244,6 +256,27 @@ public class ChessFragment extends Fragment {
                 NavHostFragment.findNavController(ChessFragment.this).navigate((R.id.action_nav_chess_to_nav_home));
             }
         });
+
+        String replay = "Play Again";
+        replayButton.setText(replay);
+
+        replayButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                NavHostFragment.findNavController(ChessFragment.this).navigate((R.id.action_nav_chess_self));
+            }
+        });
+
+        String quit = "Quit";
+        quitButton.setText(quit);
+
+        quitButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                NavHostFragment.findNavController(ChessFragment.this).navigate((R.id.action_nav_chess_to_nav_home));
+            }
+        });
+
         sendChat.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -266,7 +299,11 @@ public class ChessFragment extends Fragment {
                 wholeChatBox.setVisibility(View.INVISIBLE);
             }
         });
-        serverConn();
+        if (isHost) {
+            serverConn();
+        } else {
+            clientConn();
+        }
         return root;
     }
 
@@ -1417,7 +1454,8 @@ public class ChessFragment extends Fragment {
         }
     }
 
-    public void blackLoss() {ArrayList<Integer> array = new ArrayList<>();
+    public void blackLoss() {
+        ArrayList<Integer> array = new ArrayList<>();
         synchronized (chessGame) {
             array.add(0, -1);
             array.add(1, -1);
@@ -1426,8 +1464,10 @@ public class ChessFragment extends Fragment {
             chessGame.setGame(array);
             chessGame.notify();
         }
-
-
+        if (!isHost) {
+            mDatabase.child("Games").child("Chess").child("Hosting").child("winner").setValue(MainActivity.currentUser.getId());
+            mDatabase.child("Games").child("Chess").child("Hosting").child("name").setValue(MainActivity.currentUser.getFirstName());
+        }
     }
 
     public void whiteLoss() {
@@ -1440,9 +1480,13 @@ public class ChessFragment extends Fragment {
             chessGame.setGame(array);
             chessGame.notify();
         }
-
+        if (isHost) {
+            mDatabase.child("Games").child("Chess").child("Hosting").child("winner").setValue(MainActivity.currentUser.getId());
+            mDatabase.child("Games").child("Chess").child("Hosting").child("name").setValue(MainActivity.currentUser.getFirstName());
+        }
     }
-    public void clientConn(View view) {
+
+    public void clientConn() {
         System.out.println("here");
         client = new ClientNetwork(chessGame);
         thread = new Thread(client);

@@ -25,7 +25,7 @@ import com.example.gameclub.Network.ClientNetwork;
 import com.example.gameclub.Network.ServerNetwork;
 import com.example.gameclub.R;
 
-import com.example.gameclub.ui.gallery.ChessFragment;
+import com.example.gameclub.Ui.Gallery.ChessFragment;
 
 import com.google.firebase.database.ChildEventListener;
 import com.google.firebase.database.DataSnapshot;

@@ -58,6 +58,9 @@
         <action
             android:id="@+id/action_nav_chess_to_nav_home"
             app:destination="@id/nav_home" />
+        <action
+            android:id="@+id/action_nav_chess_self"
+            app:destination="@id/nav_chess" />
     </fragment>
 
     <fragment
