@@ -23,6 +23,8 @@ import androidx.navigation.fragment.NavHostFragment;
 import com.example.gameclub.MainActivity;
 import com.example.gameclub.R;
 
+import com.example.gameclub.Ui.Gallery.ChessFragment;
+
 import com.google.firebase.database.ChildEventListener;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;

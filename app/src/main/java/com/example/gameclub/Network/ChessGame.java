@@ -2,7 +2,8 @@ package com.example.gameclub.Network;
 
 import android.view.View;
 
-import com.example.gameclub.Ui.gallery.ChessViewModel;
+
+import com.example.gameclub.Ui.Gallery.ChessViewModel;
 
 import java.util.ArrayList;
 
