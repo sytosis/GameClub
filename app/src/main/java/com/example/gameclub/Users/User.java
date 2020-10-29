@@ -89,7 +89,7 @@ public class User {
     }
 
     public void addFriend(String email) {
-        friendList = friendList + "," + email;
+        friendList = friendList + email + ",";
         mDatabase.child("users").child(id).child("friends").setValue(friendList);
     }
 }

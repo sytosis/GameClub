@@ -19,7 +19,15 @@ import com.example.gameclub.R;
 
 public class MakeFriendsFragment extends Fragment {
 
-    Button homeButton;
+    private Button homeButton;
+    private Button jack;
+    private Button rose;
+    private Button jason;
+    private Button sam;
+    private Button sue;
+    private Button clay;
+
+
     public View onCreateView(@NonNull LayoutInflater inflater,
                              ViewGroup container, Bundle savedInstanceState) {
         final View root = inflater.inflate(R.layout.make_new_friends, container, false);
@@ -27,6 +35,42 @@ public class MakeFriendsFragment extends Fragment {
         homeButton.setOnClickListener(new View.OnClickListener() {
             public void onClick(View v) {
                 NavHostFragment.findNavController(MakeFriendsFragment.this).navigate((R.id.action_nav_make_friends_to_nav_home));
+            }
+        });
+        jack = root.findViewById(R.id.jack_button);
+        jack.setOnClickListener(new View.OnClickListener() {
+            public void onClick(View v) {
+                MainActivity.currentUser.addFriend("jack");
+            }
+        });
+        rose = root.findViewById(R.id.rose_button);
+        rose.setOnClickListener(new View.OnClickListener() {
+            public void onClick(View v) {
+                MainActivity.currentUser.addFriend("rose");
+            }
+        });
+        jason = root.findViewById(R.id.jason_button);
+        jason.setOnClickListener(new View.OnClickListener() {
+            public void onClick(View v) {
+                MainActivity.currentUser.addFriend("jason");
+            }
+        });
+        sam = root.findViewById(R.id.sam_button);
+        sam.setOnClickListener(new View.OnClickListener() {
+            public void onClick(View v) {
+                MainActivity.currentUser.addFriend("sam");
+            }
+        });
+        sue = root.findViewById(R.id.sue_button);
+        sue.setOnClickListener(new View.OnClickListener() {
+            public void onClick(View v) {
+                MainActivity.currentUser.addFriend("sue");
+            }
+        });
+        clay = root.findViewById(R.id.clay_button);
+        clay.setOnClickListener(new View.OnClickListener() {
+            public void onClick(View v) {
+                MainActivity.currentUser.addFriend("clay");
             }
         });
 
