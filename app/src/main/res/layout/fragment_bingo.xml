@@ -697,6 +697,7 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         android:orientation="vertical"
+        android:visibility="invisible"
         >
         <TextView
             android:id="@id/winText"
