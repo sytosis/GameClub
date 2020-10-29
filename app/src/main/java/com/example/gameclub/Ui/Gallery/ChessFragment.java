@@ -1,10 +1,10 @@
+
 package com.example.gameclub.Ui.Gallery;
 
 import android.graphics.drawable.Drawable;
 import android.graphics.drawable.LayerDrawable;
 import android.os.Bundle;
 import android.util.Log;
-import android.util.Pair;
 import android.util.TypedValue;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -24,7 +24,6 @@ import androidx.lifecycle.Observer;
 import androidx.lifecycle.ViewModelProviders;
 import androidx.navigation.fragment.NavHostFragment;
 
-import com.example.gameclub.Games.BingoFragment;
 import com.example.gameclub.MainActivity;
 import com.example.gameclub.Network.ChessGame;
 import com.example.gameclub.Network.ClientNetwork;
@@ -38,7 +37,6 @@ import com.google.firebase.database.FirebaseDatabase;
 
 import java.util.ArrayList;
 import java.util.List;
-import java.util.zip.Inflater;
 
 
 public class ChessFragment extends Fragment {

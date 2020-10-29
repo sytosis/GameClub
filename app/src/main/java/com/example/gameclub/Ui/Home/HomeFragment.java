@@ -70,9 +70,9 @@ public class HomeFragment extends Fragment {
             public void onClick(View view) {
                 if (game_page) {
                     game_page = false;
-                    NavHostFragment.findNavController(HomeFragment.this).navigate(R.id.action_nav_home_to_nav_chess);
+                    NavHostFragment.findNavController(HomeFragment.this).navigate(R.id.action_nav_home_to_friendsListFragment);
                 } else {
-                    //Friend List Page
+                    NavHostFragment.findNavController(HomeFragment.this).navigate(R.id.action_nav_home_to_friendsListFragment);
                 }
             }
         });
