@@ -1294,7 +1294,7 @@ public class ChessFragment extends Fragment {
     }
     public void clientConn(View view) {
         System.out.println("here");
-        client = new ClientNetwork();
+        client = new ClientNetwork(chessGame);
         thread = new Thread(client);
         thread.start();
 

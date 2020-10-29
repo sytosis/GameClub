@@ -24,12 +24,9 @@ import com.example.gameclub.MainActivity;
 import com.example.gameclub.Network.ClientNetwork;
 import com.example.gameclub.Network.ServerNetwork;
 import com.example.gameclub.R;
-<<<<<<< HEAD
+
 import com.example.gameclub.ui.gallery.ChessFragment;
-=======
-import com.example.gameclub.Ui.Authentication.AuthenticationFragment;
-import com.example.gameclub.Ui.Gallery.ChessFragment;
->>>>>>> 170768d0d0963ca74036e45ae30e8636cbad1599
+
 import com.google.firebase.database.ChildEventListener;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
