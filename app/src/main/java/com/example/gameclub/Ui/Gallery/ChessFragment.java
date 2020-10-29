@@ -3,6 +3,7 @@ package com.example.gameclub.Ui.Gallery;
 import android.graphics.drawable.Drawable;
 import android.graphics.drawable.LayerDrawable;
 import android.os.Bundle;
+import android.util.Log;
 import android.util.Pair;
 import android.util.TypedValue;
 import android.view.LayoutInflater;
@@ -22,11 +23,17 @@ import androidx.lifecycle.Observer;
 import androidx.lifecycle.ViewModelProviders;
 import androidx.navigation.fragment.NavHostFragment;
 
+import com.example.gameclub.Games.BingoFragment;
 import com.example.gameclub.MainActivity;
 import com.example.gameclub.Network.ChessGame;
 import com.example.gameclub.Network.ClientNetwork;
 import com.example.gameclub.Network.ServerNetwork;
 import com.example.gameclub.R;
+import com.google.firebase.database.ChildEventListener;
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -52,9 +59,132 @@ public class ChessFragment extends Fragment {
     private ServerNetwork server;
     private TextView networkBox;
     int knightMoves[][] = {{2,1},{2,-1},{-2,1},{-2,-1},{1,2},{1,-2},{-1,2},{-1,-2}};
+    private DatabaseReference mDatabase = FirebaseDatabase.getInstance().getReference();
+    // Host id
+    private String id = "";
+    // true if host
+    private Boolean isHost = false;
+    // true if need to add to player num
+    private Boolean add = true;
+    // Number of players on server
+    private Integer playerNum = 0;
+    // True when game starts
+    private Boolean started = false;
+    private String receive;
+    private String[] record;
+    // ID of winner, -1 if no winner
+    private Integer winCheck = -1;
+    // True if won game
+    private Boolean won = false;
+
+    public void printChat(String chat) {
+        TextView tv = new TextView(getContext());
+        tv.setText(chat);
+        tv.setTextSize(TypedValue.COMPLEX_UNIT_SP,20);
+        tv.setLayoutParams(new ViewGroup.LayoutParams(ViewGroup.LayoutParams.WRAP_CONTENT, ViewGroup.LayoutParams.WRAP_CONTENT));
+        chatChessBox.addView(tv);
+    }
+
+    public void setWinner() {
+        if (winCheck == -1) {
+            mDatabase.child("Games").child("Chess").child("Hosting").child("winner").setValue(MainActivity.currentUser.getId());
+        }
+    }
+
+    public void reset() {
+        mDatabase.child("Games").child("Chess").child("Hosting").child("id").setValue("empty");
+        mDatabase.child("Games").child("Chess").child("Hosting").child("Num").setValue(0);
+        mDatabase.child("Games").child("Chess").child("Hosting").child("started").setValue("false");
+        mDatabase.child("Games").child("Chess").child("Hosting").child("winner").setValue(-1);
+        mDatabase.child("Games").child("Chess").child("Hosting").child("Chat").setValue("");
+        mDatabase.child("Games").child("Chess").child("Hosting").child("name").setValue("");
+    }
+
+    public void finishGame() {
+
+        reset();
+    }
+
+
     public View onCreateView(@NonNull LayoutInflater inflater,
                              ViewGroup container, Bundle savedInstanceState) {
+        mDatabase.child("Games").child("Chess").child("Hosting").child("Chat").setValue("");
+        mDatabase.child("Games").child("Chess").child("Hosting").child("name").setValue("");
 
+        mDatabase.addChildEventListener(new ChildEventListener() {
+            @Override
+            public void onChildAdded(@NonNull DataSnapshot snapshot, @Nullable String previousChildName) {
+                    try {
+                        id = snapshot.child("Chess").child("Hosting").child("id").getValue().toString();
+                        if (id.equals("empty")) {
+                            mDatabase.child("Games").child("Chess").child("Hosting").child("id").setValue(MainActivity.currentUser.getId());
+                            isHost = true;
+                        }
+                        if (add) {
+                            playerNum = Integer.parseInt(snapshot.child("Chess").child("Hosting").child("Num").getValue().toString());
+                            playerNum = playerNum + 1;
+                            mDatabase.child("Games").child("Chess").child("Hosting").child("Num").setValue(playerNum);
+                            add = false;
+                        }
+                        receive = snapshot.child("Chess").child("Hosting").child("Chat").getValue().toString();
+                        String[] messages = receive.split("/");
+                        record = receive.split("/");
+                        for (int i = 0; i < messages.length - 1; ++i) {
+                            printChat(messages[i]);
+                        }
+                    } catch (Exception e) {
+                        Log.d("Exception", String.valueOf(e));
+                    }
+            }
+
+            @Override
+            public void onChildChanged(@NonNull DataSnapshot snapshot, @Nullable String previousChildName) {
+                    try {
+                        playerNum = Integer.parseInt(snapshot.child("Chess").child("Hosting").child("Num").getValue().toString());
+                        if (playerNum.equals(2)) {
+                            mDatabase.child("Chess").child("Hosting").child("started").setValue("true");
+                        }
+                        if (snapshot.child("Chess").child("Hosting").child("started").getValue().toString().equals("true")) {
+                            started = true;
+                        }
+                        winCheck = Integer.parseInt(snapshot.child("Chess").child("Hosting").child("winner").getValue().toString());
+                        if (winCheck != -1) {
+                            finishGame();
+                        }
+                        receive = snapshot.child("Chess").child("Hosting").child("Chat").getValue().toString();
+                        String[] messages = receive.split("/");
+                        int recordlen = record.length;
+                        int receivelen = messages.length;
+                        if (recordlen < receivelen) {
+                            int difference = receivelen - recordlen;
+                            System.out.println("receive length " + receivelen);
+                            System.out.println("record length " + recordlen);
+
+                            for (int i = receivelen - difference; i < receivelen; ++i) {
+                                printChat(messages[i]);
+                            }
+                            record = messages;
+                        }
+                    } catch (Exception e) {
+                        Log.d("Exception ", String.valueOf(e));
+                    }
+            }
+
+            @Override
+            public void onChildRemoved(@NonNull DataSnapshot snapshot) {
+
+            }
+
+            @Override
+            public void onChildMoved(@NonNull DataSnapshot snapshot, @Nullable String previousChildName) {
+
+            }
+
+            @Override
+            public void onCancelled(@NonNull DatabaseError error) {
+
+            }
+        });
         chessViewModel =
                 ViewModelProviders.of(this).get(ChessViewModel.class);
         final View root = inflater.inflate(R.layout.fragment_chess, container, false);
@@ -92,16 +222,13 @@ public class ChessFragment extends Fragment {
         sendChat.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                String sendChat = (MainActivity.currentUser.getFirstName() + ": " + text.getText());
+                String sendChat = (" " + MainActivity.currentUser.getFirstName() + ": " + text.getText());
                 text.getText().clear();
-                TextView tv = new TextView(getContext());
-                tv.setText(sendChat);
-                tv.setTextSize(TypedValue.COMPLEX_UNIT_SP,20);
-                tv.setLayoutParams(new ViewGroup.LayoutParams(ViewGroup.LayoutParams.WRAP_CONTENT, ViewGroup.LayoutParams.WRAP_CONTENT));
-                chatChessBox.addView(tv);
+                mDatabase.child("Games").child("Bingo").child("Hosting").child("Chat").setValue(receive+"/"+sendChat);
                 scrollViewChat.fullScroll(View.FOCUS_DOWN);
             }
         });
+
         chatOpenButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
