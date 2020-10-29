@@ -18,9 +18,10 @@ import java.util.ArrayList;
 public class ChessGame implements Game{
 
     private ChessViewModel chessViewModel;
-    ArrayList<Integer> array;
-    View root;
-    Boolean onWhite = true;
+    private ArrayList<Integer> array;
+    private View root;
+    private Boolean onWhite = true;
+
     public ChessGame(ChessViewModel chessModel,  View rootSave) {
         chessViewModel = chessModel;
         root = rootSave;

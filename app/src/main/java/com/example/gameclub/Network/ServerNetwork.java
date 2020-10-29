@@ -23,10 +23,11 @@ import java.util.List;
 
 
 public class ServerNetwork implements Runnable {
-    TextView text;
-    Socket client;
-    ChessGame chessGame;
-    int turn = 1;
+    private TextView text;
+    private Socket client;
+    private ChessGame chessGame;
+    private int turn = 1;
+
     public ServerNetwork( ChessGame newChessGame) {
 
         chessGame = newChessGame;

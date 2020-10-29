@@ -21,11 +21,12 @@ import com.example.gameclub.Ui.Authentication.AuthenticationFragment;
 public class HomeFragment extends Fragment {
 
     private HomeViewModel homeViewModel;
-    Button gameButton;
-    Button new_friends;
-    Button rightButton;
-    Button homeBack;
-    Button profileButton;
+    private Button gameButton;
+    private Button new_friends;
+    private Button rightButton;
+    private Button homeBack;
+    private Button profileButton;
+    private Button backButton;
     private boolean game_page = false;
 
     public View onCreateView(@NonNull LayoutInflater inflater,
@@ -36,7 +37,20 @@ public class HomeFragment extends Fragment {
         final MainActivity main = (MainActivity) requireActivity();
         final TextView homeText = root.findViewById(R.id.text_home);
         homeText.setText("Hi " + MainActivity.currentUser.getFirstName() + ", what would you like to do?");
-        gameButton = root.findViewById(R.id.game_button);
+
+        backButton = root.findViewById(R.id.back_button);
+        backButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                game_page = false;
+                gameButton.setVisibility(View.VISIBLE);
+                profileButton.setVisibility(View.VISIBLE);
+                new_friends.setBackgroundResource(R.drawable.make_friends_button);
+                rightButton.setBackgroundResource(R.drawable.friends_and_messages_button);
+                backButton.setVisibility(View.INVISIBLE);
+            }
+        });
+
         new_friends = root.findViewById(R.id.make_new_friends_button);
         new_friends.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -49,6 +63,7 @@ public class HomeFragment extends Fragment {
                 }
             }
         });
+
         rightButton = root.findViewById(R.id.right_button);
         rightButton.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -61,20 +76,13 @@ public class HomeFragment extends Fragment {
                 }
             }
         });
-        profileButton = root.findViewById(R.id.profile_button);
-        homeBack = root.findViewById(R.id.home_back);
-        homeBack.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
 
-            }
-        });
-
-
+        gameButton = root.findViewById(R.id.game_button);
         gameButton.setOnClickListener(new View.OnClickListener() {
               @Override
               public void onClick(View view) {
                   game_page = true;
+                  backButton.setVisibility(View.VISIBLE);
                   gameButton.setVisibility(View.INVISIBLE);
                   profileButton.setVisibility(View.INVISIBLE);
                   new_friends.setBackgroundResource(R.drawable.bingo_button);
@@ -82,6 +90,7 @@ public class HomeFragment extends Fragment {
               }
         });
 
+        profileButton = root.findViewById(R.id.profile_button);
         profileButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
