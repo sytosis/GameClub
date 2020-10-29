@@ -67,6 +67,7 @@ public class BingoFragment extends Fragment {
     private static Integer recordlen = 0;
     private static Integer receivelen = 0;
 
+
     public static void setServerMessage(Boolean state) {
         serverMessage = state;
     }
@@ -334,6 +335,7 @@ public class BingoFragment extends Fragment {
             @Override
             public void onClick(View view) {
                 wholeChatBox.setVisibility(View.VISIBLE);
+                toggleHelpButton.setVisibility(View.INVISIBLE);
                 ImageView ball1 = root.findViewById(R.id.Ball1);
                 ball1.setVisibility(View.INVISIBLE);
                 ImageView ball2 = root.findViewById(R.id.Ball2);
@@ -445,6 +447,7 @@ public class BingoFragment extends Fragment {
             @Override
             public void onClick(View view) {
                 wholeChatBox.setVisibility(View.INVISIBLE);
+                toggleHelpButton.setVisibility(View.VISIBLE);
                 ImageView ball1 = root.findViewById(R.id.Ball1);
                 ball1.setVisibility(View.VISIBLE);
                 ImageView ball2 = root.findViewById(R.id.Ball2);
