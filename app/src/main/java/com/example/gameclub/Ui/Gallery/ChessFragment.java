@@ -42,7 +42,7 @@ import java.util.zip.Inflater;
 
 
 public class ChessFragment extends Fragment {
-    private com.example.gameclub.ui.gallery.ChessViewModel chessViewModel;
+    private com.example.gameclub.Ui.Gallery.ChessViewModel chessViewModel;
     Button boardButton;
     Button chatCloseButton;
     Button chatOpenButton;
@@ -225,7 +225,7 @@ public class ChessFragment extends Fragment {
             }
         });
         chessViewModel =
-                ViewModelProviders.of(this).get(com.example.gameclub.ui.gallery.ChessViewModel.class);
+                ViewModelProviders.of(this).get(com.example.gameclub.Ui.Gallery.ChessViewModel.class);
 
         final Observer<List<Integer>> chessMove = new Observer<List<Integer>>() {
             @Override

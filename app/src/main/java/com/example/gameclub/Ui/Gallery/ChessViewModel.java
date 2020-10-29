@@ -1,4 +1,4 @@
-package com.example.gameclub.ui.gallery;
+package com.example.gameclub.Ui.Gallery;
 
 import android.app.Activity;
 import android.util.Pair;
