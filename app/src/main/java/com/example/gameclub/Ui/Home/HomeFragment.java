@@ -48,6 +48,10 @@ public class HomeFragment extends Fragment {
                 new_friends.setBackgroundResource(R.drawable.make_friends_button);
                 rightButton.setBackgroundResource(R.drawable.friends_and_messages_button);
                 backButton.setVisibility(View.INVISIBLE);
+                ViewGroup.LayoutParams lp = new_friends.getLayoutParams();
+                lp.width = (int) (new_friends.getWidth()/1.2);
+                new_friends.setLayoutParams(lp);
+                rightButton.setLayoutParams(lp);
             }
         });
 
@@ -87,6 +91,10 @@ public class HomeFragment extends Fragment {
                   profileButton.setVisibility(View.INVISIBLE);
                   new_friends.setBackgroundResource(R.drawable.bingo_button);
                   rightButton.setBackgroundResource(R.drawable.chess_button);
+                  ViewGroup.LayoutParams lp = new_friends.getLayoutParams();
+                  lp.width = (int) (new_friends.getWidth()*1.2);
+                  new_friends.setLayoutParams(lp);
+                  rightButton.setLayoutParams(lp);
               }
         });
 
