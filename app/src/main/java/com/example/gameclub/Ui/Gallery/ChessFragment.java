@@ -142,7 +142,7 @@ public class ChessFragment extends Fragment {
                     try {
                         playerNum = Integer.parseInt(snapshot.child("Chess").child("Hosting").child("Num").getValue().toString());
                         if (playerNum.equals(2)) {
-                            mDatabase.child("Chess").child("Hosting").child("started").setValue("true");
+                            mDatabase.child("Games").child("Chess").child("Hosting").child("started").setValue("true");
                         }
                         if (snapshot.child("Chess").child("Hosting").child("started").getValue().toString().equals("true")) {
                             started = true;
