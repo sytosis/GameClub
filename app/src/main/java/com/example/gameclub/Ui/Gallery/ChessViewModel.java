@@ -1,12 +1,7 @@
-package com.example.gameclub.ui.gallery;
-
-import android.app.Activity;
-import android.util.Pair;
+package com.example.gameclub.Ui.gallery;
 
 import androidx.lifecycle.MutableLiveData;
 import androidx.lifecycle.ViewModel;
-
-import com.example.gameclub.R;
 
 import java.util.List;
 

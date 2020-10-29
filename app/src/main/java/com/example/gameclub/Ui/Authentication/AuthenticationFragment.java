@@ -1,4 +1,4 @@
-package com.example.gameclub.ui.authentication;
+package com.example.gameclub.Ui.Authentication;
 
 import android.content.SharedPreferences;
 import android.graphics.Color;

@@ -57,7 +57,7 @@ public class HomeFragment extends Fragment {
                     game_page = false;
                     NavHostFragment.findNavController(HomeFragment.this).navigate(R.id.action_nav_home_to_nav_chess);
                 } else {
-                    //Friend List Page
+                    NavHostFragment.findNavController(HomeFragment.this).navigate(R.id.action_nav_home_to_friendsListFragment);
                 }
             }
         });
