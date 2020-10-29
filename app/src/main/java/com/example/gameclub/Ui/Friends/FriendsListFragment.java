@@ -18,7 +18,7 @@ public class FriendsListFragment extends Fragment {
     public View onCreateView(@NonNull LayoutInflater inflater,
                              ViewGroup container, Bundle savedInstanceState) {
         final View root = inflater.inflate(R.layout.friends_list, container, false);
-        homeButton = root.findViewById(R.id.back_button);
+        homeButton = root.findViewById(R.id.friend_list_back_button);
         homeButton.setOnClickListener(new View.OnClickListener() {
             public void onClick(View v) {
                 NavHostFragment.findNavController(FriendsListFragment.this).navigate((R.id.action_friendsListFragment_to_nav_home));

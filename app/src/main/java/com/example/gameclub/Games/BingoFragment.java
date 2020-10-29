@@ -46,11 +46,14 @@ public class BingoFragment extends Fragment {
     private LinearLayout wholeChatBox;
     private Button homeButton;
     private Button sendChat;
+    private Button toggleHelpButton;
     private LinearLayout chatChessBox;
     private ScrollView scrollViewChat;
     private EditText text;
     private ImageView RollBall;
     private TextView RollText;
+    private TextView homeHelpText;
+    private TextView chatHelpText;
     private DatabaseReference mDatabase = FirebaseDatabase.getInstance().getReference();
     private String receive;
     private String[] record;
@@ -188,7 +191,7 @@ public class BingoFragment extends Fragment {
         root = inflater.inflate(R.layout.fragment_bingo, container, false);
         chatCloseButton = root.findViewById(R.id.close_chat_button);
         chatOpenButton = root.findViewById(R.id.message_button);
-        homeButton = root.findViewById(R.id.home_button);
+        homeButton = root.findViewById(R.id.Bingo_Home_Button);
         sendChat = root.findViewById(R.id.send_chat_button);
         chatChessBox = root.findViewById(R.id.chess_chat_box);
         scrollViewChat = root.findViewById(R.id.scrollview_chat);
@@ -199,6 +202,10 @@ public class BingoFragment extends Fragment {
         replayButton = root.findViewById(R.id.replay);
         quitButton = root.findViewById(R.id.quit);
         gameOverScreen = root.findViewById(R.id.game_end_screen);
+        homeHelpText = root.findViewById(R.id.home_help_text);
+        chatHelpText = root.findViewById(R.id.message_help_text);
+        toggleHelpButton = root.findViewById(R.id.toggle_help_text_button);
+
 
         mDatabase.addChildEventListener(new ChildEventListener() {
             @Override
@@ -264,13 +271,24 @@ public class BingoFragment extends Fragment {
         fillBingoBoardImageList();
         setBoardColours();
 
-        final Button homeButton = root.findViewById(R.id.Bingo_Home_Button);
         homeButton.setOnClickListener(new View.OnClickListener() {
             public void onClick(View v) {
                 NavHostFragment.findNavController(BingoFragment.this).navigate((R.id.action_nav_bingo_to_home));
             }
         });
 
+        //toggles the help text which shows what home and chat button does with a popup explanation
+        toggleHelpButton.setOnClickListener(new View.OnClickListener() {
+            public void onClick(View v) {
+                if (homeHelpText.getVisibility() == View.INVISIBLE) {
+                    homeHelpText.setVisibility(View.VISIBLE);
+                    chatHelpText.setVisibility(View.VISIBLE);
+                } else {
+                    homeHelpText.setVisibility(View.INVISIBLE);
+                    chatHelpText.setVisibility(View.INVISIBLE);
+                }
+            }
+        });
         String replay = "Play Again";
         replayButton.setText(replay);
 
