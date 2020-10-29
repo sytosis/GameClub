@@ -7,6 +7,8 @@
     android:layout_height="match_parent"
     tools:context=".Games.Bingo">
 
+
+
     <LinearLayout
         android:id="@+id/whole_chat_box"
         android:layout_width="match_parent"
@@ -684,5 +686,49 @@
         android:text="Home"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:id = "@+id/game_end_screen"
+        android:layout_width="@dimen/_200sdp"
+        android:layout_height="@dimen/_200sdp"
+        android:background = "@color/yelloworange"
+        app:layout_constraintTop_toTopOf="@id/Ball1"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        android:orientation="vertical"
+        android:visibility="invisible">
+        <TextView
+            android:id="@id/winText"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/_50sdp"
+            android:textSize="@dimen/_30ssp"
+            android:gravity="center"
+            android:text="You win!" />
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/_50sdp"
+            android:layout_gravity="bottom"
+            android:gravity="bottom">
+            <Button
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                android:id="@+id/quit"
+                android:layout_width="@dimen/_50sdp"
+                android:layout_height="@dimen/_50sdp"/>
+            <Button
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                android:id="@+id/replay"
+                android:layout_width="@dimen/_50sdp"
+                android:layout_height="@dimen/_50sdp"/>
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
 
 </androidx.constraintlayout.widget.ConstraintLayout>

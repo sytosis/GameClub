@@ -28,6 +28,9 @@ import com.example.gameclub.Network.ClientNetwork;
 import com.example.gameclub.Network.ServerNetwork;
 import com.example.gameclub.R;
 
+import java.util.ArrayList;
+import java.util.List;
+
 
 public class ChessFragment extends Fragment {
     Button resetBoardButton;
@@ -56,11 +59,13 @@ public class ChessFragment extends Fragment {
                 ViewModelProviders.of(this).get(ChessViewModel.class);
         final View root = inflater.inflate(R.layout.fragment_chess, container, false);
         rootSave = root;
-        final Observer<Pair<Integer, Integer>> chessMove = new Observer<Pair<Integer, Integer>>() {
+        final Observer<List<Integer>> chessMove = new Observer<List<Integer>>() {
             @Override
-            public void onChanged(@Nullable final Pair<Integer,Integer> newMove) {
+            public void onChanged(@Nullable final List<Integer> newMove) {
                 // Update the UI, in this case, a TextView.
-                chessViewModel.moveSelectedPiece(newMove.first,newMove.second);
+                System.out.println(newMove.toString());
+                chessViewModel.selectChessPiece(newMove.get(0),newMove.get(1));
+                chessViewModel.moveSelectedPiece(newMove.get(2),newMove.get(3));
                 redrawBoard();
                 onWhite = !onWhite;
             }
@@ -77,6 +82,7 @@ public class ChessFragment extends Fragment {
         scrollViewChat = root.findViewById(R.id.scrollview_chat);
         text = root.findViewById(R.id.chess_chat_id);
         chessGame = new ChessGame(chessViewModel, root);
+
         homeButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -108,6 +114,7 @@ public class ChessFragment extends Fragment {
                 wholeChatBox.setVisibility(View.INVISIBLE);
             }
         });
+        serverConn();
         resetBoardButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -132,6 +139,16 @@ public class ChessFragment extends Fragment {
                                     chessViewModel.moveSelectedPiece(newX,newY);
                                     redrawBoard();
                                     onWhite = !onWhite;
+
+                                    ArrayList<Integer> array = new ArrayList<>();
+                                    synchronized (chessGame) {
+                                        array.add(0, chessViewModel.getSelectedPiece()[0]);
+                                        array.add(1, chessViewModel.getSelectedPiece()[1]);
+                                        array.add(2, newX);
+                                        array.add(3, newY);
+                                        chessGame.setGame(array);
+                                        chessGame.notify();
+                                    }
                                 } else {
                                     redrawBoard();
 
@@ -1250,11 +1267,29 @@ public class ChessFragment extends Fragment {
         }
     }
 
-    public void blackLoss() {
+    public void blackLoss() {ArrayList<Integer> array = new ArrayList<>();
+        synchronized (chessGame) {
+            array.add(0, -1);
+            array.add(1, -1);
+            array.add(2, -1);
+            array.add(3, -1);
+            chessGame.setGame(array);
+            chessGame.notify();
+        }
+
 
     }
 
     public void whiteLoss() {
+        ArrayList<Integer> array = new ArrayList<>();
+        synchronized (chessGame) {
+            array.add(0, -1);
+            array.add(1, -1);
+            array.add(2, -1);
+            array.add(3, -1);
+            chessGame.setGame(array);
+            chessGame.notify();
+        }
 
     }
     public void clientConn(View view) {
@@ -1267,9 +1302,9 @@ public class ChessFragment extends Fragment {
 
     }
 
-    public void serverConn(View view) {
+    public void serverConn() {
         System.out.println("here");
-        server = new ServerNetwork((TextView) view, chessGame);
+        server = new ServerNetwork(chessGame);
         thread = new Thread(server);
         thread.start();
 

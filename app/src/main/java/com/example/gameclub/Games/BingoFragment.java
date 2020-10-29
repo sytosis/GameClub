@@ -15,6 +15,7 @@ import android.widget.TextView;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
+import androidx.constraintlayout.widget.ConstraintLayout;
 import androidx.fragment.app.Fragment;
 import androidx.lifecycle.ViewModelProviders;
 import androidx.navigation.fragment.NavHostFragment;
@@ -23,7 +24,12 @@ import com.example.gameclub.MainActivity;
 import com.example.gameclub.Network.ClientNetwork;
 import com.example.gameclub.Network.ServerNetwork;
 import com.example.gameclub.R;
+<<<<<<< HEAD
 import com.example.gameclub.ui.gallery.ChessFragment;
+=======
+import com.example.gameclub.Ui.Authentication.AuthenticationFragment;
+import com.example.gameclub.Ui.Gallery.ChessFragment;
+>>>>>>> 170768d0d0963ca74036e45ae30e8636cbad1599
 import com.google.firebase.database.ChildEventListener;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
@@ -36,6 +42,7 @@ import java.util.Timer;
 
 public class BingoFragment extends Fragment {
 
+    private static TextView winText;
     public Bingo bingoGame;
     static View root;
     List<ImageView> bingoBoardImages = new ArrayList<>();
@@ -52,6 +59,11 @@ public class BingoFragment extends Fragment {
     TextView RollText;
     private DatabaseReference mDatabase = FirebaseDatabase.getInstance().getReference();
     private String receive;
+    private String[] record;
+    private static Button replayButton;
+    private static Button quitButton;
+    private ConstraintLayout gameOverScreen;
+    private Integer winner;
 
     public void fillBingoBoardTextList() {
         bingoBoardText.add((TextView) root.findViewById(R.id.Text1));
@@ -127,24 +139,23 @@ public class BingoFragment extends Fragment {
         }
     }
 
+    public static void gameOver(int winner, String winName) {
+        if (Integer.parseInt(MainActivity.currentUser.getId()) == winner) {
+            System.out.println("YOU WON");
+        } else {
+            System.out.println("The winner is " + winName);
+            winText = root.findViewById(R.id.winText);
+            String win = "The winner is " + winName;
+            winText.setText(win);
+        }
+    }
 
     public static void displayBall(int number) {
         setBallColour((ImageView) root.findViewById(R.id.RollBall), number);
         ((TextView) root.findViewById(R.id.RollText)).setText(String.valueOf(number));
     }
 
-    public void removeBall(int number) {
-        // Robbie magic please
-    }
-
-    public void bingoTurn() {
-        int number = bingoGame.getBall();
-        displayBall(number);
-        bingoGame.checkWin(number);
-    }
-
     public void setBoardText() {
-
         for (int i = 0; i < 25; ++i) {
             bingoBoardText.get(i).setText(String.valueOf(bingoGame.bingoBoard.get(i)));
         }
@@ -152,10 +163,19 @@ public class BingoFragment extends Fragment {
 
     public void setBoardColours() {
 
-        int number;
         for (int i = 0; i < 25; ++i) {
-            number = bingoGame.bingoBoard.get(i);
             setBallColour(bingoBoardImages.get(i), bingoGame.bingoBoard.get(i));
+            if (bingoGame.checker.get(i)) {
+                bingoBoardImages.get(i).setImageResource(R.drawable.grey_ball);
+            }
+        }
+    }
+
+    public void stampBall() {
+        for (int i = 0; i < 25; ++i) {
+            if (bingoGame.checker.get(i)) {
+                bingoBoardImages.get(i).setImageResource(R.drawable.grey_ball);
+            }
         }
     }
 
@@ -182,6 +202,9 @@ public class BingoFragment extends Fragment {
         wholeChatBox = root.findViewById(R.id.whole_chat_box);
         RollBall = root.findViewById(R.id.RollBall);
         RollText = root.findViewById(R.id.RollText);
+        replayButton = root.findViewById(R.id.replay);
+        quitButton = root.findViewById(R.id.quit);
+        gameOverScreen = root.findViewById(R.id.game_end_screen);
 
         mDatabase.addChildEventListener(new ChildEventListener() {
             @Override
@@ -189,6 +212,7 @@ public class BingoFragment extends Fragment {
                     try {
                         receive = snapshot.child("Bingo").child("Hosting").child("Chat").getValue().toString();
                         String[] messages = receive.split("/");
+                        record = receive.split("/");
                         for (int i = 0; i < messages.length - 1; ++i) {
                             printChat(messages[i]);
                         }
@@ -200,12 +224,28 @@ public class BingoFragment extends Fragment {
             @Override
             public void onChildChanged(@NonNull DataSnapshot snapshot, @Nullable String previousChildName) {
                 try {
-                        receive = snapshot.child("Bingo").child("Hosting").child("Chat").getValue().toString();
-                        String[] messages = receive.split("/");
-                        printChat(messages[messages.length - 1]);
-                    } catch (Exception e) {
-                        Log.d("Exception ", String.valueOf(e));
+                    winner = Integer.parseInt(snapshot.child("Bingo").child("Hosting").child("winner").getValue().toString());
+                    stampBall();
+                    receive = snapshot.child("Bingo").child("Hosting").child("Chat").getValue().toString();
+                    String[] messages = receive.split("/");
+                    int recordlen = record.length;
+                    int receivelen = messages.length;
+                    if (recordlen < receivelen) {
+                        int difference = receivelen - recordlen;
+                        System.out.println("receive length " + receivelen);
+                        System.out.println("record length " + recordlen);
+
+                        for (int i = receivelen - difference; i < receivelen; ++i) {
+                            printChat(messages[i]);
+                        }
+                        record = messages;
                     }
+                    if (winner != -1) {
+                        gameOverScreen.setVisibility(View.VISIBLE);
+                    }
+                } catch (Exception e) {
+                    Log.d("Exception ", String.valueOf(e));
+                }
             }
 
             @Override
@@ -237,9 +277,31 @@ public class BingoFragment extends Fragment {
             }
         });
 
+        String replay = "Play Again";
+        replayButton.setText(replay);
+
+        replayButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                NavHostFragment.findNavController(BingoFragment.this).navigate((R.id.action_nav_gallery_self));
+            }
+        });
+
+        String quit = "Quit";
+        quitButton.setText(quit);
+
+        quitButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                NavHostFragment.findNavController(BingoFragment.this).navigate((R.id.action_nav_bingo_to_home));
+            }
+        });
+
         sendChat.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+                String sendChat = (" " + MainActivity.currentUser.getFirstName() + ": " + text.getText());
+                text.getText().clear();
                 mDatabase.child("Games").child("Bingo").child("Hosting").child("Chat").setValue(receive+"/"+sendChat);
                 scrollViewChat.fullScroll(View.FOCUS_DOWN);
             }
