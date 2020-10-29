@@ -19,11 +19,6 @@ public class MainActivity extends AppCompatActivity {
 
     private AppBarConfiguration mAppBarConfiguration;
     private DrawerLayout drawer;
-    private String email;
-    private String firstName;
-    private String lastName;
-    private String country;
-    private String interests;
     public static User currentUser;
 
     @Override
@@ -47,39 +42,6 @@ public class MainActivity extends AppCompatActivity {
                 .build();
     }
 
-    public void setEmail(String email) {
-        this.email = email;
-    }
-
-    public void setFirstName(String firstName) {
-        this.firstName = firstName;
-    }
-
-    public void setLastName(String lastName) {
-        this.lastName = lastName;
-    }
-
-    public void setCountry(String country) {
-        this.country = country;
-    }
-
-    public void setInterests(String interests) {
-        this.interests = interests;
-    }
-
-    public String getEmail() {
-        return email;
-    }
-    public String getFirstName() { return firstName; }
-    public String getLastName() {
-        return lastName;
-    }
-    public String getCountry() {
-        return country;
-    }
-    public String getInterests() {
-        return interests;
-    }
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
         // Inflate the menu; this adds items to the action bar if it is present.

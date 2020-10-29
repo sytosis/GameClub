@@ -36,7 +36,7 @@ import java.util.List;
 import static android.content.Context.MODE_PRIVATE;
 
 public class AuthenticationFragment extends Fragment {
-    private com.example.gameclub.Ui.Authentication.AuthenticationViewModel authenticationViewModel;
+    //stores private buttons and strings for the page
     private Integer pageNumber = 1;
     private SharedPreferences sharedPreferences;
     private Button registerButton;
@@ -72,9 +72,10 @@ public class AuthenticationFragment extends Fragment {
     public AuthenticationFragment() {
     }
 
+    //on the creation of this view
     public View onCreateView(@NonNull LayoutInflater inflater,
                              ViewGroup container, Bundle savedInstanceState) {
-        // Firebase stuff
+        // Firebase initialization, setting up the users inputted data and saving it onto the database
         mDatabase.addChildEventListener(new ChildEventListener() {
             @Override
             public void onChildAdded(@NonNull DataSnapshot snapshot, @Nullable String previousChildName) {
@@ -122,11 +123,8 @@ public class AuthenticationFragment extends Fragment {
             }
         });
 
-        authenticationViewModel =
-                ViewModelProviders.of(this).get(com.example.gameclub.Ui.Authentication.AuthenticationViewModel.class);
         sharedPreferences = requireActivity().getSharedPreferences("accounts", MODE_PRIVATE);
         //getContext().getSharedPreferences("accounts",0).edit().clear().commit();
-        authenticationViewModel.setMainActivity((MainActivity) getActivity());
         View root = inflater.inflate(R.layout.login_signup, container, false);
         registerButton = root.findViewById(R.id.register_button);
         loginButton = root.findViewById(R.id.login_button);
@@ -141,6 +139,7 @@ public class AuthenticationFragment extends Fragment {
         orText = root.findViewById(R.id.orText);
         final MainActivity ma = (MainActivity) requireActivity();
         final AuthenticationFragment fragment = this;
+        //set functions for the register and below buttons
         registerButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -158,6 +157,7 @@ public class AuthenticationFragment extends Fragment {
             }
         });
 
+        //changes the UI based on the page number
         nextButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -252,6 +252,7 @@ public class AuthenticationFragment extends Fragment {
 
 
 
+        //changes the UI based on the page number
         backButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -265,6 +266,7 @@ public class AuthenticationFragment extends Fragment {
             }
         });
 
+        //changes the UI based on the page number
         continueButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -274,9 +276,6 @@ public class AuthenticationFragment extends Fragment {
                     MainActivity.currentUser = new User(userNum.toString(), registerEmail, registerPassword, registerFirstName, registerLastName, registerCountry, registerInterests, "");
                     //display registered and go to home page
                     NavHostFragment.findNavController(AuthenticationFragment.this).navigate(R.id.action_AuthenticationFragment_to_HomeFragment);
-                    System.out.println("registered");
-                    //display failed to register, username exists
-                    System.out.println("register failed");
             }
         });
         refreshPageLayout();
@@ -301,13 +300,13 @@ public class AuthenticationFragment extends Fragment {
         mDatabase.child("users").child(userId).child("country").setValue(c);
         mDatabase.child("users").child(userId).child("interest").setValue(i);
         mDatabase.child("users").child(userId).child("friends").setValue("");
-        Log.d("writeNewUser", userId);
     }
 
     public List<User> getUsers() {
         return existingUsers;
     }
 
+    //refreshes the layout of the page depending on the page number
     public void refreshPageLayout() {
         topEditText.getText().clear();
         bottomEditText.getText().clear();

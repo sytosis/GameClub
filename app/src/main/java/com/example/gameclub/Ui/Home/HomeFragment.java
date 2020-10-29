@@ -20,24 +20,24 @@ import com.example.gameclub.Ui.Authentication.AuthenticationFragment;
 
 public class HomeFragment extends Fragment {
 
-    private HomeViewModel homeViewModel;
+    //Variables that contain the buttons used within the XML for referral
     private Button gameButton;
     private Button new_friends;
     private Button rightButton;
-    private Button homeBack;
     private Button profileButton;
     private Button backButton;
     private boolean game_page = false;
 
+    //runs the moment the page loads
     public View onCreateView(@NonNull LayoutInflater inflater,
                              ViewGroup container, Bundle savedInstanceState) {
-        homeViewModel =
-                ViewModelProviders.of(this).get(HomeViewModel.class);
         View root = inflater.inflate(R.layout.fragment_home, container, false);
         final MainActivity main = (MainActivity) requireActivity();
         final TextView homeText = root.findViewById(R.id.text_home);
+        //sets the main text of the home screen
         homeText.setText("Hi " + MainActivity.currentUser.getFirstName() + ", what would you like to do?");
 
+        //changes the layout of the home screen depending on which page the user is currently on
         backButton = root.findViewById(R.id.back_button);
         backButton.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -55,6 +55,7 @@ public class HomeFragment extends Fragment {
             }
         });
 
+        //loads either bingo or the make friends depending on the page
         new_friends = root.findViewById(R.id.make_new_friends_button);
         new_friends.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -68,6 +69,7 @@ public class HomeFragment extends Fragment {
             }
         });
 
+        //loads chess or friends list depending on the page the user is on
         rightButton = root.findViewById(R.id.right_button);
         rightButton.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -81,6 +83,7 @@ public class HomeFragment extends Fragment {
             }
         });
 
+        //changes the layout of the home screen depending on which page the user is currently on
         gameButton = root.findViewById(R.id.game_button);
         gameButton.setOnClickListener(new View.OnClickListener() {
               @Override
@@ -98,6 +101,7 @@ public class HomeFragment extends Fragment {
               }
         });
 
+        //loads the profile
         profileButton = root.findViewById(R.id.profile_button);
         profileButton.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -106,14 +110,6 @@ public class HomeFragment extends Fragment {
             }
         });
 
-        /*
-        chessButton.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                NavHostFragment.findNavController(HomeFragment.this).navigate((R.id.action_nav_home_to_nav_chess));
-            }
-        });
-         */
         return root;
     }
 }
