@@ -56,6 +56,31 @@ public class User {
         return interest;
     }
 
+    public void setEmail(String email) {
+        mDatabase.child("users").child(id).child("email").setValue(email);
+        this.email = email;
+    }
+
+    public void setFirst(String first) {
+        mDatabase.child("users").child(id).child("firstName").setValue(first);
+        this.firstName = first;
+    }
+
+    public void setLast(String last) {
+        mDatabase.child("users").child(id).child("lastName").setValue(last);
+        this.lastName = last;
+    }
+
+    public void setCountry(String country) {
+        mDatabase.child("users").child(id).child("country").setValue(country);
+        this.country = country;
+    }
+
+    public void setInterest(String interest) {
+        mDatabase.child("users").child(id).child("interest").setValue(interest);
+        this.interest = interest;
+    }
+
     public List<String> getFriendList() {
         List<String> tempList = new ArrayList<>();
         String[] str = friendList.split(",");
@@ -64,7 +89,7 @@ public class User {
     }
 
     public void addFriend(String email) {
-        friendList = friendList + "," + email;
+        friendList = friendList + email + ",";
         mDatabase.child("users").child(id).child("friends").setValue(friendList);
     }
 }
