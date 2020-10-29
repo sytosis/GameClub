@@ -11,29 +11,39 @@ import java.net.Socket;
 import java.util.ArrayList;
 import java.util.List;
 
+/**
+ * Class opens up a client socket to listen to.
+ * @author John Roby John
+ */
 public class ClientNetwork implements Runnable {
     private TextView text;
     private Socket client;
     private ChessGame chessGame;
     private int turn;
-
+    /**
+     * sets up the Game class.
+     * @param newChessGame
+     */
     public ClientNetwork(ChessGame newChessGame) {
         turn = 0;
         chessGame = newChessGame;
     }
 
-
+    /**
+     * run when parent calls start on this class.
+     * When run it opens a socket and waits for a client to accept.
+     * After which the game loop will start
+     */
     public void run() {
 
         try {
             /*make connection to server socket */
             Socket sock = new Socket("10.0.2.2", 6013, null, 2222);
 
-            System.out.println(sock.getPort());
             InputStream in = sock.getInputStream();
             BufferedReader bin = new BufferedReader(new InputStreamReader(in));
 
-            /*read the data from the socket*/
+
             String line;
             while (true) {
                 if (turn == 1) {
@@ -45,54 +55,57 @@ public class ClientNetwork implements Runnable {
                             System.err.println(ne);
                         }
                     }
-                } else {
-                    System.out.println("I got up to here");
                     ArrayList<Integer> array = chessGame.gameBoard();
                     if (array.get(0) == -1 && array.get(1) == -1 && array.get(2) == -1
                             && array.get(3) == -1) {
                         break;
                     }
-                    System.out.println(chessGame.gameBoard().toString());
+
                     sendMessage(chessGame);
-                    while ((line = bin.readLine()) != null) {
-                        System.out.println(line);
-                        /*close the socket connection*/
-                        String[] arrOfStr = line.split(":", 4);
-                        Integer x;
-                        Integer y;
-                        Integer newx;
-                        Integer newy;
-                        x = Integer.parseInt(arrOfStr[0]);
-                        y = Integer.parseInt(arrOfStr[1]);
-                        newx = Integer.parseInt(arrOfStr[2]);
-                        newy = Integer.parseInt(arrOfStr[3]);
-                        List<Integer> list = new ArrayList<>();
-                        list.add(0, x);
-                        list.add(1, y);
-                        list.add(2, newx);
-                        list.add(3, newy);
-                        if (list.get(0) == -1 && list.get(0) == -1 && list.get(0) == -1
-                            && list.get(0) == -1) {
-                            break;
-                        }
-                        chessGame.getChessViewModel().getMove().postValue(list);
-                        turn = 1;
+                    turn = 0;
+                } else {
+                    /*runs if servers turn*/
+                    /* reads from socket */
+
+                    line = bin.readLine();
+
+                    String[] arrOfStr = line.split(":", 4);
+                    List<Integer> list = new ArrayList<>();
+                    list.add(0, Integer.parseInt(arrOfStr[0]));
+                    list.add(1, Integer.parseInt(arrOfStr[1]));
+                    list.add(2, Integer.parseInt(arrOfStr[2]));
+                    list.add(3, Integer.parseInt(arrOfStr[3]));
+                    if (list.get(0) == -1 && list.get(0) == -1 && list.get(0) == -1
+                        && list.get(0) == -1) {
                         break;
                     }
+                    chessGame.getChessViewModel().getMove().postValue(list);
+                    turn = 1;
+
                 }
             }
-
+            closeClient();
         } catch (IOException e) {
             System.err.println(e);
         }
     }
 
-    public void sendMessage(Game game) throws IOException {
+    /**
+     * Sends the game moves to client
+     * @param game the game information
+     * @throws IOException
+     */
+    private void sendMessage(Game game) throws IOException {
         PrintWriter pout = new PrintWriter(client.getOutputStream(), true);
+        ArrayList<Integer> array = game.gameBoard();
         /*write the data to the socket*/
-        pout.println(game.gameBoard().toString());
+        pout.println(array.get(0)+":"+array.get(1)+":"+array.get(2)+":"+array.get(3));
     }
 
+    /**
+     * Closes client
+     * @throws IOException
+     */
     public void closeClient() throws IOException {
         client.close();
     }

@@ -52,7 +52,8 @@ public class ChessFragment extends Fragment {
     View rootSave;
     ScrollView scrollViewChat;
     Button toggleHelpButton;
-    Boolean onWhite = true;
+    Boolean isWhite;
+    Boolean onWhite;
     private TextView homeHelpText;
     private TextView chatHelpText;
     private ChessGame chessGame;
@@ -65,7 +66,7 @@ public class ChessFragment extends Fragment {
     // Host id
     private String id = "";
     // true if host
-    private Boolean isHost = false;
+    private Boolean isHost = true;
     // true if need to add to player num
     private Boolean add = true;
     // Number of players on server
@@ -87,7 +88,6 @@ public class ChessFragment extends Fragment {
     private static Button replayButton;
     private static Button quitButton;
     private ConstraintLayout gameOverScreen;
-
     public void printChat(String chat) {
         TextView tv = new TextView(getContext());
         tv.setText(chat);
@@ -137,6 +137,7 @@ public class ChessFragment extends Fragment {
         homeHelpText = root.findViewById(R.id.home_help_text);
         chatHelpText = root.findViewById(R.id.message_help_text);
         toggleHelpButton = root.findViewById(R.id.help_button);
+        gameOverScreen = root.findViewById(R.id.game_end_screen);
         //toggles the help text which shows what home and chat button does with a popup explanation
         toggleHelpButton.setOnClickListener(new View.OnClickListener() {
             public void onClick(View v) {
@@ -269,7 +270,9 @@ public class ChessFragment extends Fragment {
         homeButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+                reset();
                 NavHostFragment.findNavController(ChessFragment.this).navigate((R.id.action_nav_chess_to_nav_home));
+
             }
         });
 
@@ -316,8 +319,12 @@ public class ChessFragment extends Fragment {
             }
         });
         if (isHost) {
+            isWhite = true;
+            onWhite = true;
             serverConn();
         } else {
+            isWhite = false;
+            onWhite = false;
             clientConn();
         }
         return root;
@@ -365,17 +372,23 @@ public class ChessFragment extends Fragment {
                             int x = Integer.parseInt(id.substring(0, 1));
                             int y = Integer.parseInt(id.substring(1));
                             String boardId = "board" + x + y;
-                            int boardFinder = getResources().getIdentifier(boardId, "id", getActivity().getPackageName());
+                            int boardFinder = getResources().getIdentifier(boardId,
+                                    "id", getActivity().getPackageName());
                             Button selectedBoard = root.findViewById(boardFinder);
-                            if (chessViewModel.selectChessPiece(x, y) && (onWhite && chessViewModel.getChessBoard()[x][y].contains("w") || !onWhite && chessViewModel.getChessBoard()[x][y].contains("b"))) {
+                            if (chessViewModel.selectChessPiece(x, y) && ( onWhite && isWhite &&
+                                    chessViewModel.getChessBoard()[x][y].contains("w") || !onWhite
+                                    && !isWhite && chessViewModel.getChessBoard()[x][y].
+                                    contains("b"))) {
                                 Drawable[] layers = new Drawable[2];
                                 try {
-                                    LayerDrawable tempBackground = (LayerDrawable) selectedBoard.getBackground();
+                                    LayerDrawable tempBackground =
+                                            (LayerDrawable) selectedBoard.getBackground();
                                     layers[1] =  tempBackground.getDrawable(1);
                                 } catch (Exception e) {
                                     layers = new Drawable[1];
                                 }
-                                layers[0] = AppCompatResources.getDrawable(getContext(),R.drawable.green);
+                                layers[0] = AppCompatResources.getDrawable(getContext(),
+                                        R.drawable.green);
                                 LayerDrawable pieceImage = new LayerDrawable(layers);
                                 selectedBoard.setBackground(pieceImage);
 
@@ -388,9 +401,13 @@ public class ChessFragment extends Fragment {
                                         if (newX < 8 && newX > -1 && newY < 8 && newY > -1) {
                                             //check if the piece is same team and if so dont add it.
                                             if (chessViewModel.getChessBoard()[newX][newY] != null) {
-                                                if (chessViewModel.getChessBoard()[x][y].contains("w") && chessViewModel.getChessBoard()[newX][newY].contains("w")) {
+                                                if (chessViewModel.getChessBoard()[x][y]
+                                                        .contains("w") && chessViewModel
+                                                        .getChessBoard()[newX][newY].contains("w")) {
                                                     continue;
-                                                } else if (chessViewModel.getChessBoard()[x][y].contains("b") && chessViewModel.getChessBoard()[newX][newY].contains("b")) {
+                                                } else if (chessViewModel.getChessBoard()[x][y]
+                                                        .contains("b") && chessViewModel
+                                                        .getChessBoard()[newX][newY].contains("b")) {
                                                     continue;
                                                 }
                                             }
@@ -1480,6 +1497,11 @@ public class ChessFragment extends Fragment {
             chessGame.setGame(array);
             chessGame.notify();
         }
+        System.out.println("The winner is White" );
+        winText = root.findViewById(R.id.winText);
+        String win = "The winner is White";
+        winText.setText(win);
+        gameOverScreen.setVisibility(View.VISIBLE);
         if (!isHost) {
             mDatabase.child("Games").child("Chess").child("Hosting").child("winner").setValue(MainActivity.currentUser.getId());
             mDatabase.child("Games").child("Chess").child("Hosting").child("name").setValue(MainActivity.currentUser.getFirstName());
@@ -1496,6 +1518,11 @@ public class ChessFragment extends Fragment {
             chessGame.setGame(array);
             chessGame.notify();
         }
+        System.out.println("The winner is Black" );
+        winText = root.findViewById(R.id.winText);
+        String win = "The winner is Black";
+        winText.setText(win);
+        gameOverScreen.setVisibility(View.VISIBLE);
         if (isHost) {
             mDatabase.child("Games").child("Chess").child("Hosting").child("winner").setValue(MainActivity.currentUser.getId());
             mDatabase.child("Games").child("Chess").child("Hosting").child("name").setValue(MainActivity.currentUser.getFirstName());

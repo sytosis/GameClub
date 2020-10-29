@@ -702,7 +702,7 @@
         android:id="@+id/game_end_screen"
         android:layout_width="@dimen/_200sdp"
         android:layout_height="@dimen/_200sdp"
-        android:background="@color/yelloworange"
+        android:background="@color/white"
         android:orientation="vertical"
         app:layout_constraintBottom_toBottomOf="@+id/linearLayout"
         app:layout_constraintEnd_toEndOf="parent"
@@ -712,8 +712,8 @@
 
         <TextView
             android:id="@id/winText"
-            android:layout_width="match_parent"
-            android:layout_height="@dimen/_50sdp"
+            android:layout_width="500dp"
+            android:layout_height="340dp"
             android:gravity="center"
             android:text="You win!"
             android:textSize="@dimen/_30ssp"
