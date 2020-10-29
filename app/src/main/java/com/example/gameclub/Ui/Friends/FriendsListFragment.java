@@ -15,6 +15,7 @@ import androidx.navigation.fragment.NavHostFragment;
 import com.example.gameclub.MainActivity;
 import com.example.gameclub.R;
 
+import java.util.ArrayList;
 import java.util.List;
 
 public class FriendsListFragment extends Fragment {
@@ -39,6 +40,9 @@ public class FriendsListFragment extends Fragment {
         LinearLayout friend4 = root.findViewById(R.id.friend_layout_4);
         List<String> friendList = MainActivity.currentUser.getFriendList();
         int size = friendList.size();
+        if (friendList.get(0).equals("")) {
+            size = 0;
+        }
         System.out.println("Size is: " + size);
         if (size <= 0) {
             friend1.setVisibility(View.INVISIBLE);
