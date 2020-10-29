@@ -25,6 +25,9 @@
         <action
             android:id="@+id/action_nav_home_to_nav_profile"
             app:destination="@+id/nav_profile" />
+        <action
+            android:id="@+id/action_nav_home_to_friendsListFragment"
+            app:destination="@id/friendsListFragment" />
     </fragment>
 
     <fragment
@@ -58,6 +61,9 @@
         <action
             android:id="@+id/action_nav_chess_to_nav_home"
             app:destination="@id/nav_home" />
+        <action
+            android:id="@+id/action_nav_chess_self"
+            app:destination="@id/nav_chess" />
     </fragment>
 
     <fragment
@@ -76,6 +82,14 @@
         tools:layout="@layout/make_new_friends">
         <action
             android:id="@+id/action_nav_make_friends_to_nav_home"
+            app:destination="@id/nav_home" />
+    </fragment>
+    <fragment
+        android:id="@+id/friendsListFragment"
+        android:name="com.example.gameclub.Ui.Friends.FriendsListFragment"
+        android:label="FriendsListFragment" >
+        <action
+            android:id="@+id/action_friendsListFragment_to_nav_home"
             app:destination="@id/nav_home" />
     </fragment>
 </navigation>

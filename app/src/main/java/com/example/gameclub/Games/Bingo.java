@@ -30,8 +30,8 @@ public class Bingo extends ViewModel {
     public List<Integer> bingoBoard = new ArrayList<>(25);
     public List<Boolean> checker = new ArrayList<>(25);
     private DatabaseReference mDatabase = FirebaseDatabase.getInstance().getReference();
-    List<Integer> usedNumbers = new ArrayList<>();
-    Random randomGenerator = new Random();
+    private List<Integer> usedNumbers = new ArrayList<>();
+    private Random randomGenerator = new Random();
     private String id;
     private boolean isHost = false;
     private Integer ballNum = 0;
@@ -144,7 +144,7 @@ public class Bingo extends ViewModel {
                     checkWin(newBall);
                 }
             }
-        }, 5000, 1000);
+        }, 5000, 10000);
     }
 
     public void finishGame() {

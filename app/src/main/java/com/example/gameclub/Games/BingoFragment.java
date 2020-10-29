@@ -21,11 +21,10 @@ import androidx.lifecycle.ViewModelProviders;
 import androidx.navigation.fragment.NavHostFragment;
 
 import com.example.gameclub.MainActivity;
-import com.example.gameclub.Network.ClientNetwork;
-import com.example.gameclub.Network.ServerNetwork;
 import com.example.gameclub.R;
-import com.example.gameclub.Ui.Authentication.AuthenticationFragment;
+
 import com.example.gameclub.Ui.Gallery.ChessFragment;
+
 import com.google.firebase.database.ChildEventListener;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
@@ -34,25 +33,28 @@ import com.google.firebase.database.FirebaseDatabase;
 
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Timer;
+import java.util.Random;
 
 public class BingoFragment extends Fragment {
 
     private static TextView winText;
     public Bingo bingoGame;
-    static View root;
-    List<ImageView> bingoBoardImages = new ArrayList<>();
-    List<TextView> bingoBoardText = new ArrayList<>();
-    Button chatOpenButton;
-    Button chatCloseButton;
-    LinearLayout wholeChatBox;
-    Button homeButton;
-    Button sendChat;
-    LinearLayout chatChessBox;
-    ScrollView scrollViewChat;
-    EditText text;
-    ImageView RollBall;
-    TextView RollText;
+    private static View root;
+    private List<ImageView> bingoBoardImages = new ArrayList<>();
+    private List<TextView> bingoBoardText = new ArrayList<>();
+    private Button chatOpenButton;
+    private Button chatCloseButton;
+    private LinearLayout wholeChatBox;
+    private Button homeButton;
+    private Button sendChat;
+    private Button toggleHelpButton;
+    private LinearLayout chatChessBox;
+    private ScrollView scrollViewChat;
+    private EditText text;
+    private ImageView RollBall;
+    private TextView RollText;
+    private TextView homeHelpText;
+    private TextView chatHelpText;
     private DatabaseReference mDatabase = FirebaseDatabase.getInstance().getReference();
     private String receive;
     private String[] record;
@@ -60,6 +62,18 @@ public class BingoFragment extends Fragment {
     private static Button quitButton;
     private ConstraintLayout gameOverScreen;
     private Integer winner;
+    private static Boolean serverMessage = false;
+    private static Random randomGenerator = new Random();
+    private static Integer recordlen = 0;
+    private static Integer receivelen = 0;
+
+    public static void setServerMessage(Boolean state) {
+        serverMessage = state;
+    }
+
+    public static Boolean getServerMessage() {
+        return serverMessage;
+    }
 
     public void fillBingoBoardTextList() {
         bingoBoardText.add((TextView) root.findViewById(R.id.Text1));
@@ -176,6 +190,7 @@ public class BingoFragment extends Fragment {
     }
 
     public void printChat(String chat) {
+        serverMessage = true;
         TextView tv = new TextView(getContext());
         tv.setText(chat);
         tv.setTextSize(TypedValue.COMPLEX_UNIT_SP,20);
@@ -190,7 +205,7 @@ public class BingoFragment extends Fragment {
         root = inflater.inflate(R.layout.fragment_bingo, container, false);
         chatCloseButton = root.findViewById(R.id.close_chat_button);
         chatOpenButton = root.findViewById(R.id.message_button);
-        homeButton = root.findViewById(R.id.home_button);
+        homeButton = root.findViewById(R.id.Bingo_Home_Button);
         sendChat = root.findViewById(R.id.send_chat_button);
         chatChessBox = root.findViewById(R.id.chess_chat_box);
         scrollViewChat = root.findViewById(R.id.scrollview_chat);
@@ -201,6 +216,10 @@ public class BingoFragment extends Fragment {
         replayButton = root.findViewById(R.id.replay);
         quitButton = root.findViewById(R.id.quit);
         gameOverScreen = root.findViewById(R.id.game_end_screen);
+        homeHelpText = root.findViewById(R.id.home_help_text);
+        chatHelpText = root.findViewById(R.id.message_help_text);
+        toggleHelpButton = root.findViewById(R.id.toggle_help_text_button);
+
 
         mDatabase.addChildEventListener(new ChildEventListener() {
             @Override
@@ -221,16 +240,13 @@ public class BingoFragment extends Fragment {
             public void onChildChanged(@NonNull DataSnapshot snapshot, @Nullable String previousChildName) {
                 try {
                     winner = Integer.parseInt(snapshot.child("Bingo").child("Hosting").child("winner").getValue().toString());
-                    stampBall();
                     receive = snapshot.child("Bingo").child("Hosting").child("Chat").getValue().toString();
                     String[] messages = receive.split("/");
-                    int recordlen = record.length;
-                    int receivelen = messages.length;
+                    recordlen = record.length;
+                    receivelen = messages.length;
+                    stampBall();
                     if (recordlen < receivelen) {
                         int difference = receivelen - recordlen;
-                        System.out.println("receive length " + receivelen);
-                        System.out.println("record length " + recordlen);
-
                         for (int i = receivelen - difference; i < receivelen; ++i) {
                             printChat(messages[i]);
                         }
@@ -266,13 +282,24 @@ public class BingoFragment extends Fragment {
         fillBingoBoardImageList();
         setBoardColours();
 
-        final Button homeButton = root.findViewById(R.id.Bingo_Home_Button);
         homeButton.setOnClickListener(new View.OnClickListener() {
             public void onClick(View v) {
                 NavHostFragment.findNavController(BingoFragment.this).navigate((R.id.action_nav_bingo_to_home));
             }
         });
 
+        //toggles the help text which shows what home and chat button does with a popup explanation
+        toggleHelpButton.setOnClickListener(new View.OnClickListener() {
+            public void onClick(View v) {
+                if (homeHelpText.getVisibility() == View.INVISIBLE) {
+                    homeHelpText.setVisibility(View.VISIBLE);
+                    chatHelpText.setVisibility(View.VISIBLE);
+                } else {
+                    homeHelpText.setVisibility(View.INVISIBLE);
+                    chatHelpText.setVisibility(View.INVISIBLE);
+                }
+            }
+        });
         String replay = "Play Again";
         replayButton.setText(replay);
 

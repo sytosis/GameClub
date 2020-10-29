@@ -7,6 +7,18 @@
     tools:context=".Ui.Home.HomeFragment"
     android:background="@drawable/wood_background">
 
+    <Button
+        android:id="@+id/back_button"
+        android:layout_width="126dp"
+        android:layout_height="93dp"
+        android:layout_marginStart="20dp"
+        android:layout_marginTop="20dp"
+        android:background="@drawable/home_back"
+        android:text="Button"
+        android:visibility="invisible"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"/>
+
     <TextView
         android:id="@+id/text_home"
         android:layout_width="match_parent"

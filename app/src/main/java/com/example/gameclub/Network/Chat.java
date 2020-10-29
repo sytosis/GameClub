@@ -3,7 +3,6 @@ package com.example.gameclub.Network;
 public class Chat {
 
     private String sender;
-
     private String receiver;
     private String message;
 

@@ -7,6 +7,17 @@
     android:background="@drawable/wood_background"
     tools:context=".Ui.Home.HomeFragment">
 
+    <Button
+        android:id="@+id/back_button"
+        android:layout_width="100dp"
+        android:layout_height="70dp"
+        android:layout_marginStart="20dp"
+        android:layout_marginTop="20dp"
+        android:background="@drawable/home_back"
+        android:text="Button"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
     <LinearLayout
         android:layout_width="@dimen/_230sdp"
         android:layout_height="@dimen/_200sdp"
@@ -143,13 +154,6 @@
             android:textSize="@dimen/_14sdp"
             />
     </androidx.constraintlayout.widget.ConstraintLayout>
-    <Button
-        android:id="@+id/home_button"
-        android:layout_width="@dimen/_40sdp"
-        android:layout_height="@dimen/_40sdp"
-        android:background="@drawable/home_icon"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>

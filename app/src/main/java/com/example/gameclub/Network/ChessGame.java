@@ -1,16 +1,8 @@
 package com.example.gameclub.Network;
 
-import android.graphics.drawable.Drawable;
-import android.graphics.drawable.LayerDrawable;
 import android.view.View;
-import android.widget.Button;
-import android.widget.EditText;
-import android.widget.LinearLayout;
-import android.widget.ScrollView;
 
-import androidx.appcompat.content.res.AppCompatResources;
 
-import com.example.gameclub.R;
 import com.example.gameclub.Ui.Gallery.ChessViewModel;
 
 import java.util.ArrayList;
@@ -18,9 +10,10 @@ import java.util.ArrayList;
 public class ChessGame implements Game{
 
     private ChessViewModel chessViewModel;
-    ArrayList<Integer> array;
-    View root;
-    Boolean onWhite = true;
+    private ArrayList<Integer> array;
+    private View root;
+    private Boolean onWhite = true;
+
     public ChessGame(ChessViewModel chessModel,  View rootSave) {
         chessViewModel = chessModel;
         root = rootSave;

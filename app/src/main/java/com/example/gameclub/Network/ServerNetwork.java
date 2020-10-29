@@ -23,9 +23,11 @@ import java.util.List;
 
 
 public class ServerNetwork implements Runnable {
-    TextView text;
-    Socket client;
-    ChessGame chessGame;
+    private TextView text;
+    private Socket client;
+    private ChessGame chessGame;
+    private int turn = 1;
+
     public ServerNetwork( ChessGame newChessGame) {
 
         chessGame = newChessGame;
@@ -36,36 +38,16 @@ public class ServerNetwork implements Runnable {
         try {
             System.out.println("here");
             ServerSocket sock = new ServerSocket(6013);
+            client = sock.accept();
+            InputStream in = client.getInputStream();
+            BufferedReader bin = new BufferedReader(new InputStreamReader(in));
+            PrintWriter pout = new PrintWriter(client.getOutputStream(),true);
 
+            /*read the data from the socket*/
+            String line;
             /*Listen for connections */
             while (true) {
-                client = sock.accept();
-                InputStream in = client.getInputStream();
-                BufferedReader bin = new BufferedReader(new InputStreamReader(in));
-                PrintWriter pout = new PrintWriter(client.getOutputStream(),true);
-
-                /*read the data from the socket*/
-                String line;
-                while ((line = bin.readLine()) != null) {
-                    String[] arrOfStr = line.split(":",4);
-                    Integer x;
-                    Integer y;
-                    Integer newx;
-                    Integer newy;
-                    x = Integer.parseInt(arrOfStr[0]);
-                    y = Integer.parseInt(arrOfStr[1]);
-                    newx = Integer.parseInt(arrOfStr[2]);
-                    newy = Integer.parseInt(arrOfStr[3]);
-                    List<Integer> list = new ArrayList<>();
-                    list.add(0,x);
-                    list.add(1,y);
-                    list.add(2,newx);
-                    list.add(3,newy);
-                    if (list.get(0) == -1 &&  list.get(0) == -1  && list.get(0) == -1
-                            && list.get(0) == -1 ) {
-                        break;
-                    }
-                    chessGame.getChessViewModel().getMove().postValue(list);
+                if(turn == 1) {
                     synchronized (chessGame) {
                         try {
 
@@ -76,16 +58,42 @@ public class ServerNetwork implements Runnable {
                     }
                     System.out.println("I got up to here");
                     ArrayList<Integer> array = chessGame.gameBoard();
-                    if (array.get(0) == -1 &&  array.get(1) == -1  && array.get(2) == -1
-                            && array.get(3) == -1 ) {
+                    if (array.get(0) == -1 && array.get(1) == -1 && array.get(2) == -1
+                            && array.get(3) == -1) {
                         break;
                     }
                     System.out.println(chessGame.gameBoard().toString());
                     sendMessage(chessGame);
+                    turn = 0;
+                } else {
+                    line = bin.readLine();
+                    String[] arrOfStr = line.split(":", 4);
+                    Integer x;
+                    Integer y;
+                    Integer newx;
+                    Integer newy;
+                    x = Integer.parseInt(arrOfStr[0]);
+                    y = Integer.parseInt(arrOfStr[1]);
+                    newx = Integer.parseInt(arrOfStr[2]);
+                    newy = Integer.parseInt(arrOfStr[3]);
+                    List<Integer> list = new ArrayList<>();
+                    list.add(0, x);
+                    list.add(1, y);
+                    list.add(2, newx);
+                    list.add(3, newy);
+                    if (list.get(0) == -1 && list.get(0) == -1 && list.get(0) == -1
+                            && list.get(0) == -1) {
+                        break;
+                    }
+                    chessGame.getChessViewModel().getMove().postValue(list);
+                    turn = 1;
+
+
                 }
 
-                client.close();
+
             }
+            client.close();
         } catch(IOException e) {
             System.err.println(e);
         }
