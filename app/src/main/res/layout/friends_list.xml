@@ -20,6 +20,7 @@
             android:orientation="vertical">
 
             <LinearLayout
+                android:id="@+id/friend_layout_1"
                 android:layout_width="match_parent"
                 android:layout_height="88dp"
                 android:background="@drawable/border"
@@ -123,6 +124,7 @@
                 android:layout_height="25dp" />
 
             <LinearLayout
+                android:id="@+id/friend_layout_2"
                 android:layout_width="match_parent"
                 android:layout_height="88dp"
                 android:background="@drawable/border"
@@ -157,6 +159,214 @@
                     android:layout_weight="1"
                     android:gravity="center_vertical"
                     android:text="Jason"
+                    android:textColor="#000000"
+                    android:textSize="18sp"
+                    android:textStyle="bold" />
+
+                <Space
+                    style="?android:attr/borderlessButtonStyle"
+                    android:layout_width="250dp"
+                    android:layout_height="match_parent"
+                    android:layout_weight="1" />
+
+                <Button
+                    android:id="@+id/invite"
+                    style="?android:attr/borderlessButtonStyle"
+                    android:layout_width="161dp"
+                    android:layout_height="match_parent"
+                    android:layout_weight="1"
+                    android:background="@drawable/invite3"
+                    android:gravity="right|center"
+                    android:text="invite"
+                    android:textSize="24sp" />
+
+                <Space
+                    style="?android:attr/borderlessButtonStyle"
+                    android:layout_width="25dp"
+                    android:layout_height="match_parent"
+                    android:layout_weight="1" />
+
+                <Button
+                    android:id="@+id/chat"
+                    style="?android:attr/borderlessButtonStyle"
+                    android:layout_width="161dp"
+                    android:layout_height="match_parent"
+                    android:layout_weight="1"
+                    android:background="@drawable/chat2"
+                    android:gravity="right|center"
+                    android:text="chat"
+                    android:textSize="24sp" />
+
+                <Space
+                    style="?android:attr/borderlessButtonStyle"
+                    android:layout_width="25dp"
+                    android:layout_height="match_parent"
+                    android:layout_weight="1" />
+
+                <Button
+                    android:id="@+id/Delete"
+                    style="?android:attr/borderlessButtonStyle"
+                    android:layout_width="161dp"
+                    android:layout_height="match_parent"
+                    android:layout_weight="1"
+                    android:background="@drawable/delete2"
+                    android:gravity="right|center"
+                    android:shadowColor="#00FFFFFF"
+                    android:singleLine="false"
+                    android:text="Delete"
+                    android:textSize="24sp" />
+
+                <Space
+                    android:layout_width="50dp"
+                    android:layout_height="match_parent"
+                    android:layout_weight="1" />
+
+            </LinearLayout>
+
+            <Space
+                android:layout_width="wrap_content"
+                android:layout_height="25dp" />
+
+            <LinearLayout
+                android:id="@+id/friend_layout_3"
+                android:layout_width="match_parent"
+                android:layout_height="88dp"
+                android:background="@drawable/border"
+                android:orientation="horizontal">
+
+                <Space
+                    style="?android:attr/borderlessButtonStyle"
+                    android:layout_width="150dp"
+                    android:layout_height="match_parent"
+                    android:layout_weight="1" />
+
+                <Button
+                    android:id="@+id/pic2"
+                    style="?android:attr/borderlessButtonStyle"
+                    android:layout_width="90dp"
+                    android:layout_height="75dp"
+                    android:layout_gravity="center_vertical"
+                    android:layout_weight="1"
+                    android:background="@drawable/rose_photo"
+                    android:gravity="center" />
+
+                <Space
+                    android:id="@+id/space"
+                    android:layout_width="25dp"
+                    android:layout_height="match_parent"
+                    android:layout_weight="1" />
+
+                <TextView
+                    android:id="@+id/person2"
+                    android:layout_width="70dp"
+                    android:layout_height="match_parent"
+                    android:layout_weight="1"
+                    android:gravity="center_vertical"
+                    android:text="Rose"
+                    android:textColor="#000000"
+                    android:textSize="18sp"
+                    android:textStyle="bold" />
+
+                <Space
+                    style="?android:attr/borderlessButtonStyle"
+                    android:layout_width="250dp"
+                    android:layout_height="match_parent"
+                    android:layout_weight="1" />
+
+                <Button
+                    android:id="@+id/invite"
+                    style="?android:attr/borderlessButtonStyle"
+                    android:layout_width="161dp"
+                    android:layout_height="match_parent"
+                    android:layout_weight="1"
+                    android:background="@drawable/invite3"
+                    android:gravity="right|center"
+                    android:text="invite"
+                    android:textSize="24sp" />
+
+                <Space
+                    style="?android:attr/borderlessButtonStyle"
+                    android:layout_width="25dp"
+                    android:layout_height="match_parent"
+                    android:layout_weight="1" />
+
+                <Button
+                    android:id="@+id/chat"
+                    style="?android:attr/borderlessButtonStyle"
+                    android:layout_width="161dp"
+                    android:layout_height="match_parent"
+                    android:layout_weight="1"
+                    android:background="@drawable/chat2"
+                    android:gravity="right|center"
+                    android:text="chat"
+                    android:textSize="24sp" />
+
+                <Space
+                    style="?android:attr/borderlessButtonStyle"
+                    android:layout_width="25dp"
+                    android:layout_height="match_parent"
+                    android:layout_weight="1" />
+
+                <Button
+                    android:id="@+id/Delete"
+                    style="?android:attr/borderlessButtonStyle"
+                    android:layout_width="161dp"
+                    android:layout_height="match_parent"
+                    android:layout_weight="1"
+                    android:background="@drawable/delete2"
+                    android:gravity="right|center"
+                    android:shadowColor="#00FFFFFF"
+                    android:singleLine="false"
+                    android:text="Delete"
+                    android:textSize="24sp" />
+
+                <Space
+                    android:layout_width="50dp"
+                    android:layout_height="match_parent"
+                    android:layout_weight="1" />
+
+            </LinearLayout>
+
+            <Space
+                android:layout_width="wrap_content"
+                android:layout_height="25dp" />
+
+            <LinearLayout
+                android:id="@+id/friend_layout_4"
+                android:layout_width="match_parent"
+                android:layout_height="88dp"
+                android:background="@drawable/border"
+                android:orientation="horizontal">
+
+                <Space
+                    style="?android:attr/borderlessButtonStyle"
+                    android:layout_width="150dp"
+                    android:layout_height="match_parent"
+                    android:layout_weight="1" />
+
+                <Button
+                    android:id="@+id/pic2"
+                    style="?android:attr/borderlessButtonStyle"
+                    android:layout_width="90dp"
+                    android:layout_height="75dp"
+                    android:layout_gravity="center_vertical"
+                    android:layout_weight="1"
+                    android:background="@drawable/sue_photo"
+                    android:gravity="center" />
+
+                <Space
+                    android:id="@+id/space"
+                    android:layout_width="25dp"
+                    android:layout_height="match_parent"
+                    android:layout_weight="1" />
+
+                <TextView
+                    android:id="@+id/person2"
+                    android:layout_width="70dp"
+                    android:layout_height="match_parent"
+                    android:layout_weight="1"
+                    android:gravity="center_vertical"
+                    android:text="Sue"
                     android:textColor="#000000"
                     android:textSize="18sp"
                     android:textStyle="bold" />

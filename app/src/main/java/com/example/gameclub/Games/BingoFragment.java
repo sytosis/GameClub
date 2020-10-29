@@ -33,6 +33,7 @@ import com.google.firebase.database.FirebaseDatabase;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Random;
 
 public class BingoFragment extends Fragment {
 
@@ -61,6 +62,18 @@ public class BingoFragment extends Fragment {
     private static Button quitButton;
     private ConstraintLayout gameOverScreen;
     private Integer winner;
+    private static Boolean serverMessage = false;
+    private static Random randomGenerator = new Random();
+    private static Integer recordlen = 0;
+    private static Integer receivelen = 0;
+
+    public static void setServerMessage(Boolean state) {
+        serverMessage = state;
+    }
+
+    public static Boolean getServerMessage() {
+        return serverMessage;
+    }
 
     public void fillBingoBoardTextList() {
         bingoBoardText.add((TextView) root.findViewById(R.id.Text1));
@@ -177,6 +190,7 @@ public class BingoFragment extends Fragment {
     }
 
     public void printChat(String chat) {
+        serverMessage = true;
         TextView tv = new TextView(getContext());
         tv.setText(chat);
         tv.setTextSize(TypedValue.COMPLEX_UNIT_SP,20);
@@ -226,16 +240,13 @@ public class BingoFragment extends Fragment {
             public void onChildChanged(@NonNull DataSnapshot snapshot, @Nullable String previousChildName) {
                 try {
                     winner = Integer.parseInt(snapshot.child("Bingo").child("Hosting").child("winner").getValue().toString());
-                    stampBall();
                     receive = snapshot.child("Bingo").child("Hosting").child("Chat").getValue().toString();
                     String[] messages = receive.split("/");
-                    int recordlen = record.length;
-                    int receivelen = messages.length;
+                    recordlen = record.length;
+                    receivelen = messages.length;
+                    stampBall();
                     if (recordlen < receivelen) {
                         int difference = receivelen - recordlen;
-                        System.out.println("receive length " + receivelen);
-                        System.out.println("record length " + recordlen);
-
                         for (int i = receivelen - difference; i < receivelen; ++i) {
                             printChat(messages[i]);
                         }

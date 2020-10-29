@@ -144,7 +144,7 @@ public class Bingo extends ViewModel {
                     checkWin(newBall);
                 }
             }
-        }, 5000, 1000);
+        }, 5000, 10000);
     }
 
     public void finishGame() {
