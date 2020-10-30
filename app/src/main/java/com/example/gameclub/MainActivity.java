@@ -21,6 +21,7 @@ public class MainActivity extends AppCompatActivity {
     private DrawerLayout drawer;
     public static User currentUser;
 
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);

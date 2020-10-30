@@ -68,7 +68,7 @@ public class AuthenticationFragment extends Fragment {
     private List<String> existingId = new ArrayList<String>();
     private List<String> existingEmails = new ArrayList<String>();
     private List<String> existingPasswords = new ArrayList<String>();
-    private List<User> existingUsers = new ArrayList<User>();
+    public static List<User> existingUsers = new ArrayList<User>();
 
     public AuthenticationFragment() {
     }

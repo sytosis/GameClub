@@ -28,6 +28,7 @@ public class HomeFragment extends Fragment {
     private Button rightButton;
     private Button profileButton;
     private Button backButton;
+    private Button logoutButton;
     private boolean game_page = false;
 
     public HomeFragment() {
@@ -58,6 +59,14 @@ public class HomeFragment extends Fragment {
                 lp.width = (int) (new_friends.getWidth()/1.2);
                 new_friends.setLayoutParams(lp);
                 rightButton.setLayoutParams(lp);
+            }
+        });
+
+        logoutButton = root.findViewById(R.id.logout_button);
+        logoutButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                NavHostFragment.findNavController(HomeFragment.this).navigate(R.id.action_HomeFragment_to_AuthenticationFragment);
             }
         });
 

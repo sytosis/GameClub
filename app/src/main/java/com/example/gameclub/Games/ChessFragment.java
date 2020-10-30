@@ -42,7 +42,7 @@ import java.util.List;
  * To play chess you must have two emulators open, a tutorial can be found on android developers site
  * The game will wait for a client to start on localhost. If this is not feasible as two emulator
  * will take up a large amount of processing power and some systems might not have the ability
- * to run this you. If you want to run a single player game go to line 78,368 and 429 and follow the instruction
+ * to run this you. If you want to run a single player game go to line 81,372 and 437 and follow the instruction
  * @author John Roby John
  * @author Kevin Chua
  * @author Jordan Ng
@@ -368,6 +368,7 @@ public class ChessFragment extends Fragment {
             }
         });
         if (isHost) {
+
             /* uncomment the line below for single player */
             //startGame();
             isWhite = true;
@@ -429,9 +430,9 @@ public class ChessFragment extends Fragment {
                             int boardFinder = getResources().getIdentifier(boardId,
                                     "id", getActivity().getPackageName());
                             Button selectedBoard = root.findViewById(boardFinder);
-                            if (chessViewModel.selectChessPiece(x, y) && ( onWhite && isWhite &&
+                            if (chessViewModel.selectChessPiece(x, y) && ( onWhite &&
                                     chessViewModel.getChessBoard()[x][y].contains("w") || !onWhite
-                                    && !isWhite && chessViewModel.getChessBoard()[x][y].
+                                    && chessViewModel.getChessBoard()[x][y].
                                     contains("b"))) {
                             /*To test on single device comment the above 4 lines of code and uncomment the bottom 4 */
                             //if (chessViewModel.selectChessPiece(x, y) && ( onWhite && isWhite &&
@@ -631,7 +632,7 @@ public class ChessFragment extends Fragment {
                                         }
                                     }
                                     //check diagonals
-                                    if (x != 0 && chessViewModel.getChessBoard()[x + 1][y - 1] != null) {
+                                    if (x != 7 && chessViewModel.getChessBoard()[x + 1][y - 1] != null) {
                                         if (chessViewModel.getChessBoard()[x + 1][y - 1].contains("w")) {
                                             int dX = x + 1;
                                             int dY = y - 1;

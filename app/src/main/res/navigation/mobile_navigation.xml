@@ -91,5 +91,16 @@
         <action
             android:id="@+id/action_friendsListFragment_to_nav_home"
             app:destination="@id/nav_home" />
+        <action
+            android:id="@+id/action_friendsListFragment_to_fragmentProfileOther"
+            app:destination="@id/OtherProfileFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/OtherProfileFragment"
+        android:name="com.example.gameclub.Ui.Friends.OtherProfileFragment"
+        android:label="FragmentProfileOther" >
+        <action
+            android:id="@+id/action_OtherProfileFragment_to_friendsListFragment"
+            app:destination="@id/friendsListFragment" />
     </fragment>
 </navigation>
