@@ -358,6 +358,7 @@ public class ChessFragment extends Fragment {
             }
         });
         if (isHost) {
+            startGame();
             isWhite = true;
             onWhite = true;
             serverConn();
@@ -614,7 +615,7 @@ public class ChessFragment extends Fragment {
                                         }
                                     }
                                     //check diagonals
-                                    if (x != 0 && chessViewModel.getChessBoard()[x + 1][y - 1] != null) {
+                                    if (x != 7 && chessViewModel.getChessBoard()[x + 1][y - 1] != null) {
                                         if (chessViewModel.getChessBoard()[x + 1][y - 1].contains("w")) {
                                             int dX = x + 1;
                                             int dY = y - 1;
