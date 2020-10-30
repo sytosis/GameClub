@@ -34,14 +34,13 @@
         android:layout_marginTop="@dimen/_30sdp"
         />
     <Button
-        android:id="@+id/home_chat"
+        android:id="@+id/logout_button"
         android:layout_width="@dimen/_40sdp"
         android:layout_height="@dimen/_40sdp"
         android:background="@drawable/message"
         android:layout_marginRight="@dimen/_30sdp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintBottom_toTopOf="@+id/text_home"
-        android:visibility="invisible"
         />
     <Button
         android:id="@+id/home_back"
