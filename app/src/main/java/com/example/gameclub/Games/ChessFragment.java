@@ -417,9 +417,9 @@ public class ChessFragment extends Fragment {
                             int boardFinder = getResources().getIdentifier(boardId,
                                     "id", getActivity().getPackageName());
                             Button selectedBoard = root.findViewById(boardFinder);
-                            if (chessViewModel.selectChessPiece(x, y) && ( onWhite && isWhite &&
+                            if (chessViewModel.selectChessPiece(x, y) && ( onWhite &&
                                     chessViewModel.getChessBoard()[x][y].contains("w") || !onWhite
-                                    && !isWhite && chessViewModel.getChessBoard()[x][y].
+                                    && chessViewModel.getChessBoard()[x][y].
                                     contains("b"))) {
                                 Drawable[] layers = new Drawable[2];
                                 try {
