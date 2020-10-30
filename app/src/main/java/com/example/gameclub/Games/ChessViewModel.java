@@ -1,5 +1,5 @@
 
-package com.example.gameclub.Ui.Gallery;
+package com.example.gameclub.Games;
 
 import android.app.Activity;
 import android.util.Pair;

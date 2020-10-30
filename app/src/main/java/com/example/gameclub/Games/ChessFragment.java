@@ -1,5 +1,5 @@
 
-package com.example.gameclub.Ui.Gallery;
+package com.example.gameclub.Games;
 
 import android.graphics.drawable.Drawable;
 import android.graphics.drawable.LayerDrawable;
@@ -25,7 +25,6 @@ import androidx.lifecycle.ViewModelProviders;
 import androidx.navigation.fragment.NavHostFragment;
 
 import com.example.gameclub.MainActivity;
-import com.example.gameclub.Network.ChessGame;
 import com.example.gameclub.Network.ClientNetwork;
 import com.example.gameclub.Network.ServerNetwork;
 import com.example.gameclub.R;
@@ -38,9 +37,11 @@ import com.google.firebase.database.FirebaseDatabase;
 import java.util.ArrayList;
 import java.util.List;
 
-
+/**
+ * Controls chess UI and some functionality
+ */
 public class ChessFragment extends Fragment {
-    private com.example.gameclub.Ui.Gallery.ChessViewModel chessViewModel;
+    private ChessViewModel chessViewModel;
     //setup buttons for the UI
     Button boardButton;
     Button chatCloseButton;
@@ -89,6 +90,14 @@ public class ChessFragment extends Fragment {
     private static Button replayButton;
     private static Button quitButton;
     private ConstraintLayout gameOverScreen;
+
+    public ChessFragment() {
+
+    }
+
+    /**
+     *  Print the chat using the given string
+     */
     public void printChat(String chat) {
         TextView tv = new TextView(getContext());
         tv.setText(chat);
@@ -116,7 +125,7 @@ public class ChessFragment extends Fragment {
      * Finish the game and sets winners
      */
     public void finishGame() {
-        // Popup magic happens
+        // Finish game popup appears
         if (Integer.parseInt(MainActivity.currentUser.getId()) == winCheck) {
             System.out.println("YOU WON");
         } else {
@@ -126,6 +135,7 @@ public class ChessFragment extends Fragment {
             winText.setText(win);
         }
         gameOverScreen.setVisibility(View.VISIBLE);
+        // Reset game
         reset();
     }
 
@@ -196,24 +206,30 @@ public class ChessFragment extends Fragment {
                     }
             }
 
-
+            // If database changes values
             @Override
             public void onChildChanged(@NonNull DataSnapshot snapshot, @Nullable String previousChildName) {
                     try {
+                        // Set the player names
                         String playerName = snapshot.child("Chess").child("Hosting").child("player1").getValue().toString();
                         player1.setText(playerName);
                         playerName = snapshot.child("Chess").child("Hosting").child("player2").getValue().toString();
                         player2.setText(playerName);
                         playerNum = Integer.parseInt(snapshot.child("Chess").child("Hosting").child("Num").getValue().toString());
                         if (playerNum.equals(2)) {
+                            // Game can be started
                             mDatabase.child("Games").child("Chess").child("Hosting").child("started").setValue("true");
                         }
                         if (snapshot.child("Chess").child("Hosting").child("started").getValue().toString().equals("true")) {
+                            // Game has started
                             started = true;
+                            // Start game
                             startGame();
                         }
+                        // Check if someone has won
                         winCheck = Integer.parseInt(snapshot.child("Chess").child("Hosting").child("winner").getValue().toString());
                         if (winCheck != -1) {
+                            // Finish game if someone has won
                             winName = snapshot.child("Chess").child("Hosting").child("name").getValue().toString();
                             finishGame();
                         }
@@ -221,14 +237,17 @@ public class ChessFragment extends Fragment {
                         String[] messages = receive.split("/");
                         int recordlen = record.length;
                         int receivelen = messages.length;
+                        // If the user chat is shorter than database chat
                         if (recordlen < receivelen) {
+                            // Get number of chats user needs
                             int difference = receivelen - recordlen;
                             System.out.println("receive length " + receivelen);
                             System.out.println("record length " + recordlen);
-
+                            // Print the database chats user doesn't have
                             for (int i = receivelen - difference; i < receivelen; ++i) {
                                 printChat(messages[i]);
                             }
+                            // Update record to database record
                             record = messages;
                         }
                     } catch (Exception e) {
@@ -251,8 +270,9 @@ public class ChessFragment extends Fragment {
 
             }
         });
+
         chessViewModel =
-                ViewModelProviders.of(this).get(com.example.gameclub.Ui.Gallery.ChessViewModel.class);
+                ViewModelProviders.of(this).get(ChessViewModel.class);
 
         final Observer<List<Integer>> chessMove = new Observer<List<Integer>>() {
             @Override
@@ -266,6 +286,7 @@ public class ChessFragment extends Fragment {
             }
 
         };
+
         chessViewModel.getMove().observe(getViewLifecycleOwner(), chessMove);
         wholeChatBox = root.findViewById(R.id.whole_chat_box);
         chatCloseButton = root.findViewById(R.id.close_chat_button);
@@ -281,6 +302,7 @@ public class ChessFragment extends Fragment {
         homeButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+                //reset game
                 reset();
                 NavHostFragment.findNavController(ChessFragment.this).navigate((R.id.action_nav_chess_to_nav_home));
 

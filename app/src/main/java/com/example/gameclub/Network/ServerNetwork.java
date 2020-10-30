@@ -1,6 +1,9 @@
 package com.example.gameclub.Network;
 
 import android.widget.TextView;
+
+import com.example.gameclub.Games.ChessGame;
+
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStream;

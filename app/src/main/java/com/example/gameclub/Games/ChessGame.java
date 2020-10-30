@@ -1,9 +1,9 @@
-package com.example.gameclub.Network;
+package com.example.gameclub.Games;
 
 import android.view.View;
 
 
-import com.example.gameclub.Ui.Gallery.ChessViewModel;
+import com.example.gameclub.Network.Game;
 
 import java.util.ArrayList;
 
@@ -12,7 +12,7 @@ import java.util.ArrayList;
  * user selected piece and it's new destination. Meaning the selected piece are to move to the
  * new destination.
  */
-public class ChessGame implements Game{
+public class ChessGame implements Game {
 
     private ChessViewModel chessViewModel;
     private ArrayList<Integer> array;

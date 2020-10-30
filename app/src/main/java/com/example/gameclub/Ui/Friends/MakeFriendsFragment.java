@@ -27,6 +27,9 @@ public class MakeFriendsFragment extends Fragment {
     private Button sue;
     private Button clay;
 
+    public MakeFriendsFragment() {
+
+    }
 
     public View onCreateView(@NonNull LayoutInflater inflater,
                              ViewGroup container, Bundle savedInstanceState) {
@@ -37,6 +40,8 @@ public class MakeFriendsFragment extends Fragment {
                 NavHostFragment.findNavController(MakeFriendsFragment.this).navigate((R.id.action_nav_make_friends_to_nav_home));
             }
         });
+        // Add friend to user if clicked on
+
         jack = root.findViewById(R.id.jack_button);
         jack.setOnClickListener(new View.OnClickListener() {
             public void onClick(View v) {
@@ -73,7 +78,6 @@ public class MakeFriendsFragment extends Fragment {
                 MainActivity.currentUser.addFriend("clay");
             }
         });
-
 
         return root;
     }

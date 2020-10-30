@@ -62,12 +62,6 @@ public class AuthenticationFragment extends Fragment {
     private List<String> existingEmails = new ArrayList<String>();
     private List<String> existingPasswords = new ArrayList<String>();
     private List<User> existingUsers = new ArrayList<User>();
-    private StorageReference storageRef = FirebaseStorage.getInstance().getReference() ;
-    private StorageReference imagesRef = storageRef.child("images");
-    private StorageReference spaceRef = storageRef.child("images/space.jpg");
-    private ImageView imageView;
-
-
 
     public AuthenticationFragment() {
     }
@@ -79,8 +73,10 @@ public class AuthenticationFragment extends Fragment {
         mDatabase.addChildEventListener(new ChildEventListener() {
             @Override
             public void onChildAdded(@NonNull DataSnapshot snapshot, @Nullable String previousChildName) {
+                // Get all existing users in the database
                 Log.d(snapshot.getKey(), snapshot.getChildrenCount() + "");
                 userNum = snapshot.getChildrenCount();
+                // For each user
                 for (DataSnapshot postSnapshot: snapshot.getChildren()) {
                     try {
                         String id = postSnapshot.getKey();
@@ -94,7 +90,9 @@ public class AuthenticationFragment extends Fragment {
                         existingEmails.add(email);
                         existingId.add(id);
                         existingPasswords.add(pass);
+                        // Create new user
                         User user = new User(id, email, pass, first, last, country, interests, friends);
+                        // Add to user list
                         existingUsers.add(user);
                     } catch (NullPointerException n) {
                         System.out.println("Null Pointer Caught" + n);
@@ -221,9 +219,11 @@ public class AuthenticationFragment extends Fragment {
                         topText.setTextColor(Color.RED);
                     }
                 } else if (pageNumber == 9) {
+                    // Check if email exists in database
                     if (existingEmails.contains(topEditText.getText().toString())) {
                         int index = existingEmails.indexOf(topEditText.getText().toString());
                         String correctPass = existingPasswords.get(index);
+                        // Check if the corresponding password is correct
                         if (correctPass.equals(bottomEditText.getText().toString())) {
                             MainActivity.currentUser = existingUsers.get(index);
                             NavHostFragment.findNavController(AuthenticationFragment.this).navigate(R.id.action_AuthenticationFragment_to_HomeFragment);
@@ -281,7 +281,8 @@ public class AuthenticationFragment extends Fragment {
         refreshPageLayout();
         return root;
     }
-    /*
+
+    /**
      *  Returns true if the new user's email already exists in the database.
      *  Returns false otherwise.
      */
@@ -289,7 +290,7 @@ public class AuthenticationFragment extends Fragment {
         return existingEmails.contains(email);
     }
 
-    /*
+    /**
      *  Creates new user in firebase database
      */
     public void writeNewUser(String userId, String e, String pass, String first, String last, String c, String i) {
@@ -302,11 +303,17 @@ public class AuthenticationFragment extends Fragment {
         mDatabase.child("users").child(userId).child("friends").setValue("");
     }
 
+    /**
+     * Get the all database users
+     * @return List of User classes
+     */
     public List<User> getUsers() {
         return existingUsers;
     }
 
-    //refreshes the layout of the page depending on the page number
+    /**
+     * refreshes the layout of the page depending on the page number
+     */
     public void refreshPageLayout() {
         topEditText.getText().clear();
         bottomEditText.getText().clear();

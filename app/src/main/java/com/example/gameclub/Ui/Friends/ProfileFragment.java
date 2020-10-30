@@ -24,6 +24,13 @@ public class ProfileFragment extends Fragment {
     public Button edit;
     private Boolean profile = true;
 
+    public ProfileFragment() {
+
+    }
+
+    /**
+     * Display the current user's details
+     */
     public void printPLayerInfo() {
         ((TextView) root.findViewById(R.id.first_name_text)).setText(MainActivity.currentUser.getFirstName());
         ((TextView) root.findViewById(R.id.last_name_text)).setText(MainActivity.currentUser.getLastName());
@@ -43,23 +50,25 @@ public class ProfileFragment extends Fragment {
                 NavHostFragment.findNavController(ProfileFragment.this).navigate((R.id.action_nav_profile_to_home));
             }
         });
+
         final EditText email = root.findViewById(R.id.edit_email);
         final EditText name = root.findViewById(R.id.edit_name);
         final EditText surname = root.findViewById(R.id.edit_surname);
         final EditText country = root.findViewById(R.id.edit_country);
         final EditText interest = root.findViewById(R.id.edit_interest);
 
+        // Display user details
         printPLayerInfo();
 
-
+        // If edit button is clicked
         edit.setOnClickListener(new View.OnClickListener() {
             public void onClick(View v) {
                 if (profile) {
-                    ((TextView) root.findViewById(R.id.first_name_text)).setVisibility(View.INVISIBLE);
-                    ((TextView) root.findViewById(R.id.last_name_text)).setVisibility(View.INVISIBLE);
-                    ((TextView) root.findViewById(R.id.email_text)).setVisibility(View.INVISIBLE);
-                    ((TextView) root.findViewById(R.id.interests_text)).setVisibility(View.INVISIBLE);
-                    ((TextView) root.findViewById(R.id.country_text)).setVisibility(View.INVISIBLE);
+                    root.findViewById(R.id.first_name_text).setVisibility(View.INVISIBLE);
+                    root.findViewById(R.id.last_name_text).setVisibility(View.INVISIBLE);
+                    root.findViewById(R.id.email_text).setVisibility(View.INVISIBLE);
+                    root.findViewById(R.id.interests_text).setVisibility(View.INVISIBLE);
+                    root.findViewById(R.id.country_text).setVisibility(View.INVISIBLE);
 
                     email.setVisibility(View.VISIBLE);
                     email.setHint("New Email");

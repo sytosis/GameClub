@@ -15,12 +15,16 @@ import androidx.navigation.fragment.NavHostFragment;
 import com.example.gameclub.MainActivity;
 import com.example.gameclub.R;
 
-import java.util.ArrayList;
 import java.util.List;
 
 public class FriendsListFragment extends Fragment {
 
-    Button homeButton;
+    private Button homeButton;
+
+    public FriendsListFragment() {
+
+    }
+
     public View onCreateView(@NonNull LayoutInflater inflater,
                              ViewGroup container, Bundle savedInstanceState) {
         final View root = inflater.inflate(R.layout.friends_list, container, false);
@@ -30,20 +34,27 @@ public class FriendsListFragment extends Fragment {
                 NavHostFragment.findNavController(FriendsListFragment.this).navigate((R.id.action_friendsListFragment_to_nav_home));
             }
         });
+        // Get text views
         TextView first = root.findViewById(R.id.textView7);
         TextView second = root.findViewById(R.id.person2);
         TextView third = root.findViewById(R.id.person3);
         TextView fourth = root.findViewById(R.id.person4);
+        // Get linear layouts
         LinearLayout friend1 = root.findViewById(R.id.friend_layout_1);
         LinearLayout friend2 = root.findViewById(R.id.friend_layout_2);
         LinearLayout friend3 = root.findViewById(R.id.friend_layout_3);
         LinearLayout friend4 = root.findViewById(R.id.friend_layout_4);
+
         List<String> friendList = MainActivity.currentUser.getFriendList();
+
+        // Check friend list size
         int size = friendList.size();
         if (friendList.get(0).equals("")) {
             size = 0;
         }
         System.out.println("Size is: " + size);
+
+        // Display friends depending on number of friends
         if (size <= 0) {
             friend1.setVisibility(View.INVISIBLE);
             friend2.setVisibility(View.INVISIBLE);
@@ -89,6 +100,9 @@ public class FriendsListFragment extends Fragment {
         return root;
     }
 
+    /**
+     * Returns user picture id
+     */
     public int getPic(String name) {
         if (name.equals("jason")) {
             return R.drawable.jason_photo;

@@ -23,8 +23,6 @@ import androidx.navigation.fragment.NavHostFragment;
 import com.example.gameclub.MainActivity;
 import com.example.gameclub.R;
 
-import com.example.gameclub.Ui.Gallery.ChessFragment;
-
 import com.google.firebase.database.ChildEventListener;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
@@ -35,6 +33,9 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Random;
 
+/**
+ * Controls the bingo game UI and some functionality
+ */
 public class BingoFragment extends Fragment {
 
     private static TextView winText;
@@ -67,15 +68,27 @@ public class BingoFragment extends Fragment {
     private static Integer recordlen = 0;
     private static Integer receivelen = 0;
 
+    public BingoFragment() {
 
+    }
+
+    /**
+     *  Will set the server message state
+     */
     public static void setServerMessage(Boolean state) {
         serverMessage = state;
     }
 
+    /**
+     *  Will return the server message state
+     */
     public static Boolean getServerMessage() {
         return serverMessage;
     }
 
+    /**
+     *  Add bingo text
+     */
     public void fillBingoBoardTextList() {
         bingoBoardText.add((TextView) root.findViewById(R.id.Text1));
         bingoBoardText.add((TextView) root.findViewById(R.id.Text2));
@@ -104,6 +117,9 @@ public class BingoFragment extends Fragment {
         bingoBoardText.add((TextView) root.findViewById(R.id.Text25));
     }
 
+    /**
+     *  Add bingo ball images
+     */
     public void fillBingoBoardImageList() {
         bingoBoardImages.add((ImageView) root.findViewById(R.id.Ball1));
         bingoBoardImages.add((ImageView) root.findViewById(R.id.Ball2));
@@ -132,6 +148,9 @@ public class BingoFragment extends Fragment {
         bingoBoardImages.add((ImageView) root.findViewById(R.id.Ball25));
     }
 
+    /**
+     * Sets the ball image based on the ball number
+     */
     public static void setBallColour(ImageView ball, int number) {
         if (number < 16) {
             ball.setImageResource(R.drawable.pink_ball);
@@ -150,7 +169,11 @@ public class BingoFragment extends Fragment {
         }
     }
 
+    /**
+     * If game is over display popup with winner name or if user has won
+     */
     public static void gameOver(int winner, String winName) {
+        // If database id is user id
         if (Integer.parseInt(MainActivity.currentUser.getId()) == winner) {
             System.out.println("YOU WON");
         } else {
@@ -161,19 +184,27 @@ public class BingoFragment extends Fragment {
         }
     }
 
+    /**
+     *  Display the new ball number
+     */
     public static void displayBall(int number) {
         setBallColour((ImageView) root.findViewById(R.id.RollBall), number);
         ((TextView) root.findViewById(R.id.RollText)).setText(String.valueOf(number));
     }
 
+    /**
+     *  Set the text for the board
+     */
     public void setBoardText() {
         for (int i = 0; i < 25; ++i) {
             bingoBoardText.get(i).setText(String.valueOf(bingoGame.bingoBoard.get(i)));
         }
     }
 
+    /**
+     * Set the color for the balls on board
+     */
     public void setBoardColours() {
-
         for (int i = 0; i < 25; ++i) {
             setBallColour(bingoBoardImages.get(i), bingoGame.bingoBoard.get(i));
             if (bingoGame.checker.get(i)) {
@@ -182,14 +213,22 @@ public class BingoFragment extends Fragment {
         }
     }
 
+    /**
+     *  If ball has been called and is on the user's board stamp it
+     */
     public void stampBall() {
+        // Checks all board ball states
         for (int i = 0; i < 25; ++i) {
             if (bingoGame.checker.get(i)) {
+                // Changes ball image to grey/stamped
                 bingoBoardImages.get(i).setImageResource(R.drawable.grey_ball);
             }
         }
     }
 
+    /**
+     *  Print the chat using the given string
+     */
     public void printChat(String chat) {
         serverMessage = true;
         TextView tv = new TextView(getContext());
@@ -221,14 +260,17 @@ public class BingoFragment extends Fragment {
         chatHelpText = root.findViewById(R.id.message_help_text);
         toggleHelpButton = root.findViewById(R.id.toggle_help_text_button);
 
-
+        // Database listener
         mDatabase.addChildEventListener(new ChildEventListener() {
             @Override
             public void onChildAdded(@NonNull DataSnapshot snapshot, @Nullable String previousChildName) {
                     try {
+                        // Get database chat values
                         receive = snapshot.child("Bingo").child("Hosting").child("Chat").getValue().toString();
+                        // Split string as different messages are separated by '/'
                         String[] messages = receive.split("/");
                         record = receive.split("/");
+                        // Print all database chat messages
                         for (int i = 0; i < messages.length - 1; ++i) {
                             printChat(messages[i]);
                         }
@@ -240,20 +282,31 @@ public class BingoFragment extends Fragment {
             @Override
             public void onChildChanged(@NonNull DataSnapshot snapshot, @Nullable String previousChildName) {
                 try {
+                    // Get the winner id
                     winner = Integer.parseInt(snapshot.child("Bingo").child("Hosting").child("winner").getValue().toString());
+                    // Get database chat
                     receive = snapshot.child("Bingo").child("Hosting").child("Chat").getValue().toString();
                     String[] messages = receive.split("/");
+                    // User chat record length
                     recordlen = record.length;
+                    // database chat record length
                     receivelen = messages.length;
+                    // Stamp the ball
                     stampBall();
+                    // If the user chat is shorter than database chat
                     if (recordlen < receivelen) {
+                        // Get number of chats user needs
                         int difference = receivelen - recordlen;
+                        // Print the database chats user doesn't have
                         for (int i = receivelen - difference; i < receivelen; ++i) {
                             printChat(messages[i]);
                         }
+                        // Update record to database record
                         record = messages;
                     }
+                    //  If the winner is decided
                     if (winner != -1) {
+                        // Make game over screen visible
                         gameOverScreen.setVisibility(View.VISIBLE);
                     }
                 } catch (Exception e) {
@@ -273,18 +326,21 @@ public class BingoFragment extends Fragment {
 
             @Override
             public void onCancelled(@NonNull DatabaseError error) {
-
             }
         });
 
+        // Set and display board ball numbers
         fillBingoBoardTextList();
         setBoardText();
 
+        // Set and display board ball images
         fillBingoBoardImageList();
         setBoardColours();
 
+        // If home button is pressed
         homeButton.setOnClickListener(new View.OnClickListener() {
             public void onClick(View v) {
+                // Take user to home page
                 NavHostFragment.findNavController(BingoFragment.this).navigate((R.id.action_nav_bingo_to_home));
             }
         });
@@ -301,39 +357,49 @@ public class BingoFragment extends Fragment {
                 }
             }
         });
+        // Set button text to Play Again
         String replay = "Play Again";
         replayButton.setText(replay);
 
+        // If replay button is clicked
         replayButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+                // Take to user back to current page
                 NavHostFragment.findNavController(BingoFragment.this).navigate((R.id.action_nav_gallery_self));
             }
         });
 
+        // Set button text to Quit
         String quit = "Quit";
         quitButton.setText(quit);
 
+        // If quit button is clicked
         quitButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+                // Take user to home page
                 NavHostFragment.findNavController(BingoFragment.this).navigate((R.id.action_nav_bingo_to_home));
             }
         });
 
+        // If send chat button is clicked
         sendChat.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 String sendChat = (" " + MainActivity.currentUser.getFirstName() + ": " + text.getText());
                 text.getText().clear();
+                // Add chat to database
                 mDatabase.child("Games").child("Bingo").child("Hosting").child("Chat").setValue(receive+"/"+sendChat);
                 scrollViewChat.fullScroll(View.FOCUS_DOWN);
             }
         });
 
+        // Open chat button is clicked
         chatOpenButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+                // Make bingo invisible and chat visible
                 wholeChatBox.setVisibility(View.VISIBLE);
                 toggleHelpButton.setVisibility(View.INVISIBLE);
                 ImageView ball1 = root.findViewById(R.id.Ball1);
@@ -443,9 +509,12 @@ public class BingoFragment extends Fragment {
 
             }
         });
+
+        // If chat close button is clicked
         chatCloseButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+                // Make bingo visible and chat invisible
                 wholeChatBox.setVisibility(View.INVISIBLE);
                 toggleHelpButton.setVisibility(View.VISIBLE);
                 ImageView ball1 = root.findViewById(R.id.Ball1);

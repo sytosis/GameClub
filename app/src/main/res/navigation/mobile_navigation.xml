@@ -55,7 +55,7 @@
 
     <fragment
         android:id="@+id/nav_chess"
-        android:name="com.example.gameclub.Ui.Gallery.ChessFragment"
+        android:name="com.example.gameclub.Games.ChessFragment"
         android:label="@string/menu_slideshow"
         tools:layout="@layout/fragment_chess" >
         <action
