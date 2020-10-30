@@ -5,6 +5,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
+import android.widget.EditText;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
@@ -16,6 +17,8 @@ import com.example.gameclub.Games.Bingo;
 import com.example.gameclub.Games.BingoFragment;
 import com.example.gameclub.MainActivity;
 import com.example.gameclub.R;
+
+import org.w3c.dom.Text;
 
 public class MakeFriendsFragment extends Fragment {
 
@@ -34,6 +37,9 @@ public class MakeFriendsFragment extends Fragment {
     public View onCreateView(@NonNull LayoutInflater inflater,
                              ViewGroup container, Bundle savedInstanceState) {
         final View root = inflater.inflate(R.layout.make_new_friends, container, false);
+        EditText editText = root.findViewById(R.id.editText);
+        editText.setHint("Type Here...");
+        editText.setText("");
         homeButton = root.findViewById(R.id.back_button);
         homeButton.setOnClickListener(new View.OnClickListener() {
             public void onClick(View v) {

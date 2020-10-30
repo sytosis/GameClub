@@ -21,7 +21,6 @@ public class User {
 
     }
 
-
     public User(String userId, String e, String pass, String first, String last, String c, String i, String friends) {
         id = userId;
         email = e;
