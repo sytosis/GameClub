@@ -107,7 +107,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="276dp"
-        android:text="You can search a \nplayer by typing in\ntheir name or\nE-mail."
+        android:text="You can search a \nplayer by typing in\ntheir email."
         android:textAppearance="@style/TextAppearance.AppCompat.Large"
         android:textSize="30sp"
         app:layout_constraintEnd_toEndOf="parent"
@@ -200,5 +200,15 @@
         app:layout_constraintEnd_toEndOf="@+id/jack_button"
         app:layout_constraintStart_toStartOf="@+id/jack_button"
         app:layout_constraintTop_toBottomOf="@+id/jack_button" />
+
+    <TextView
+        android:id="@+id/result"
+        android:layout_width="323dp"
+        android:layout_height="142dp"
+        android:layout_marginStart="20dp"
+        android:layout_marginBottom="16dp"
+        android:textSize="30sp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintStart_toStartOf="parent" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
