@@ -7,66 +7,6 @@
     android:background="@drawable/wood_background"
     tools:context=".Ui.Home.HomeFragment">
 
-    <EditText
-        android:id="@+id/edit_email"
-        android:layout_width="@dimen/_130sdp"
-        android:layout_height="@dimen/_40sdp"
-        android:layout_marginStart="680dp"
-        android:layout_marginTop="@dimen/_23sdp"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        android:textSize="@dimen/_14sdp"
-        android:textStyle="italic"
-        android:visibility="invisible"/>
-
-    <EditText
-        android:id="@+id/edit_name"
-        android:layout_width="@dimen/_130sdp"
-        android:layout_height="@dimen/_40sdp"
-        android:layout_marginStart="680dp"
-        android:layout_marginTop="@dimen/_73sdp"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        android:textSize="@dimen/_14sdp"
-        android:textStyle="italic"
-        android:visibility="invisible"/>
-
-    <EditText
-        android:id="@+id/edit_surname"
-        android:layout_width="@dimen/_130sdp"
-        android:layout_height="@dimen/_40sdp"
-        android:layout_marginStart="680dp"
-        android:layout_marginTop="@dimen/_113sdp"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        android:textSize="@dimen/_14sdp"
-        android:textStyle="italic"
-        android:visibility="invisible"/>
-
-    <EditText
-        android:id="@+id/edit_country"
-        android:layout_width="@dimen/_130sdp"
-        android:layout_height="@dimen/_40sdp"
-        android:layout_marginStart="680dp"
-        android:layout_marginTop="@dimen/_153sdp"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        android:textSize="@dimen/_14sdp"
-        android:textStyle="italic"
-        android:visibility="invisible"/>
-
-    <EditText
-        android:id="@+id/edit_interest"
-        android:layout_width="@dimen/_130sdp"
-        android:layout_height="@dimen/_40sdp"
-        android:layout_marginStart="680dp"
-        android:layout_marginTop="@dimen/_193sdp"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        android:textSize="@dimen/_14sdp"
-        android:textStyle="italic"
-        android:visibility="invisible"/>
-
     <Button
         android:id="@+id/back_button"
         android:layout_width="100dp"
@@ -211,28 +151,6 @@
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
-
-        <TextView
-            android:layout_width="match_parent"
-            android:layout_height="@dimen/_50sdp"
-            android:gravity="center"
-            android:text="Me"
-            android:textSize="@dimen/_25sdp"
-            app:layout_constraintBottom_toTopOf="@+id/edit_profile_button"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/profile_photo" />
-
-        <Button
-            android:id="@+id/edit_profile_button"
-            android:layout_width="@dimen/_100sdp"
-            android:layout_height="@dimen/_50sdp"
-            android:background="@drawable/border2"
-            android:text="Edit Profile"
-            android:textColor="@color/white"
-            android:textSize="@dimen/_14sdp"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent" />
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 

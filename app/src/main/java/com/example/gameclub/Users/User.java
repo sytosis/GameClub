@@ -17,6 +17,11 @@ public class User {
     private DatabaseReference mDatabase = FirebaseDatabase.getInstance().getReference();
     private String id, email, password, firstName, lastName, country, interest, friendList;
 
+    public User() {
+
+    }
+
+
     public User(String userId, String e, String pass, String first, String last, String c, String i, String friends) {
         id = userId;
         email = e;
@@ -81,6 +86,11 @@ public class User {
         this.interest = interest;
     }
 
+    public void setId(String id) {
+        mDatabase.child("users").child(id).setValue("");
+        this.id = id;
+    }
+
     public List<String> getFriendList() {
         List<String> tempList = new ArrayList<>();
         String[] str = friendList.split(",");
@@ -89,7 +99,12 @@ public class User {
     }
 
     public void addFriend(String email) {
-        friendList = friendList + email + ",";
-        mDatabase.child("users").child(id).child("friends").setValue(friendList);
+        List<String> str = Arrays.asList(friendList.split(","));
+        if (str.contains(email)) {
+            return;
+        } else {
+            friendList = friendList + email + ",";
+            mDatabase.child("users").child(id).child("friends").setValue(friendList);
+        }
     }
 }
