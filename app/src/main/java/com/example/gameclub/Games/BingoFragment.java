@@ -35,6 +35,10 @@ import java.util.Random;
 
 /**
  * Controls the bingo game UI and some functionality
+ * @author John Roby John
+ * @author Kevin Chua
+ * @author Jordan Ng
+ * @author Robert Francis
  */
 public class BingoFragment extends Fragment {
 

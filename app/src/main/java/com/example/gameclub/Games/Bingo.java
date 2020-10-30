@@ -21,6 +21,10 @@ import java.util.TimerTask;
 
 /**
  *  This class holds the functions that run the back end of the bingo game
+ *  @author John Roby John
+ *  @author Kevin Chua
+ *  @author Jordan Ng
+ *  @author Robert Francis
  */
 public class Bingo extends ViewModel {
     // Numbers on bingo board

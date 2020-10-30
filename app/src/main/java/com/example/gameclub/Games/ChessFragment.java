@@ -39,6 +39,14 @@ import java.util.List;
 
 /**
  * Controls chess UI and some functionality
+ * To play chess you must have two emulators open, a tutorial can be found on android developers site
+ * The game will wait for a client to start on localhost. If this is not feasible as two emulator
+ * will take up a large amount of processing power and some systems might not have the ability
+ * to run this you. If you want to run a single player game go to line 78,368 and 429 and follow the instruction
+ * @author John Roby John
+ * @author Kevin Chua
+ * @author Jordan Ng
+ * @author Robert Francis
  */
 public class ChessFragment extends Fragment {
     private ChessViewModel chessViewModel;
@@ -68,7 +76,9 @@ public class ChessFragment extends Fragment {
     // Host id
     private String id = "";
     // true if host
-    private Boolean isHost = true;
+    private Boolean isHost = false;
+    /*uncomment the line below anf comment the line above for single player */
+    // private Boolean isHost = true;
     // true if need to add to player num
     private Boolean add = true;
     // Number of players on server
@@ -358,6 +368,8 @@ public class ChessFragment extends Fragment {
             }
         });
         if (isHost) {
+            /* uncomment the line below for single player */
+            //startGame();
             isWhite = true;
             onWhite = true;
             serverConn();
@@ -421,6 +433,11 @@ public class ChessFragment extends Fragment {
                                     chessViewModel.getChessBoard()[x][y].contains("w") || !onWhite
                                     && !isWhite && chessViewModel.getChessBoard()[x][y].
                                     contains("b"))) {
+                            /*To test on single device comment the above 4 lines of code and uncomment the bottom 4 */
+                            //if (chessViewModel.selectChessPiece(x, y) && ( onWhite && isWhite &&
+                            //       chessViewModel.getChessBoard()[x][y].contains("w") || !onWhite
+                            //       && !isWhite && chessViewModel.getChessBoard()[x][y].
+                            //        contains("b"))) {
                                 Drawable[] layers = new Drawable[2];
                                 try {
                                     LayerDrawable tempBackground =

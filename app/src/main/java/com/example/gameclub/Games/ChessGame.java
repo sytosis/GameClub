@@ -9,6 +9,10 @@ import java.util.ArrayList;
  * Chess game is the state information of the chess game being played. It only sends out the
  * user selected piece and it's new destination. Meaning the selected piece are to move to the
  * new destination.
+ * @author John Roby John
+ * @author Kevin Chua
+ * @author Jordan Ng
+ * @author Robert Francis
  */
 public class ChessGame implements Game {
 

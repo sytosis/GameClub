@@ -35,6 +35,13 @@ import java.util.List;
 
 import static android.content.Context.MODE_PRIVATE;
 
+/**
+ * Authentication Fragment, allows users to create account and log in as soon as game starts
+ * @author John Roby John
+ * @author Kevin Chua
+ * @author Jordan Ng
+ * @author Robert Francis
+ */
 public class AuthenticationFragment extends Fragment {
     //stores private buttons and strings for the page
     private Integer pageNumber = 1;

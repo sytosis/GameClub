@@ -7,6 +7,10 @@ import java.util.ArrayList;
  * In future applications servers would implement serialization so game states can be sent more easily.
  * however, our current games did not require them.
  * @author John Roby John
+ * @author John Roby John
+ * @author Kevin Chua
+ * @author Jordan Ng
+ * @author Robert Francis
  */
 public interface Game {
 

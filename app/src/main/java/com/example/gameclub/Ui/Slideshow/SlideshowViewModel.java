@@ -1,4 +1,4 @@
-package com.example.gameclub.Ui.Slideshow;
+package com.example.gameclub.Ui.slideshow;
 
 import androidx.lifecycle.LiveData;
 import androidx.lifecycle.MutableLiveData;

@@ -8,16 +8,18 @@ import android.widget.Button;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
-import androidx.appcompat.content.res.AppCompatResources;
 import androidx.fragment.app.Fragment;
-import androidx.lifecycle.ViewModelProviders;
-import androidx.navigation.NavController;
 import androidx.navigation.fragment.NavHostFragment;
-
 import com.example.gameclub.MainActivity;
 import com.example.gameclub.R;
-import com.example.gameclub.Ui.Authentication.AuthenticationFragment;
 
+/**
+ * Home fragment one a user has logged in this page controls the users next actions
+ * @author John Roby John
+ * @author Kevin Chua
+ * @author Jordan Ng
+ * @author Robert Francis
+ */
 public class HomeFragment extends Fragment {
 
     //Variables that contain the buttons used within the XML for referral

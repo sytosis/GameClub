@@ -10,6 +10,13 @@ import androidx.lifecycle.ViewModel;
 
 import java.util.List;
 
+    /**
+     * Chess view model, chess fragment calls this function to help with the game logic.
+     * @author John Roby John
+     *  @author Kevin Chua
+     *  @author Jordan Ng
+     *  @author Robert Francis
+     */
 public class ChessViewModel extends ViewModel {
     private int[] selectedPiece= new int[2];
     private boolean isWhite;

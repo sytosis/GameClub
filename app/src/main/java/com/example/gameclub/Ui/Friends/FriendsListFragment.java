@@ -17,6 +17,13 @@ import com.example.gameclub.R;
 
 import java.util.List;
 
+/**
+ * Friends List fragment allow users to see their friends list.
+ * @author John Roby John
+ * @author Kevin Chua
+ * @author Jordan Ng
+ * @author Robert Francis
+ */
 public class FriendsListFragment extends Fragment {
 
     private Button homeButton;

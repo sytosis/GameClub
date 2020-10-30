@@ -17,6 +17,13 @@ import com.example.gameclub.Games.BingoFragment;
 import com.example.gameclub.MainActivity;
 import com.example.gameclub.R;
 
+/**
+ * Make friends Fragments allows users to add new friends
+ * @author John Roby John
+ * @author Kevin Chua
+ * @author Jordan Ng
+ * @author Robert Francis
+ */
 public class MakeFriendsFragment extends Fragment {
 
     private Button homeButton;
