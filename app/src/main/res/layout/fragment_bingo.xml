@@ -94,6 +94,59 @@
 
             </LinearLayout>
 
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:id="@+id/game_end_screen"
+                android:layout_width="@dimen/_200sdp"
+                android:layout_height="@dimen/_200sdp"
+                android:background="@color/white"
+                android:orientation="vertical"
+                android:visibility="invisible"
+                tools:layout_editor_absoluteX="262dp"
+                tools:layout_editor_absoluteY="57dp">
+
+                <TextView
+                    android:id="@id/winText"
+                    android:layout_width="match_parent"
+                    android:layout_height="@dimen/_50sdp"
+                    android:gravity="center"
+                    android:text="You win!"
+                    android:textColor="@color/yelloworange"
+                    android:textSize="@dimen/_30ssp"
+                    android:textStyle="italic"
+                    app:layout_constraintBottom_toTopOf="@+id/buttons_quit_replay"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent" />
+
+                <androidx.constraintlayout.widget.ConstraintLayout
+                    android:id="@+id/buttons_quit_replay"
+                    android:layout_width="match_parent"
+                    android:layout_height="@dimen/_50sdp"
+                    android:layout_gravity="bottom"
+                    android:gravity="bottom"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/winText">
+
+                    <Button
+                        android:id="@+id/quit"
+                        android:layout_width="@dimen/_75sdp"
+                        android:layout_height="@dimen/_35sdp"
+                        android:background="@drawable/quit_button"
+                        app:layout_constraintBottom_toBottomOf="parent"
+                        app:layout_constraintStart_toStartOf="parent" />
+
+                    <Button
+                        android:id="@+id/replay"
+                        android:layout_width="@dimen/_75sdp"
+                        android:layout_height="@dimen/_35sdp"
+                        android:background="@drawable/replay_button"
+                        app:layout_constraintBottom_toBottomOf="parent"
+                        app:layout_constraintEnd_toEndOf="parent" />
+                </androidx.constraintlayout.widget.ConstraintLayout>
+
+
+            </androidx.constraintlayout.widget.ConstraintLayout>
+
 
         </androidx.constraintlayout.widget.ConstraintLayout>
 
@@ -688,58 +741,6 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
-    <androidx.constraintlayout.widget.ConstraintLayout
-        android:id = "@+id/game_end_screen"
-        android:layout_width="@dimen/_200sdp"
-        android:layout_height="@dimen/_200sdp"
-        android:background = "@color/white"
-        app:layout_constraintTop_toTopOf="@id/Ball1"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        android:orientation="vertical"
-        android:visibility="invisible"
-        >
-        <TextView
-            android:id="@id/winText"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent"
-            app:layout_constraintBottom_toTopOf="@+id/buttons_quit_replay"
-            android:layout_width="match_parent"
-            android:layout_height="@dimen/_50sdp"
-            android:textSize="@dimen/_30ssp"
-            android:gravity="center"
-            android:textStyle="italic"
-            android:textColor="@color/yelloworange"
-            android:text="You win!" />
-
-        <androidx.constraintlayout.widget.ConstraintLayout
-            android:id="@+id/buttons_quit_replay"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/winText"
-            app:layout_constraintEnd_toEndOf="parent"
-            android:layout_width="match_parent"
-            android:layout_height="@dimen/_50sdp"
-            android:layout_gravity="bottom"
-            android:gravity="bottom">
-            <Button
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintBottom_toBottomOf="parent"
-                android:id="@+id/quit"
-                android:background="@drawable/quit_button"
-                android:layout_width="@dimen/_75sdp"
-                android:layout_height="@dimen/_35sdp"/>
-            <Button
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintBottom_toBottomOf="parent"
-                android:id="@+id/replay"
-                android:background="@drawable/replay_button"
-                android:layout_width="@dimen/_75sdp"
-                android:layout_height="@dimen/_35sdp"/>
-        </androidx.constraintlayout.widget.ConstraintLayout>
-
-
-    </androidx.constraintlayout.widget.ConstraintLayout>
-
     <TextView
         android:id="@+id/home_help_text"
         android:layout_width="@dimen/_66sdp"
@@ -761,7 +762,7 @@
         android:layout_marginRight="@dimen/_5sdp"
         android:visibility="invisible"
         />
-    
+
     <Button
         android:id="@+id/toggle_help_text_button"
         android:layout_width="@dimen/_40sdp"

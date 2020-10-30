@@ -45,7 +45,7 @@
 
     <fragment
         android:id="@+id/nav_profile"
-        android:name="com.example.gameclub.Ui.Friends.ProfileFragment"
+        android:name="com.example.gameclub.Users.ProfileFragment"
         android:label="@string/profile"
         tools:layout="@layout/fragment_profile" >
         <action

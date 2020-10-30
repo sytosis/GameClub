@@ -28,6 +28,10 @@ public class HomeFragment extends Fragment {
     private Button backButton;
     private boolean game_page = false;
 
+    public HomeFragment() {
+
+    }
+
     //runs the moment the page loads
     public View onCreateView(@NonNull LayoutInflater inflater,
                              ViewGroup container, Bundle savedInstanceState) {

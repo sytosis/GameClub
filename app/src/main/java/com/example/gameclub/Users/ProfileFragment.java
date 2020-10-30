@@ -1,4 +1,4 @@
-package com.example.gameclub.Ui.Friends;
+package com.example.gameclub.Users;
 
 import android.os.Bundle;
 import android.view.LayoutInflater;
@@ -10,11 +10,8 @@ import android.widget.TextView;
 
 import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;
-import androidx.lifecycle.ViewModelProviders;
 import androidx.navigation.fragment.NavHostFragment;
 
-import com.example.gameclub.Games.Bingo;
-import com.example.gameclub.Games.BingoFragment;
 import com.example.gameclub.MainActivity;
 import com.example.gameclub.R;
 
@@ -63,12 +60,15 @@ public class ProfileFragment extends Fragment {
         // If edit button is clicked
         edit.setOnClickListener(new View.OnClickListener() {
             public void onClick(View v) {
+                // Display edit profile
                 if (profile) {
                     root.findViewById(R.id.first_name_text).setVisibility(View.INVISIBLE);
                     root.findViewById(R.id.last_name_text).setVisibility(View.INVISIBLE);
                     root.findViewById(R.id.email_text).setVisibility(View.INVISIBLE);
                     root.findViewById(R.id.interests_text).setVisibility(View.INVISIBLE);
                     root.findViewById(R.id.country_text).setVisibility(View.INVISIBLE);
+
+                    // Can enter in new details
 
                     email.setVisibility(View.VISIBLE);
                     email.setHint("New Email");
@@ -89,11 +89,13 @@ public class ProfileFragment extends Fragment {
                     interest.setVisibility(View.VISIBLE);
                     interest.setHint("New Interest");
                     interest.setText(MainActivity.currentUser.getInterest());
+
                     String edit_text = "Make Changes";
                     edit.setText(edit_text);
 
                     profile = false;
                 } else {
+                    // Display new/current user profile details
                     if (!email.getText().toString().equals("")) {
                         MainActivity.currentUser.setEmail(email.getText().toString());
                     }
@@ -116,6 +118,7 @@ public class ProfileFragment extends Fragment {
                     ((TextView) root.findViewById(R.id.interests_text)).setVisibility(View.VISIBLE);
                     ((TextView) root.findViewById(R.id.country_text)).setVisibility(View.VISIBLE);
 
+                    // Display player info
                     printPLayerInfo();
 
                     email.setVisibility(View.INVISIBLE);

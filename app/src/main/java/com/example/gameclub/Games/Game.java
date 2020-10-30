@@ -1,4 +1,4 @@
-package com.example.gameclub.Network;
+package com.example.gameclub.Games;
 
 import java.util.ArrayList;
 

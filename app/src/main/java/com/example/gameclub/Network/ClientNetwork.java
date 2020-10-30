@@ -3,6 +3,7 @@ package com.example.gameclub.Network;
 import android.widget.TextView;
 
 import com.example.gameclub.Games.ChessGame;
+import com.example.gameclub.Games.Game;
 
 import java.io.BufferedReader;
 import java.io.IOException;

@@ -3,8 +3,6 @@ package com.example.gameclub.Games;
 import android.view.View;
 
 
-import com.example.gameclub.Network.Game;
-
 import java.util.ArrayList;
 
 /**
